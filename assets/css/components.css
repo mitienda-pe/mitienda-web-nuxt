@@ -1,0 +1,505 @@
+/* Component Styles - Extracted from mitienda-web-3 */
+
+/* ==========================================
+   HEADER
+   ========================================== */
+.header {
+  padding: 1rem 0;
+  background: var(--background);
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar-brand img {
+  width: 150px;
+  height: auto;
+}
+
+.navbar {
+  padding: 0;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-dark);
+  text-decoration: none;
+}
+
+.navbar-brand:hover {
+  color: var(--primary-color);
+}
+
+.navbar-nav {
+  gap: 2rem;
+}
+
+.nav-link {
+  color: var(--text-dark);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+}
+
+/* ==========================================
+   BUTTONS
+   ========================================== */
+.btn {
+  font-weight: 600;
+  border-radius: var(--rounded-lg);
+  padding: 0.75rem 1.5rem;
+  border: none;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 107, 71, 0.3);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid var(--border-light);
+  color: var(--text-dark);
+}
+
+.btn-outline:hover {
+  background: var(--text-dark);
+  color: white;
+  border-color: var(--text-dark);
+}
+
+.btn-lg {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+.btn-white {
+  background: white;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.btn-white:hover {
+  background: #f8f9fa;
+  color: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
+.hero {
+  padding: 4rem 0;
+  background: var(--background);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle,
+      rgba(255, 107, 71, 0.05) 0%,
+      transparent 70%);
+  border-radius: 50%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: var(--text-dark);
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.hero-cta {
+  margin-bottom: 2rem;
+}
+
+.trust-indicators {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.trust-text {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* ==========================================
+   CARDS
+   ========================================== */
+.card {
+  border: 1px solid var(--border-light);
+  border-radius: var(--rounded-xl);
+  padding: 2rem;
+  background: var(--background);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  background: var(--primary-color);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.card-video {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  border-radius: 8px;
+}
+
+/* ==========================================
+   FEATURES SECTION
+   ========================================== */
+.features {
+  padding: 5rem 0;
+  background: var(--background-soft);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================
+   PRICING SECTION
+   ========================================== */
+.pricing {
+  padding: 5rem 0;
+  background: var(--background);
+}
+
+.pricing-card {
+  border: 2px solid var(--border-light);
+  border-radius: var(--rounded-xl);
+  padding: 2.5rem;
+  text-align: center;
+  background: var(--background);
+  height: 100%;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.pricing-card.featured {
+  border-color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+.pricing-card.featured::before {
+  content: "Más Popular";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-card.featured:hover {
+  transform: translateY(-4px) scale(1.05);
+}
+
+.price {
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.price-period {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.features-list li {
+  padding: 0.5rem 0;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.features-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--success);
+  font-weight: bold;
+}
+
+/* Form switch badge */
+.form-switch span.badge {
+  background-color: var(--primary-color);
+}
+
+.form-check-input:checked {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* ==========================================
+   CTA SECTION
+   ========================================== */
+.cta-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg,
+      var(--primary-color),
+      var(--primary-hover));
+  color: white;
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.footer {
+  padding: 3rem 0;
+  background: var(--text-dark);
+  color: white;
+  text-align: center;
+}
+
+.footer .navbar-brand {
+  color: white;
+  margin-bottom: 2rem;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-nav a {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+  color: white;
+}
+
+.copyright {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+/* ==========================================
+   SOCIAL ICONS
+   ========================================== */
+.svg-icon {
+  display: inline-flex;
+  align-self: center;
+  align-items: baseline;
+}
+
+.svg-icon img,
+.svg-icon svg {
+  height: 1em;
+  width: 1em;
+  fill: currentColor;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.social-links a {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.social-links a:hover {
+  background: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+/* ==========================================
+   LITE-YOUTUBE FALLBACK
+   ========================================== */
+.lite-youtube-fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  aspect-ratio: 16 / 9;
+}
+
+/* right-facing triangle "Play" icon */
+.lite-youtube-fallback::before {
+  display: block;
+  content: "";
+  border: solid transparent;
+  border-width: 2em 0 2em 3em;
+  border-left-color: red;
+}
+
+.lite-youtube-fallback:hover::before {
+  border-left-color: #fff;
+}
+
+.lite-youtube-fallback:focus {
+  outline: 2px solid red;
+}
+
+/* ==========================================
+   WHATSAPP WIDGET
+   ========================================== */
+.whatsapp.whatsapp-chat {
+  color: #fff !important;
+  background: #4dc247 !important;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  order: 2;
+  box-sizing: border-box;
+  cursor: pointer;
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+  bottom: 50px;
+  right: 23px;
+  opacity: 1;
+  font-size: 1.75rem;
+  position: fixed !important;
+  z-index: 1000 !important;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: 0.5s;
+  border-width: 0;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+}
+
+/* ==========================================
+   LIBRO DE RECLAMACIONES
+   ========================================== */
+.libro-de-reclamaciones {
+  text-align: center;
+  padding: 20px;
+}

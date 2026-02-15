@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Nuxt build/dev
+.nuxt/
+.output/
+.netlify/
+dist/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Claude Code
+.claude/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
