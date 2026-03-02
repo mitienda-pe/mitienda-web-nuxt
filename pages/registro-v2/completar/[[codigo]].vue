@@ -9,12 +9,35 @@ const store = useRegistrationV2Store()
 const codigo = computed(() => route.params.codigo as string || store.codigo)
 
 const tiendaUrl = computed(() => store.tiendaUrl || `https://tutienda.mitienda.pe`)
-const panelUrl = computed(() => store.panelUrl || `https://panel.mitienda.host/exito/index/${codigo.value}`)
+const panelUrl = computed(() => store.panelUrl || `https://admin.mitienda.pe/login`)
+
+// Auto-redirect countdown to the admin panel
+const countdown = ref(8)
+const autoRedirectEnabled = ref(true)
+let countdownInterval: ReturnType<typeof setInterval> | null = null
 
 useSeoMeta({
   title: '¡Felicidades! Tu tienda está lista',
   description: 'Tu tienda virtual ha sido creada exitosamente',
 })
+
+function startCountdown() {
+  countdownInterval = setInterval(() => {
+    if (countdown.value <= 1) {
+      clearInterval(countdownInterval!)
+      if (autoRedirectEnabled.value) {
+        window.location.href = panelUrl.value
+      }
+    } else {
+      countdown.value--
+    }
+  }, 1000)
+}
+
+function cancelAutoRedirect() {
+  autoRedirectEnabled.value = false
+  if (countdownInterval) clearInterval(countdownInterval)
+}
 
 onMounted(() => {
   // Google Analytics 4
@@ -34,7 +57,11 @@ onMounted(() => {
     window.fbq('track', 'StartTrial')
   }
 
-  console.log('Registro V2 completado - ID:', codigo.value)
+  startCountdown()
+})
+
+onUnmounted(() => {
+  if (countdownInterval) clearInterval(countdownInterval)
 })
 </script>
 
@@ -90,6 +117,17 @@ onMounted(() => {
               Tu prueba gratis de <strong>14 días</strong> ha comenzado.
             </p>
 
+            <!-- Auto-redirect banner -->
+            <div v-if="autoRedirectEnabled" class="auto-redirect-banner mb-4">
+              <p class="mb-1">
+                Serás redirigido al panel de administración en
+                <strong>{{ countdown }}</strong> segundo{{ countdown !== 1 ? 's' : '' }}…
+              </p>
+              <button class="btn btn-sm btn-outline-secondary" @click="cancelAutoRedirect">
+                Cancelar redirección automática
+              </button>
+            </div>
+
             <!-- Links -->
             <div class="row g-4 mb-5">
               <div class="col-md-6">
@@ -108,7 +146,7 @@ onMounted(() => {
                   <h5>Panel de administración</h5>
                   <p class="text-muted mb-3">Agrega productos y gestiona tu tienda</p>
                   <a :href="panelUrl" class="btn btn-primary">
-                    Gestionar tienda →
+                    Ir al panel →
                   </a>
                 </div>
               </div>
@@ -131,6 +169,11 @@ onMounted(() => {
                 Agregar mi primer producto →
               </a>
             </div>
+
+            <!-- Magic link notice -->
+            <p v-if="store.magicToken" class="text-muted small mb-4">
+              El enlace te ingresará al panel sin necesidad de contraseña (válido por 10 minutos).
+            </p>
 
             <!-- Info Cards -->
             <div class="info-cards row g-3 mb-4">
@@ -290,6 +333,14 @@ onMounted(() => {
 
 .testimonial-card .blockquote-footer {
   color: #6c757d;
+}
+
+.auto-redirect-banner {
+  background: #e8f9f8;
+  border: 1px solid var(--primary-color, #00b2a6);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  color: #1a6b65;
 }
 
 @media (max-width: 768px) {

@@ -45,6 +45,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
   const codigo = ref<string | null>(null)
   const tiendaUrl = ref<string | null>(null)
   const panelUrl = ref<string | null>(null)
+  const magicToken = ref<string | null>(null)
 
   const isLoading = ref(false)
   const error = ref<string | null>(null)
@@ -231,7 +232,6 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
 
       if (result.error === 0 || result.response === 'success') {
         codigo.value = result.cod as string
-        panelUrl.value = `https://panel.mitienda.host/exito/index/${result.cod}`
         return { success: true, codigo: result.cod as string }
       } else {
         error.value = ((result.message || result.msn || 'Error en el registro') as string)
@@ -269,6 +269,12 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
       if (result.error === 0 || !result.error) {
         const tienda = result.tienda as { url?: string } | undefined
         tiendaUrl.value = tienda?.url || `https://${storeData.value.subdominio}.mitienda.pe`
+
+        // Generate magic token for auto-login into the new backoffice
+        if (codigo.value) {
+          await generateMagicToken(codigo.value)
+        }
+
         currentStep.value = 6
         return { success: true }
       } else {
@@ -280,6 +286,25 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
       return { success: false, error: error.value ?? undefined }
     } finally {
       isLoading.value = false
+    }
+  }
+
+  async function generateMagicToken(registroCodigo: string): Promise<void> {
+    try {
+      const result = await $fetch<{ error: number; data?: { token: string } }>(
+        '/api/generate-magic-token',
+        {
+          method: 'POST',
+          body: { codigo: registroCodigo }
+        }
+      )
+      if (result.error === 0 && result.data?.token) {
+        magicToken.value = result.data.token
+        panelUrl.value = `https://admin.mitienda.pe/auth/magic?token=${result.data.token}`
+      }
+    } catch {
+      // Non-fatal: fallback panelUrl so the user is never left without a link
+      panelUrl.value = `https://admin.mitienda.pe/login`
     }
   }
 
@@ -329,6 +354,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
     codigo.value = null
     tiendaUrl.value = null
     panelUrl.value = null
+    magicToken.value = null
     isLoading.value = false
     error.value = null
   }
@@ -344,6 +370,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
     codigo,
     tiendaUrl,
     panelUrl,
+    magicToken,
     isLoading,
     error,
     allVerified,
@@ -356,6 +383,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
     verifyCode,
     createAccount,
     saveStoreConfig,
+    generateMagicToken,
     validateSubdomain,
     setStep,
     nextStep,
