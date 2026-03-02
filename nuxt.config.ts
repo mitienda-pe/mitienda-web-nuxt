@@ -102,4 +102,10 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'netlify',
   },
+
+  vite: {
+    optimizeDeps: {
+      include: ['bootstrap'],
+    },
+  },
 })

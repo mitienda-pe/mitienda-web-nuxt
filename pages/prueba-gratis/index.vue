@@ -69,7 +69,7 @@ const faqs = [
             </div>
           </div>
           <div class="col-lg-6">
-            <RegistrationRegistrationForm />
+            <RegistrationForm />
           </div>
         </div>
       </div>
