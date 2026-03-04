@@ -6,6 +6,6 @@
     </main>
     <CommonAppFooter />
     <CommonLibroReclamacionesLink />
-    <CommonWhatsAppWidget />
+    <!-- <CommonWhatsAppWidget /> -->
   </div>
 </template>

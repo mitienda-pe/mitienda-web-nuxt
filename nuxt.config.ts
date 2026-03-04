@@ -56,6 +56,12 @@ export default defineNuxtConfig({
         { name: 'twitter:widgets:link-color', content: '#cc0000' },
         { name: 'twitter:widgets:theme', content: 'dark' },
       ],
+      script: [
+        {
+          src: 'https://widget.chatref.ai/latest.js?apiKey=047a1dd4-0ed9-4a55-84d3-60977a23ce08',
+          async: true,
+        },
+      ],
       link: [
         { rel: 'schema.DC', href: '//purl.org/dc/terms/' },
         { rel: 'canonical', href: 'https://nuevo.mitienda.pe' },
