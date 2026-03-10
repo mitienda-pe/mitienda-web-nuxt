@@ -9,12 +9,12 @@
       </div>
 
       <div class="footer-nav">
-        <a href="https://mitienda.tawk.help/">Centro de ayuda</a>
+        <a href="https://ayuda.mitienda.pe/">Centro de ayuda</a>
         <NuxtLink to="/terminos-y-condiciones">Términos y Condiciones</NuxtLink>
         <NuxtLink to="/politicas-de-privacidad">Política de Privacidad</NuxtLink>
         <NuxtLink to="/politica-de-cookies">Política de Cookies</NuxtLink>
         <a href="https://mitienda.statuspage.io/">Status</a>
-        <a href="https://app.swaggerhub.com/apis-docs/MiTienda.pe/MiTienda.pe/1.0#/">API Docs</a>
+        <a href="https://publicapi.mitienda.pe/docs/">API Docs</a>
         <a href="https://mitienda.pse.pe/login">Facturación electrónica</a>
       </div>
 
