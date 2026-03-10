@@ -35,7 +35,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="https://panel.mitienda.host/" class="btn btn-outline">Iniciar Sesión</a>
+              <a href="https://admin.mitienda.pe/" class="btn btn-outline">Iniciar Sesión</a>
             </li>
             <li class="nav-item">
               <NuxtLink to="/prueba-gratis" class="btn btn-primary">Empezar Gratis</NuxtLink>
