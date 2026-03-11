@@ -21,50 +21,22 @@ export default defineNuxtConfig({
       htmlAttrs: { lang: 'es' },
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
-      title: 'miTienda - Crea tu tienda virtual',
       meta: [
         { name: 'keywords', content: 'tienda virtual, comercio electrónico, tienda online' },
-        { name: 'description', content: 'Crea tu propia tienda virtual y empieza a vender por internet ya. 14 días gratis.' },
         { name: 'robots', content: 'all' },
-        // Dublin Core
-        { name: 'DC.title', content: 'miTienda - Crea tu tienda virtual' },
-        { name: 'DC.description', content: 'Crea tu propia tienda virtual y empieza a vender por internet ya. 14 días gratis.' },
+        // Dublin Core (generic)
         { name: 'DC.subject', content: 'Comercio electrónico' },
         { name: 'DC.language', content: 'es' },
         { name: 'DC.creator', content: 'Tiendas Virtuales Latinoamérica' },
         { name: 'DC.publisher', content: 'Tiendas Virtuales Latinoamérica' },
-        // GEO
-        { name: 'geo.region', content: 'PE-LIM' },
-        { name: 'geo.placename', content: 'Lima' },
-        { name: 'geo.position', content: '-12.10706;-77.03107' },
-        { name: 'ICBM', content: '-12.10706, -77.03107' },
-        // Open Graph
-        { property: 'og:title', content: 'miTienda - Crea tu tienda virtual' },
-        { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: 'https://nuevo.mitienda.pe' },
-        { property: 'og:image', content: '/img/og-image-2.jpg' },
-        { property: 'og:description', content: 'Crea tu propia tienda virtual y empieza a vender por internet ya. 14 días gratis.' },
-        { property: 'og:site_name', content: 'miTienda' },
-        { property: 'og:locale', content: 'es_PE' },
-        { property: 'fb:admins', content: '184494695317819' },
-        { property: 'fb:app_id', content: '1667537430236543' },
-        // Twitter
+        // Twitter card type
         { name: 'twitter:card', content: 'summary' },
-        { name: 'twitter:title', content: 'miTienda - Crea tu tienda virtual' },
-        { name: 'twitter:description', content: 'Crea tu propia tienda virtual y empieza a vender por internet ya. 14 días gratis.' },
-        { property: 'twitter:image', content: '/img/og-image-2.jpg' },
         { name: 'twitter:widgets:link-color', content: '#cc0000' },
         { name: 'twitter:widgets:theme', content: 'dark' },
       ],
-      script: [
-        {
-          src: 'https://widget.chatref.ai/latest.js?apiKey=047a1dd4-0ed9-4a55-84d3-60977a23ce08',
-          async: true,
-        },
-      ],
+      script: [],
       link: [
         { rel: 'schema.DC', href: '//purl.org/dc/terms/' },
-        { rel: 'canonical', href: 'https://nuevo.mitienda.pe' },
         // Touch Icons
         { rel: 'apple-touch-icon', sizes: '57x57', href: '/img/apple-touch-icon-57x57.png' },
         { rel: 'apple-touch-icon', sizes: '72x72', href: '/img/apple-touch-icon-72x72.png' },
@@ -89,13 +61,15 @@ export default defineNuxtConfig({
     mtserviciosApiKey: '',
     // Public (exposed to client)
     public: {
-      siteUrl: 'https://nuevo.mitienda.pe',
+      siteUrl: 'https://mitienda.pe',
+      defaultCountry: 'PE',
+      chatWidgetUrl: '',
     },
   },
 
   routeRules: {
     // Static pages - prerender at build time
-    '/': { prerender: true },
+    // Note: '/' is NOT prerendered because it needs SSR for country detection
     '/terminos-y-condiciones': { prerender: true },
     '/politicas-de-privacidad': { prerender: true },
     '/politica-de-cookies': { prerender: true },
@@ -106,7 +80,7 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    preset: 'netlify',
+    preset: 'node-server',
   },
 
   vite: {

@@ -24,6 +24,9 @@ export interface DatosPaso2 {
 }
 
 export const useRegistrationStore = defineStore('registration', () => {
+  // Country context
+  const { country } = useCountry()
+
   // State
   const codigo = ref<string | null>(null)
   const urlPanelExito = ref<string | null>(null)
@@ -38,7 +41,7 @@ export const useRegistrationStore = defineStore('registration', () => {
       return datosPaso2.value.tienda_url
     }
     if (datosPaso2.value?.subdominio) {
-      return `https://${datosPaso2.value.subdominio}.mitienda.pe`
+      return `https://${datosPaso2.value.subdominio}.${country.value.domain}`
     }
     return null
   })
@@ -125,7 +128,7 @@ export const useRegistrationStore = defineStore('registration', () => {
         const tienda = result.tienda as { url?: string } | undefined
         datosPaso2.value = {
           ...datos,
-          tienda_url: tienda?.url || `https://${datos.subdominio}.mitienda.pe`
+          tienda_url: tienda?.url || `https://${datos.subdominio}.${country.value.domain}`
         }
         currentStep.value = 3
         return { success: true }

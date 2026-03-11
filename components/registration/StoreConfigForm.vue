@@ -9,12 +9,14 @@ const props = defineProps<{
   codigo: string
 }>()
 
+const { countryCode: detectedCountry } = useCountry()
+
 // Form data
 const form = ref({
   nombre_tienda: '',
   subdominio: '',
   categoria: '',
-  pais: 'PE',
+  pais: detectedCountry.value,
   descripcion: ''
 })
 
@@ -31,11 +33,15 @@ const isLoading = ref(false)
 const errorMessage = ref('')
 
 // Computed URL preview
+const currentDomain = computed(() => {
+  const countryOption = COUNTRIES.find(c => c.value === form.value.pais)
+  return countryOption?.domain || 'mitienda.pe'
+})
+
 const urlPreview = computed(() => {
-  const domain = form.value.pais === 'EC' ? 'tiendabox.ec' : 'mitienda.pe'
   return form.value.subdominio
-    ? `${form.value.subdominio}.${domain}`
-    : `tutienda.${domain}`
+    ? `${form.value.subdominio}.${currentDomain.value}`
+    : `tutienda.${currentDomain.value}`
 })
 
 // Generate subdomain from store name
@@ -221,7 +227,7 @@ onMounted(() => {
                     required
                     @focus="onSubdominioFocus"
                   />
-                  <span class="input-group-text">.mitienda.pe</span>
+                  <span class="input-group-text">.{{ currentDomain }}</span>
                 </div>
                 <div class="form-text">
                   Tu tienda estará disponible en: <strong>{{ urlPreview }}</strong>

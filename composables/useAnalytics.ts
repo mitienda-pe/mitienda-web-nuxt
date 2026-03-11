@@ -8,6 +8,8 @@ declare global {
 }
 
 export function useAnalytics() {
+  const { currency: countryCurrency } = useCountry()
+
   const trackPageView = (pagePath: string, pageTitle?: string) => {
     if (!import.meta.client) return
     if (typeof window.gtag !== 'undefined') {
@@ -25,7 +27,7 @@ export function useAnalytics() {
     if (!import.meta.client) return
     if (typeof window.gtag !== 'undefined') {
       window.gtag('event', 'begin_checkout', {
-        currency: 'PEN',
+        currency: countryCurrency.value.code,
         value: 0,
         items: [{ item_name: 'Free Trial', item_category: 'Subscription' }]
       })
@@ -39,7 +41,7 @@ export function useAnalytics() {
     if (!import.meta.client) return
     if (typeof window.gtag !== 'undefined') {
       window.gtag('event', 'add_payment_info', {
-        currency: 'PEN',
+        currency: countryCurrency.value.code,
         value: 0,
         items: [{
           item_name: storeName,
@@ -60,7 +62,7 @@ export function useAnalytics() {
       window.gtag('event', 'conversion', {
         send_to: 'AW-XXXXXXXXX/XXXXXXXXXXXXXXXX',
         value: 0,
-        currency: 'PEN'
+        currency: countryCurrency.value.code
       })
     }
     if (typeof window.fbq !== 'undefined') {
@@ -70,7 +72,7 @@ export function useAnalytics() {
       })
       window.fbq('track', 'StartTrial', {
         value: 0,
-        currency: 'PEN',
+        currency: countryCurrency.value.code,
         predicted_ltv: 99
       })
     }
@@ -114,7 +116,7 @@ export function useAnalytics() {
     if (!import.meta.client) return
     if (typeof window.gtag !== 'undefined') {
       window.gtag('event', 'view_item', {
-        currency: 'PEN',
+        currency: countryCurrency.value.code,
         value: price,
         items: [{
           item_name: planName,
@@ -129,7 +131,7 @@ export function useAnalytics() {
         content_name: planName,
         content_type: 'product',
         value: price,
-        currency: 'PEN'
+        currency: countryCurrency.value.code
       })
     }
   }

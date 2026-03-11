@@ -1,83 +1,40 @@
 <script setup lang="ts">
+const { country, brandName, formatPrice, getAnnualPrice, isPeru } = useCountry()
+
 useSeoMeta({
-  title: 'miTienda - Crea tu tienda virtual',
-  ogTitle: 'miTienda - Crea tu tienda virtual',
+  title: () => `${brandName.value} - Crea tu tienda virtual`,
+  ogTitle: () => `${brandName.value} - Crea tu tienda virtual`,
   description: 'Crea tu propia tienda virtual y empieza a vender por internet ya. 14 días gratis.',
   ogDescription: 'Crea tu propia tienda virtual y empieza a vender por internet ya. 14 días gratis.',
 })
 
 const isAnnual = ref(true)
 
-const plans = [
-  {
-    name: 'Micro',
-    monthly: 49,
-    commission: '2.0%',
-    threshold: 'S/ 999.99',
-    features: [
-      'Hasta 50 productos',
-      'Tienda personalizable',
-      'Pagos seguros',
-      'Soporte básico',
-      'SSL incluido'
-    ],
-    featured: false
-  },
-  {
-    name: 'Small',
-    monthly: 99,
-    commission: '1.5%',
-    threshold: 'S/ 1,999.99',
-    features: [
-      'Hasta 100 productos',
-      'Dominio personalizado',
-      'Google Analytics',
-      'Cupones y descuentos',
-      'Soporte prioritario'
-    ],
-    featured: true
-  },
-  {
-    name: 'Medium',
-    monthly: 149,
-    commission: '1.0%',
-    threshold: 'S/ 4,999.99',
-    features: [
-      'Hasta 500 productos',
-      'Promociones avanzadas',
-      'Múltiples usuarios',
-      'Reportes detallados',
-      'Integraciones premium'
-    ],
-    featured: false
-  },
-  {
-    name: 'Large',
-    monthly: 259,
-    commission: '0.5%',
-    threshold: 'S/ 9,999.99',
-    features: [
-      'Productos ilimitados',
-      'API completa',
-      'Soporte VIP',
-      'Webhooks',
-      'Todo incluido'
-    ],
-    featured: false
-  }
-]
-
 function getPrice(monthly: number): string {
   if (isAnnual.value) {
-    const annual = Math.round(monthly * 12 * 0.8)
-    return `S/${annual.toLocaleString('es-PE')}`
+    return formatPrice(getAnnualPrice(monthly))
   }
-  return `S/${monthly}`
+  return formatPrice(monthly)
 }
 
 function getPeriod(): string {
   return isAnnual.value ? 'por año' : 'por mes'
 }
+
+const paymentGatewaysText = computed(() => {
+  const gateways = country.value.paymentGateways
+  if (gateways.length <= 2) {
+    return gateways.join(' y ')
+  }
+  return gateways.slice(0, -1).join(', ') + ', etc.'
+})
+
+const paymentMethodsDescription = computed(() => {
+  if (isPeru.value) {
+    return `Estamos integrados con mas de 10 pasarelas de pago y puedes usar la de tu preferencia: Mercadopago, Openpay, Culqi, Niubiz, Izipay, etc. Incluso te pueden pagar con Yape, Plin o en cuotas sin intereses.`
+  }
+  return `Estamos integrados con las principales pasarelas de pago: ${paymentGatewaysText.value}. Acepta tarjetas de crédito, débito y transferencias bancarias.`
+})
 
 onMounted(() => {
   const senjaScript = document.createElement('script')
@@ -110,7 +67,7 @@ onMounted(() => {
                 ya!
               </h1>
               <p class="hero-subtitle">
-                MiTienda es la plataforma de comercio electrónico que te permite
+                {{ brandName }} es la plataforma de comercio electrónico que te permite
                 crear y gestionar tu propia tienda virtual de manera más fácil,
                 rápida y económica.
               </p>
@@ -133,7 +90,7 @@ onMounted(() => {
 
         <div class="trust-indicators">
           <p class="trust-text">
-            Más de 2,000 emprendedores confían en MiTienda
+            Más de 2,000 emprendedores confían en {{ brandName }}
           </p>
 
           <div class="row justify-content-center">
@@ -178,12 +135,7 @@ onMounted(() => {
             <div class="card">
               <img src="/img/pasarelas-de-pago.webp" alt="Pasarelas de pago" class="img-fluid mx-auto mb-4" />
               <h3>Te pagan como quieras</h3>
-              <p>
-                Estamos integrados con mas de 10 pasarelas de pago y puedes usar
-                la de tu preferencia: Mercadopago, Openpay, Culqi, Niubiz,
-                Izipay, etc. Incluso te pueden pagar con Yape, Plin o en cuotas
-                sin intereses.
-              </p>
+              <p>{{ paymentMethodsDescription }}</p>
             </div>
           </div>
 
@@ -205,7 +157,7 @@ onMounted(() => {
               <img src="/img/estadisticas.webp" alt="Estadísticas" class="img-fluid mx-auto mb-4" />
               <h3>Los datos que necesitas</h3>
               <p>
-                EN MiTienda encontrarás Reporte de Ventas, Ventas por Producto, Reporte de Clientes, Recuperación de
+                En {{ brandName }} encontrarás Reporte de Ventas, Ventas por Producto, Reporte de Clientes, Recuperación de
                 Carritos Abandonados. Tambien puedes instalar Google Analytics y Facebook Pixel.
               </p>
             </div>
@@ -216,7 +168,7 @@ onMounted(() => {
               <img src="/img/app-banner.webp" alt="Aplicación móvil" class="img-fluid mx-auto mb-4" />
               <h3>En la palma de tu mano</h3>
               <p>
-                MiTienda cuenta con una app móvil para que puedas gestionar tu tienda desde cualquier lugar. Recibe
+                {{ brandName }} cuenta con una app móvil para que puedas gestionar tu tienda desde cualquier lugar. Recibe
                 notificaciones de nuevos pedidos, gestiona inventarios y actualiza precios sobre la marcha.
               </p>
             </div>
@@ -226,7 +178,7 @@ onMounted(() => {
             <div class="card">
               <img src="/img/pos-banner.webp" alt="Aplicación POS" class="img-fluid mx-auto mb-4" />
               <h3>Punto de Venta y Facturación Electrónica (Beta)</h3>
-              <p>Con MiTienda ahora también puedes vender de manera presencial. Registra ventas al instante, acepta
+              <p>Con {{ brandName }} ahora también puedes vender de manera presencial. Registra ventas al instante, acepta
                 pagos diferentes formas de pago, emite e imprime comprobantes sin complicaciones.</p>
             </div>
           </div>
@@ -254,7 +206,7 @@ onMounted(() => {
         </div>
 
         <div class="row g-4 justify-content-center">
-          <div v-for="plan in plans" :key="plan.name" class="col-lg-3 col-md-6">
+          <div v-for="plan in country.plans" :key="plan.name" class="col-lg-3 col-md-6">
             <div class="pricing-card" :class="{ featured: plan.featured }" :data-monthly="plan.monthly">
               <h3>{{ plan.name }}</h3>
               <div class="price">{{ getPrice(plan.monthly) }}</div>
@@ -303,7 +255,7 @@ onMounted(() => {
             <h2>¿Listo para empezar a vender?</h2>
             <p>
               Únete a miles de emprendedores que ya están vendiendo con
-              MiTienda.<br />
+              {{ brandName }}.<br />
               Prueba gratis por 14 días, sin tarjeta de crédito.
             </p>
 

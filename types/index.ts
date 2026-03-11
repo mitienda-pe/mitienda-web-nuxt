@@ -97,7 +97,7 @@ export interface CountryOption {
 export const COUNTRIES: CountryOption[] = [
   { value: 'PE', label: 'Perú', domain: 'mitienda.pe' },
   { value: 'EC', label: 'Ecuador', domain: 'tiendabox.ec' },
-  { value: 'CO', label: 'Colombia', domain: 'mitienda.pe' },
+  { value: 'CO', label: 'Colombia', domain: 'tiendabox.co' },
   { value: 'MX', label: 'México', domain: 'mitienda.pe' },
   { value: 'otros', label: 'Otro país', domain: 'mitienda.pe' }
 ]

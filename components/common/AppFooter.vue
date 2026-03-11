@@ -1,60 +1,61 @@
 <script setup lang="ts">
+const { country, isPeru } = useCountry()
 </script>
 
 <template>
   <footer class="footer">
     <div class="container">
       <div class="navbar-brand">
-        <img src="/img/logo-mitienda_fondo-pizarra.svg" alt="MiTienda" />
+        <img :src="country.logoDark" :alt="country.brandName" />
       </div>
 
       <div class="footer-nav">
-        <a href="https://ayuda.mitienda.pe/">Centro de ayuda</a>
+        <a :href="country.helpUrl">Centro de ayuda</a>
         <NuxtLink to="/terminos-y-condiciones">Términos y Condiciones</NuxtLink>
         <NuxtLink to="/politicas-de-privacidad">Política de Privacidad</NuxtLink>
         <NuxtLink to="/politica-de-cookies">Política de Cookies</NuxtLink>
-        <a href="https://mitienda.statuspage.io/">Status</a>
-        <a href="https://publicapi.mitienda.pe/docs/">API Docs</a>
-        <a href="https://mitienda.pse.pe/login">Facturación electrónica</a>
+        <a :href="country.statusUrl">Status</a>
+        <a :href="country.apiDocsUrl">API Docs</a>
+        <a v-if="isPeru" href="https://mitienda.pse.pe/login">Facturación electrónica</a>
       </div>
 
       <div class="social-links">
-        <a href="https://www.facebook.com/mitiendapuntope" aria-label="Facebook">
+        <a v-if="country.socialMedia.facebook" :href="country.socialMedia.facebook" aria-label="Facebook">
           <div class="svg-icon baseline">
             <svg role="img" title="Facebook">
               <use xlink:href="/img/social-icons.svg#facebook"></use>
             </svg>
           </div>
         </a>
-        <a href="https://x.com/mitiendapuntope" aria-label="X Twitter">
+        <a v-if="country.socialMedia.twitter" :href="country.socialMedia.twitter" aria-label="X Twitter">
           <div class="svg-icon baseline">
             <svg role="img" title="X Twitter">
               <use xlink:href="/img/social-icons.svg#x-twitter"></use>
             </svg>
           </div>
         </a>
-        <a href="https://instagram.com/mitiendapuntope" aria-label="Instagram">
+        <a v-if="country.socialMedia.instagram" :href="country.socialMedia.instagram" aria-label="Instagram">
           <div class="svg-icon baseline">
             <svg role="img" title="Instagram">
               <use xlink:href="/img/social-icons.svg#instagram"></use>
             </svg>
           </div>
         </a>
-        <a href="https://www.linkedin.com/company/28980026/" aria-label="LinkedIn">
+        <a v-if="country.socialMedia.linkedin" :href="country.socialMedia.linkedin" aria-label="LinkedIn">
           <div class="svg-icon baseline">
             <svg role="img" title="LinkedIn">
               <use xlink:href="/img/social-icons.svg#linkedin"></use>
             </svg>
           </div>
         </a>
-        <a href="https://youtube.com/mitienda" aria-label="YouTube">
+        <a v-if="country.socialMedia.youtube" :href="country.socialMedia.youtube" aria-label="YouTube">
           <div class="svg-icon baseline">
             <svg role="img" title="YouTube">
               <use xlink:href="/img/social-icons.svg#youtube"></use>
             </svg>
           </div>
         </a>
-        <a href="https://tiktok.com/@mitiendapuntope" aria-label="TikTok">
+        <a v-if="country.socialMedia.tiktok" :href="country.socialMedia.tiktok" aria-label="TikTok">
           <div class="svg-icon baseline">
             <svg role="img" title="TikTok">
               <use xlink:href="/img/social-icons.svg#tiktok"></use>
@@ -64,7 +65,7 @@
       </div>
 
       <div class="copyright">
-        &copy; {{ new Date().getFullYear() }} MiTienda. Todos los derechos reservados.
+        &copy; {{ new Date().getFullYear() }} {{ country.brandName }}. Todos los derechos reservados.
       </div>
     </div>
   </footer>

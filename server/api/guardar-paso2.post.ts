@@ -32,10 +32,12 @@ export default defineEventHandler(async (event) => {
     )
 
     // Determinar el dominio basado en el país
-    let domain = 'mitienda.pe'
-    if (body.pais === 'EC') {
-      domain = 'tiendabox.ec'
+    const domainMap: Record<string, string> = {
+      PE: 'mitienda.pe',
+      EC: 'tiendabox.ec',
+      CO: 'tiendabox.co',
     }
+    const domain = domainMap[body.pais] || 'mitienda.pe'
 
     // Construir URL de la tienda
     const tiendaUrl = data.tienda?.url || `https://${body.subdominio}.${domain}`

@@ -1,3 +1,7 @@
+<script setup lang="ts">
+const { isPeru } = useCountry()
+</script>
+
 <template>
   <div id="app">
     <CommonAppHeader />
@@ -5,7 +9,7 @@
       <slot />
     </main>
     <CommonAppFooter />
-    <CommonLibroReclamacionesLink />
+    <CommonLibroReclamacionesLink v-if="isPeru" />
     <!-- <CommonWhatsAppWidget /> -->
   </div>
 </template>

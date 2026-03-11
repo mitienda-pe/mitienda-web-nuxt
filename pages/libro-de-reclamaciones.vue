@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  middleware: ['peru-only']
+})
+
 useSeoMeta({
   title: 'Libro de Reclamaciones - miTienda',
   description: 'Libro de reclamaciones virtual de miTienda',

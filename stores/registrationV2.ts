@@ -23,6 +23,9 @@ export interface SessionStatus {
 export type RegistrationStep = 1 | 2 | 3 | 4 | 5 | 6
 
 export const useRegistrationV2Store = defineStore('registrationV2', () => {
+  // Country context
+  const { country, countryCode: currentCountry } = useCountry()
+
   // State
   const sessionId = ref<string | null>(null)
   const currentStep = ref<RegistrationStep>(1)
@@ -30,14 +33,14 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
     nombre: '',
     email: '',
     telefono: '',
-    countryCode: '+51'
+    countryCode: country.value.phoneCode
   })
   const password = ref('')
   const storeData = ref<StoreData>({
     nombre_tienda: '',
     subdominio: '',
     categoria: '',
-    pais: 'PE',
+    pais: currentCountry.value,
     descripcion: ''
   })
   const whatsappVerified = ref(false)
@@ -268,7 +271,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
 
       if (result.error === 0 || !result.error) {
         const tienda = result.tienda as { url?: string } | undefined
-        tiendaUrl.value = tienda?.url || `https://${storeData.value.subdominio}.mitienda.pe`
+        tiendaUrl.value = tienda?.url || `https://${storeData.value.subdominio}.${country.value.domain}`
 
         // Generate magic token for auto-login into the new backoffice
         if (codigo.value) {
@@ -300,11 +303,11 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
       )
       if (result.error === 0 && result.data?.token) {
         magicToken.value = result.data.token
-        panelUrl.value = `https://admin.mitienda.pe/auth/magic?token=${result.data.token}`
+        panelUrl.value = `${country.value.adminUrl}/auth/magic?token=${result.data.token}`
       }
     } catch {
       // Non-fatal: fallback panelUrl so the user is never left without a link
-      panelUrl.value = `https://admin.mitienda.pe/login`
+      panelUrl.value = `${country.value.adminUrl}/login`
     }
   }
 
@@ -346,9 +349,9 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
   function reset() {
     sessionId.value = null
     currentStep.value = 1
-    userData.value = { nombre: '', email: '', telefono: '', countryCode: '+51' }
+    userData.value = { nombre: '', email: '', telefono: '', countryCode: country.value.phoneCode }
     password.value = ''
-    storeData.value = { nombre_tienda: '', subdominio: '', categoria: '', pais: 'PE', descripcion: '' }
+    storeData.value = { nombre_tienda: '', subdominio: '', categoria: '', pais: currentCountry.value, descripcion: '' }
     whatsappVerified.value = false
     emailVerified.value = false
     codigo.value = null

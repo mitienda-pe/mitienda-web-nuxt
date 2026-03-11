@@ -10,11 +10,15 @@ const subdominioTocado = ref(false)
 const subdominioStatus = ref<'idle' | 'checking' | 'available' | 'unavailable'>('idle')
 const subdominioMensaje = ref('')
 
+const currentDomain = computed(() => {
+  const countryOption = COUNTRIES.find(c => c.value === store.storeData.pais)
+  return countryOption?.domain || 'mitienda.pe'
+})
+
 const urlPreview = computed(() => {
-  const domain = store.storeData.pais === 'EC' ? 'tiendabox.ec' : 'mitienda.pe'
   return store.storeData.subdominio
-    ? `${store.storeData.subdominio}.${domain}`
-    : `tutienda.${domain}`
+    ? `${store.storeData.subdominio}.${currentDomain.value}`
+    : `tutienda.${currentDomain.value}`
 })
 
 function generarSubdominio(nombre: string): string {
@@ -163,7 +167,7 @@ function onSubdominioFocus() {
             required
             @focus="onSubdominioFocus"
           />
-          <span class="input-group-text">.mitienda.pe</span>
+          <span class="input-group-text">.{{ currentDomain }}</span>
         </div>
         <div class="form-text">
           Tu tienda estará disponible en: <strong>{{ urlPreview }}</strong>

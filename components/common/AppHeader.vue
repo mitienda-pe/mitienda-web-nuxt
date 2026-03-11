@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { country } = useCountry()
 </script>
 
 <template>
@@ -6,7 +7,7 @@
     <div class="container">
       <nav class="navbar navbar-expand-lg">
         <NuxtLink to="/" class="navbar-brand">
-          <img src="/img/logo-mitienda.svg" alt="MiTienda" class="logo-principal" />
+          <img :src="country.logo" :alt="country.brandName" class="logo-principal" />
         </NuxtLink>
 
         <button
@@ -35,7 +36,7 @@
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a href="https://admin.mitienda.pe/" class="btn btn-outline">Iniciar Sesión</a>
+              <a :href="`${country.adminUrl}/`" class="btn btn-outline">Iniciar Sesión</a>
             </li>
             <li class="nav-item">
               <NuxtLink to="/prueba-gratis" class="btn btn-primary">Empezar Gratis</NuxtLink>
