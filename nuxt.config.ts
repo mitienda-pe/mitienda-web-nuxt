@@ -69,11 +69,8 @@ export default defineNuxtConfig({
   },
 
   routeRules: {
-    // Static pages - prerender at build time
-    // Note: '/' is NOT prerendered because it needs SSR for country detection
-    '/terminos-y-condiciones': { prerender: true },
-    '/politicas-de-privacidad': { prerender: true },
-    '/politica-de-cookies': { prerender: true },
+    // All pages use SSR (not prerender) because they need country detection
+    // from the Host header to show the correct brand (MiTienda vs TiendaBox)
   },
 
   typescript: {

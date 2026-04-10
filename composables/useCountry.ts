@@ -4,21 +4,22 @@ import type { CountryCode, CountryConfig } from '~/config/countries'
 export function useCountry() {
   const config = useRuntimeConfig()
 
-  const countryCode = computed<CountryCode>(() => {
-    let hostname = ''
-
-    if (import.meta.server) {
-      try {
-        const headers = useRequestHeaders(['host'])
-        hostname = headers.host?.split(':')[0] || ''
-      } catch {
-        // During prerendering there is no request context
-        hostname = ''
-      }
-    } else {
-      hostname = window.location.hostname
+  // Capture hostname eagerly during setup (not inside computed)
+  // so the Nuxt async context is available for useRequestHeaders
+  let hostname = ''
+  if (import.meta.server) {
+    try {
+      const headers = useRequestHeaders(['host'])
+      hostname = headers.host?.split(':')[0] || ''
+    } catch {
+      // During prerendering there is no request context
+      hostname = ''
     }
+  } else {
+    hostname = window.location.hostname
+  }
 
+  const countryCode = computed<CountryCode>(() => {
     return DOMAIN_COUNTRY_MAP[hostname]
       || (config.public.defaultCountry as CountryCode)
       || DEFAULT_COUNTRY
