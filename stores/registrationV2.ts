@@ -68,8 +68,11 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
     if (parts.length !== 2) return email
     const name = parts[0] || ''
     const domain = parts[1] || ''
-    const maskedName = name.slice(0, 2) + '*'.repeat(Math.max(0, name.length - 2))
-    return maskedName + '@' + domain
+    const maskedName = name.slice(0, 2) + '****'
+    const domainParts = domain.split('.')
+    const ext = domainParts.pop() || ''
+    const maskedDomain = domainParts.map(p => p.slice(0, 2) + '***').join('.') + '.' + ext
+    return maskedName + '@' + maskedDomain
   })
 
   const stepLabels = computed(() => [

@@ -2,6 +2,10 @@ export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
     const config = useRuntimeConfig()
+    const clientIp = getRequestHeader(event, 'x-forwarded-for') || getRequestHeader(event, 'x-real-ip') || 'unknown'
+
+    // Log registration attempt for audit/fraud detection
+    console.log(`[REGISTRO] Intento: email=${body.email || 'N/A'} ip=${clientIp} ts=${new Date().toISOString()}`)
 
     // Validar campos requeridos
     if (!body.name || !body.email || !body.phone || !body.client_password) {
@@ -65,16 +69,16 @@ export default defineEventHandler(async (event) => {
       }
     })
 
+    console.log(`[REGISTRO] Resultado: email=${body.email} success=${data?.error === 0} cod=${data?.cod || 'N/A'} ip=${clientIp}`)
     return data
   } catch (error: any) {
-    // Re-throw if it's already a createError
     if (error.statusCode) throw error
 
-    console.error('Error en registro-paso1:', error)
+    console.error(`[REGISTRO] Error: email=${body?.email || 'N/A'} ip=${clientIp}`, error)
     throw createError({
       statusCode: 500,
       statusMessage: 'Error interno del servidor',
-      data: { error: 1, message: 'Error interno del servidor' }
+      data: { error: 1, message: 'Error al crear la cuenta. Intenta nuevamente.' }
     })
   }
 })

@@ -69,10 +69,11 @@ export default defineEventHandler(async (event) => {
     if (error.statusCode) throw error
 
     console.error('Error en otp-verify:', error)
+    const isTimeout = error.code === 'ETIMEDOUT' || error.code === 'ECONNABORTED'
     throw createError({
-      statusCode: 500,
-      statusMessage: 'Error interno del servidor',
-      data: { success: false, error: 'Error interno del servidor' }
+      statusCode: isTimeout ? 504 : 500,
+      statusMessage: isTimeout ? 'Tiempo de espera agotado' : 'Error interno del servidor',
+      data: { success: false, error: isTimeout ? 'El servicio de verificación no responde. Intenta nuevamente.' : 'Error al verificar el código. Intenta nuevamente.' }
     })
   }
 })

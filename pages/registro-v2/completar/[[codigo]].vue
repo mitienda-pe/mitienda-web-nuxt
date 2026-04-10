@@ -21,6 +21,9 @@ useSeoMeta({
   description: 'Tu tienda virtual ha sido creada exitosamente',
 })
 
+// Prevent magic token leaking via referrer headers
+useHead({ meta: [{ name: 'referrer', content: 'no-referrer' }] })
+
 function startCountdown() {
   countdownInterval = setInterval(() => {
     if (countdown.value <= 1) {
@@ -145,7 +148,7 @@ onUnmounted(() => {
                   <div class="link-icon">⚙️</div>
                   <h5>Panel de administración</h5>
                   <p class="text-muted mb-3">Agrega productos y gestiona tu tienda</p>
-                  <a :href="panelUrl" class="btn btn-primary">
+                  <a :href="panelUrl" rel="noreferrer" class="btn btn-primary">
                     Ir al panel →
                   </a>
                 </div>
