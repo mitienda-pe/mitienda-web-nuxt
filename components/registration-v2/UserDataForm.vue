@@ -1,4 +1,11 @@
 <script setup lang="ts">
+const DISPOSABLE_DOMAINS = [
+  'mailinator.com', 'guerrillamail.com', 'tempmail.com', 'throwaway.email',
+  'yopmail.com', '10minutemail.com', 'trashmail.com', 'fakeinbox.com',
+  'sharklasers.com', 'guerrillamailblock.com', 'grr.la', 'dispostable.com',
+  'mailnesia.com', 'maildrop.cc', 'temp-mail.org', 'mohmal.com'
+]
+
 const store = useRegistrationV2Store()
 
 const terminoscheck = ref(false)
@@ -35,11 +42,11 @@ function handleCountryChange(event: Event) {
 }
 
 function handleCustomCodeInput(value: string) {
-  // Asegurar que empiece con +
   let cleaned = value.replace(/[^\d+]/g, '')
-  if (!cleaned.startsWith('+')) {
-    cleaned = '+' + cleaned.replace(/\+/g, '')
-  }
+  // Ensure exactly one + at the start
+  cleaned = '+' + cleaned.replace(/\+/g, '')
+  // Limit to 4 digits after +
+  if (cleaned.length > 5) cleaned = cleaned.slice(0, 5)
   customCountryCode.value = cleaned
   store.userData.countryCode = cleaned
 }
@@ -51,12 +58,29 @@ function validateForm(): boolean {
     errors.value.nombre = 'El nombre debe tener al menos 2 caracteres'
   }
 
-  if (!store.userData.telefono || !/^\d{9,}$/.test(store.userData.telefono)) {
-    errors.value.telefono = 'Ingresa un teléfono válido (mínimo 9 dígitos)'
+  if (!store.userData.telefono || !/^\d+$/.test(store.userData.telefono)) {
+    errors.value.telefono = 'Ingresa un teléfono válido'
+  } else {
+    const phoneLength = store.userData.telefono.length
+    const countryCode = store.userData.countryCode
+    if (countryCode === '+51' && phoneLength !== 9) {
+      errors.value.telefono = 'El teléfono en Perú debe tener 9 dígitos'
+    } else if (countryCode === '+593' && (phoneLength < 9 || phoneLength > 10)) {
+      errors.value.telefono = 'El teléfono en Ecuador debe tener 9-10 dígitos'
+    } else if (countryCode === '+57' && phoneLength !== 10) {
+      errors.value.telefono = 'El teléfono en Colombia debe tener 10 dígitos'
+    } else if (phoneLength < 7) {
+      errors.value.telefono = 'Ingresa un teléfono válido (mínimo 7 dígitos)'
+    }
   }
 
   if (!store.userData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(store.userData.email)) {
     errors.value.email = 'Ingresa un correo electrónico válido'
+  } else {
+    const emailDomain = store.userData.email.split('@')[1]?.toLowerCase()
+    if (emailDomain && DISPOSABLE_DOMAINS.includes(emailDomain)) {
+      errors.value.email = 'No se permiten correos temporales'
+    }
   }
 
   if (!terminoscheck.value) {

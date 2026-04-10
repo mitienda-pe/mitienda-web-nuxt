@@ -1,3 +1,5 @@
+import { checkRateLimit } from '~/server/utils/rateLimiter'
+
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
@@ -23,19 +25,44 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    // Rate limiting: max 5 verification attempts per 10 minutes per session
+    const rateLimitKey = `otp-verify:${body.session_id}`
+    const { allowed, remaining } = checkRateLimit(rateLimitKey, 5, 600000)
+    if (!allowed) {
+      throw createError({
+        statusCode: 429,
+        statusMessage: 'Demasiados intentos',
+        data: { success: false, error: 'Has excedido el número máximo de intentos. Espera unos minutos.' }
+      })
+    }
+
     // Llamar a MTServicios para verificar código
-    const data = await $fetch(`${mtserviciosUrl}/api/otp/verify`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${config.mtserviciosApiKey}`
-      },
-      body: {
-        session_id: body.session_id,
-        type: body.type,
-        code: body.code
+    let data: any
+    try {
+      data = await $fetch(`${mtserviciosUrl}/api/otp/verify`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${config.mtserviciosApiKey}`
+        },
+        body: {
+          session_id: body.session_id,
+          type: body.type,
+          code: body.code
+        }
+      })
+    } catch (fetchError: any) {
+      // Check for auth failure from upstream API
+      if (fetchError.status === 401 || fetchError.statusCode === 401) {
+        console.error('Error de autenticación con MTServicios en otp-verify')
+        throw createError({
+          statusCode: 502,
+          statusMessage: 'Error de autenticación con el servicio de verificación',
+          data: { success: false, error: 'Error de comunicación con el servicio. Intente nuevamente.' }
+        })
       }
-    })
+      throw fetchError
+    }
 
     return data
   } catch (error: any) {

@@ -93,7 +93,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
           nombre: userData.value.nombre,
           email: userData.value.email,
           telefono: userData.value.telefono
-        }
+        },
+        signal: AbortSignal.timeout(15000)
       })
 
       if (result.success && result.session_id) {
@@ -126,7 +127,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
           session_id: sessionId.value,
           telefono: userData.value.telefono,
           country_code: userData.value.countryCode
-        }
+        },
+        signal: AbortSignal.timeout(15000)
       })
 
       if (result.success) {
@@ -158,7 +160,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
           session_id: sessionId.value,
           email: userData.value.email,
           nombre: userData.value.nombre
-        }
+        },
+        signal: AbortSignal.timeout(15000)
       })
 
       if (result.success) {
@@ -190,7 +193,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
           session_id: sessionId.value,
           type,
           code
-        }
+        },
+        signal: AbortSignal.timeout(15000)
       })
 
       if (result.success) {
@@ -230,11 +234,13 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
           client_password: password.value,
           origin_store: 1,
           verified: true
-        }
+        },
+        signal: AbortSignal.timeout(15000)
       })
 
       if (result.error === 0 || result.response === 'success') {
         codigo.value = result.cod as string
+        password.value = '' // Clear password from memory after account creation
         return { success: true, codigo: result.cod as string }
       } else {
         error.value = ((result.message || result.msn || 'Error en el registro') as string)
@@ -266,7 +272,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
           categoria: storeData.value.categoria,
           pais: storeData.value.pais,
           descripcion: storeData.value.descripcion
-        }
+        },
+        signal: AbortSignal.timeout(15000)
       })
 
       if (result.error === 0 || !result.error) {
@@ -298,7 +305,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         '/api/generate-magic-token',
         {
           method: 'POST',
-          body: { codigo: registroCodigo }
+          body: { codigo: registroCodigo },
+          signal: AbortSignal.timeout(15000)
         }
       )
       if (result.error === 0 && result.data?.token) {
@@ -315,7 +323,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
     try {
       const result = await $fetch<Record<string, unknown>>('/api/validar-subdominio', {
         method: 'POST',
-        body: { subdominio: subdomain }
+        body: { subdominio: subdomain },
+        signal: AbortSignal.timeout(15000)
       })
       return {
         disponible: result.disponible === true || result.disponible === 1,
@@ -338,7 +347,15 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
 
   function previousStep() {
     if (currentStep.value > 1) {
-      currentStep.value = (currentStep.value - 1) as RegistrationStep
+      // If going back from verification steps, reset session and verifications
+      if (currentStep.value <= 3) {
+        sessionId.value = null
+        whatsappVerified.value = false
+        emailVerified.value = false
+        currentStep.value = 1 // Go back to step 1 (user data)
+      } else {
+        currentStep.value = (currentStep.value - 1) as RegistrationStep
+      }
     }
   }
 

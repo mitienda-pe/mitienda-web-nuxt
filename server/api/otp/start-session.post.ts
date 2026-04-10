@@ -14,19 +14,60 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    // Validar formato de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(body.email)) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Formato de email inválido',
+        data: { success: false, error: 'El formato del email no es válido' }
+      })
+    }
+
+    // Validar nombre (min 2 chars)
+    if (typeof body.nombre !== 'string' || body.nombre.trim().length < 2) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Nombre inválido',
+        data: { success: false, error: 'El nombre debe tener al menos 2 caracteres' }
+      })
+    }
+
+    // Validar teléfono (solo dígitos)
+    if (!/^\d+$/.test(body.telefono)) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Teléfono inválido',
+        data: { success: false, error: 'El teléfono debe contener solo dígitos' }
+      })
+    }
+
     // Llamar a MTServicios para iniciar sesión OTP
-    const data = await $fetch(`${mtserviciosUrl}/api/otp/start-session`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${config.mtserviciosApiKey}`
-      },
-      body: {
-        nombre: body.nombre,
-        email: body.email,
-        telefono: body.telefono
+    let data: any
+    try {
+      data = await $fetch(`${mtserviciosUrl}/api/otp/start-session`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${config.mtserviciosApiKey}`
+        },
+        body: {
+          nombre: body.nombre.trim(),
+          email: body.email.trim().toLowerCase(),
+          telefono: body.telefono
+        }
+      })
+    } catch (fetchError: any) {
+      if (fetchError.status === 401 || fetchError.statusCode === 401) {
+        console.error('Error de autenticación con MTServicios en otp-start-session')
+        throw createError({
+          statusCode: 502,
+          statusMessage: 'Error de autenticación con el servicio de verificación',
+          data: { success: false, error: 'Error de comunicación con el servicio. Intente nuevamente.' }
+        })
       }
-    })
+      throw fetchError
+    }
 
     return data
   } catch (error: any) {

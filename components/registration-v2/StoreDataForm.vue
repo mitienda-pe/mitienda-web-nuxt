@@ -111,6 +111,14 @@ async function handleSubmit() {
 
   errorMessage.value = ''
 
+  // Re-validate subdomain availability before submitting (REG-011)
+  const subCheck = await store.validateSubdomain(store.storeData.subdominio)
+  if (!subCheck.disponible) {
+    errors.value.subdominio = subCheck.mensaje || 'Este subdominio ya no está disponible'
+    subdominioStatus.value = 'unavailable'
+    return
+  }
+
   const result = await store.saveStoreConfig()
 
   if (!result.success) {

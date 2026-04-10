@@ -11,8 +11,8 @@ const passwordStrength = computed(() => {
   if (!pwd) return { score: 0, label: '', color: '' }
 
   let score = 0
-  if (pwd.length >= 6) score++
   if (pwd.length >= 8) score++
+  if (pwd.length >= 12) score++
   if (/[a-z]/.test(pwd) && /[A-Z]/.test(pwd)) score++
   if (/\d/.test(pwd)) score++
   if (/[^a-zA-Z0-9]/.test(pwd)) score++
@@ -26,8 +26,8 @@ const passwordStrength = computed(() => {
 function validateForm(): boolean {
   errors.value = {}
 
-  if (!password.value || password.value.length < 6) {
-    errors.value.password = 'La contraseña debe tener al menos 6 caracteres'
+  if (!password.value || password.value.length < 8) {
+    errors.value.password = 'La contraseña debe tener al menos 8 caracteres'
   }
 
   if (!confirmPassword.value) {
@@ -87,7 +87,8 @@ async function handleSubmit() {
         v-model="password"
         label="Contraseña"
         type="password"
-        placeholder="Mínimo 6 caracteres"
+        placeholder="Ingresa tu contraseña"
+        hint="Mínimo 8 caracteres"
         :maxlength="150"
         required
         autocomplete="new-password"

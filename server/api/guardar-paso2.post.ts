@@ -1,3 +1,16 @@
+const ALLOWED_CATEGORIAS = [
+  'Moda y Accesorios',
+  'Belleza y Cuidado Personal',
+  'Hogar y Decoración',
+  'Tecnología y Electrónica',
+  'Deportes y Fitness',
+  'Alimentación y Bebidas',
+  'Servicios Profesionales',
+  'Otros'
+]
+
+const ALLOWED_PAISES = ['PE', 'EC', 'CO']
+
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
@@ -9,6 +22,33 @@ export default defineEventHandler(async (event) => {
         statusCode: 400,
         statusMessage: 'Faltan campos requeridos',
         data: { error: 1, message: 'Faltan campos requeridos' }
+      })
+    }
+
+    // Validar categoría contra lista permitida
+    if (!ALLOWED_CATEGORIAS.includes(body.categoria)) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Categoría inválida',
+        data: { error: 1, message: 'La categoría seleccionada no es válida' }
+      })
+    }
+
+    // Validar país contra lista permitida
+    if (!ALLOWED_PAISES.includes(body.pais)) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'País inválido',
+        data: { error: 1, message: 'El país seleccionado no es válido' }
+      })
+    }
+
+    // Validar formato de subdominio (3-20 chars, lowercase alphanumeric + hyphens, no leading/trailing hyphens)
+    if (!/^[a-z0-9][a-z0-9-]{1,18}[a-z0-9]$/.test(body.subdominio)) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Subdominio inválido',
+        data: { error: 1, message: 'El subdominio debe tener entre 3 y 20 caracteres, solo letras minúsculas, números y guiones' }
       })
     }
 

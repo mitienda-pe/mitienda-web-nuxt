@@ -1,3 +1,5 @@
+import { checkRateLimit } from '~/server/utils/rateLimiter'
+
 export default defineEventHandler(async (event) => {
   try {
     const body = await readBody(event)
@@ -14,19 +16,43 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    // Rate limiting: max 5 sends per hour per session
+    const rateLimitKey = `otp-send:${body.session_id}`
+    const { allowed } = checkRateLimit(rateLimitKey, 5, 3600000)
+    if (!allowed) {
+      throw createError({
+        statusCode: 429,
+        statusMessage: 'Demasiados intentos',
+        data: { success: false, error: 'Has excedido el número máximo de envíos. Espera unos minutos.' }
+      })
+    }
+
     // Llamar a MTServicios para enviar código por WhatsApp
-    const data = await $fetch(`${mtserviciosUrl}/api/otp/send-whatsapp`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${config.mtserviciosApiKey}`
-      },
-      body: {
-        session_id: body.session_id,
-        telefono: body.telefono,
-        country_code: body.country_code || '+51'
+    let data: any
+    try {
+      data = await $fetch(`${mtserviciosUrl}/api/otp/send-whatsapp`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${config.mtserviciosApiKey}`
+        },
+        body: {
+          session_id: body.session_id,
+          telefono: body.telefono,
+          country_code: body.country_code || '+51'
+        }
+      })
+    } catch (fetchError: any) {
+      if (fetchError.status === 401 || fetchError.statusCode === 401) {
+        console.error('Error de autenticación con MTServicios en otp-send-whatsapp')
+        throw createError({
+          statusCode: 502,
+          statusMessage: 'Error de autenticación con el servicio de verificación',
+          data: { success: false, error: 'Error de comunicación con el servicio. Intente nuevamente.' }
+        })
       }
-    })
+      throw fetchError
+    }
 
     return data
   } catch (error: any) {

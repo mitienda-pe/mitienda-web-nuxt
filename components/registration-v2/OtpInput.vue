@@ -141,6 +141,7 @@ defineExpose({ focus, clear })
         maxlength="1"
         :value="digit"
         :disabled="disabled"
+        :aria-label="`Dígito ${index + 1} de 6`"
         :class="['otp-digit', { 'is-invalid': error, 'is-filled': digit }]"
         @input="handleInput(index, $event)"
         @keydown="handleKeydown(index, $event)"

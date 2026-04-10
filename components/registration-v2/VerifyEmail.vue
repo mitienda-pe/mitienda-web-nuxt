@@ -62,6 +62,13 @@ onMounted(async () => {
   // Enviar código automáticamente al montar el componente
   await sendCode()
 })
+
+onUnmounted(() => {
+  if (cooldownInterval) {
+    clearInterval(cooldownInterval)
+    cooldownInterval = null
+  }
+})
 </script>
 
 <template>
