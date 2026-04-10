@@ -1,0 +1,40 @@
+tiendabox.co www.tiendabox.co {
+    root * /var/www/mitienda-web-nuxt/.output/public
+
+    # Enable compression BEFORE file_server (critical for large JS chunks)
+    encode gzip
+
+    # Serve static files directly (img, css, js, fonts)
+    @static file
+    handle @static {
+        file_server
+    }
+
+    # Cache _nuxt/ chunks aggressively (they have content hashes)
+    @nuxt path /_nuxt/*
+    header @nuxt Cache-Control "public, max-age=31536000, immutable"
+
+    # All other requests go to Node/Nitro (SSR + API)
+    handle {
+        reverse_proxy localhost:3000 {
+            flush_interval -1
+        }
+    }
+}
+
+admin.tiendabox.co {
+	root * /var/www/backoffice
+	file_server
+	encode gzip
+
+	# SPA fallback: serve index.html for all non-file routes
+	try_files {path} /index.html
+
+	# Cache static assets aggressively
+	@static path *.js *.css *.svg *.png *.jpg *.webp *.woff2 *.woff
+	header @static Cache-Control "public, max-age=31536000, immutable"
+
+	# Don't cache index.html (so deploys take effect immediately)
+	@html path /index.html
+	header @html Cache-Control "no-cache, no-store, must-revalidate"
+}

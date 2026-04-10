@@ -33,4 +33,8 @@ jobs:
             pm2 start .output/server/index.mjs --name mitienda
             pm2 save
 
+            # Update Caddyfile if it exists in repo
+            if [ -f Caddyfile ]; then
+              sudo cp Caddyfile /etc/caddy/Caddyfile
+            fi
             sudo systemctl reload caddy
