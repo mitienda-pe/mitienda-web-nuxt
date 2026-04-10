@@ -5,9 +5,14 @@ on:
     branches:
       - main
 
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Deploy via SSH
@@ -42,8 +47,8 @@ jobs:
 
             echo ">>> Updating Caddy..."
             if [ -f Caddyfile ]; then
-              sudo cp Caddyfile /etc/caddy/Caddyfile
+              sudo -n cp Caddyfile /etc/caddy/Caddyfile 2>/dev/null && echo "Caddyfile copied" || echo "WARN: sudo not available for Caddyfile copy (run manually)"
             fi
-            sudo systemctl reload caddy
+            sudo -n systemctl reload caddy 2>/dev/null && echo "Caddy reloaded" || echo "WARN: sudo not available for Caddy reload (run manually)"
 
             echo ">>> Deploy complete!"
