@@ -4,8 +4,8 @@ const { country, brandName, formatPrice, getAnnualPrice, isPeru } = useCountry()
 useSeoMeta({
   title: () => `${brandName.value} - Crea tu tienda virtual`,
   ogTitle: () => `${brandName.value} - Crea tu tienda virtual`,
-  description: 'Crea tu propia tienda virtual y empieza a vender por internet ya. 14 días gratis.',
-  ogDescription: 'Crea tu propia tienda virtual y empieza a vender por internet ya. 14 días gratis.',
+  description: () => `Crea tu propia tienda virtual y empieza a vender por internet a todo ${country.value.name} ya. 14 días gratis.`,
+  ogDescription: () => `Crea tu propia tienda virtual y empieza a vender por internet a todo ${country.value.name} ya. 14 días gratis.`,
 })
 
 const isAnnual = ref(true)
@@ -64,7 +64,7 @@ onMounted(() => {
             <div class="hero-content">
               <h1>
                 Crea tu propia tienda virtual y empieza a vender por internet
-                ya!
+                a todo {{ country.name }} ya!
               </h1>
               <p class="hero-subtitle">
                 {{ brandName }} es la plataforma de comercio electrónico que te permite
