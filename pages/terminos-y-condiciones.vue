@@ -604,34 +604,66 @@ useSeoMeta({
 <style scoped>
 .texto_terminos {
   padding-top: 100px;
+  max-width: 860px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .texto_terminos h2 {
   color: var(--primary-color);
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 2rem;
   margin-bottom: 1.5rem;
+  line-height: 1.3;
 }
 
 .texto_terminos h3 {
   color: var(--text-dark);
-  font-weight: 600;
-  margin-top: 2rem;
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-top: 2.5rem;
   margin-bottom: 1rem;
+  line-height: 1.4;
 }
 
 .texto_terminos p {
   text-align: justify;
   line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+.texto_terminos p strong {
+  font-weight: 700;
 }
 
 .texto_terminos ol,
 .texto_terminos ul {
   margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+  padding-left: 2rem;
+}
+
+.texto_terminos ol {
+  list-style-type: upper-roman;
+}
+
+.texto_terminos ul {
+  list-style-type: disc;
 }
 
 .texto_terminos li {
   margin-bottom: 0.75rem;
   text-align: justify;
   line-height: 1.8;
+}
+
+.texto_terminos a {
+  color: var(--primary-color);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.texto_terminos a:hover {
+  color: var(--primary-hover);
 }
 </style>
