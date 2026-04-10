@@ -135,8 +135,8 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
       tiktok: 'https://tiktok.com/@mitiendapuntope'
     },
     legalEntity: 'Tiendas Virtuales Latinoamérica SAC',
-    gaId: 'G-XXXXXXXXXX',
-    fbPixelId: 'XXXXXXXXXXXXXXXXX',
+    gaId: 'G-J91H38CJ41',
+    fbPixelId: '346926019871520',
   },
   EC: {
     code: 'EC',
@@ -223,7 +223,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
       instagram: 'https://instagram.com/mitiendapuntope'
     },
     legalEntity: 'Tiendas Virtuales Latinoamérica SAC',
-    gaId: '',
+    gaId: 'G-D1E0WNTMBZ',
     fbPixelId: '',
   },
   CO: {
@@ -311,7 +311,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
       instagram: 'https://instagram.com/mitiendapuntope'
     },
     legalEntity: 'Tiendas Virtuales Latinoamérica SAC',
-    gaId: '',
+    gaId: 'G-BTNWQQR373',
     fbPixelId: '',
   }
 }
