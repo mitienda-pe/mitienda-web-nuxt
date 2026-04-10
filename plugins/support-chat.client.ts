@@ -30,8 +30,8 @@ export default defineNuxtPlugin(() => {
   const script = document.createElement('script')
   script.async = true
   script.src = `${baseUrl}/mitienda-chat.iife.js`
-  script.dataset.mode = 'support'
-  script.dataset.botName = `Soporte ${country.brandName}`
+  script.dataset.mode = 'sales'
+  script.dataset.botName = country.brandName
   script.dataset.country = countryCode
   script.dataset.mitiendaChat = 'true'
   document.body.appendChild(script)
