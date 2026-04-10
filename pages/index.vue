@@ -33,7 +33,7 @@ const paymentMethodsDescription = computed(() => {
   if (isPeru.value) {
     return `Estamos integrados con mas de 10 pasarelas de pago y puedes usar la de tu preferencia: Mercadopago, Openpay, Culqi, Niubiz, Izipay, etc. Incluso te pueden pagar con Yape, Plin o en cuotas sin intereses.`
   }
-  return `Estamos integrados con las principales pasarelas de pago: ${paymentGatewaysText.value}. Acepta tarjetas de crédito, débito y transferencias bancarias.`
+  return `Estamos integrados con las principales pasarelas de pago de ${country.value.name}: ${paymentGatewaysText.value}. Acepta tarjetas de crédito, débito y transferencias bancarias.`
 })
 
 onMounted(() => {
@@ -69,7 +69,7 @@ onMounted(() => {
               <p class="hero-subtitle">
                 {{ brandName }} es la plataforma de comercio electrónico que te permite
                 crear y gestionar tu propia tienda virtual de manera más fácil,
-                rápida y económica.
+                rápida y económica en {{ country.name }}.
               </p>
               <div class="hero-cta">
                 <a href="#cta" class="btn btn-primary btn-lg me-3">Empezar a Vender</a>
@@ -254,7 +254,7 @@ onMounted(() => {
           <div class="col-lg-8 col-xl-6 text-center">
             <h2>¿Listo para empezar a vender?</h2>
             <p>
-              Únete a miles de emprendedores que ya están vendiendo con
+              Únete a miles de emprendedores en {{ country.name }} que ya están vendiendo con
               {{ brandName }}.<br />
               Prueba gratis por 14 días, sin tarjeta de crédito.
             </p>
