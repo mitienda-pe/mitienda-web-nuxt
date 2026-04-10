@@ -1,7 +1,8 @@
 import { DOMAIN_COUNTRY_MAP, COUNTRY_CONFIGS, DEFAULT_COUNTRY } from '~/config/countries'
 import type { CountryCode } from '~/config/countries'
+import { queryCollection } from '@nuxt/content/server'
 
-export default defineEventHandler((event) => {
+export default defineEventHandler(async (event) => {
   const host = getRequestHost(event, { xForwardedHost: true })
   const hostname = host.split(':')[0]
 
@@ -12,11 +13,12 @@ export default defineEventHandler((event) => {
   const country = COUNTRY_CONFIGS[countryCode]
   const siteUrl = `https://${country.landingDomain}`
 
-  // Pages common to all countries
-  const pages = [
+  // Static pages
+  const pages: Array<{ loc: string; priority: string; changefreq: string }> = [
     { loc: '/', priority: '1.0', changefreq: 'weekly' },
     { loc: '/prueba-gratis', priority: '0.9', changefreq: 'monthly' },
     { loc: '/registro-v2', priority: '0.9', changefreq: 'monthly' },
+    { loc: '/blog', priority: '0.8', changefreq: 'weekly' },
     { loc: '/terminos-y-condiciones', priority: '0.3', changefreq: 'yearly' },
     { loc: '/politicas-de-privacidad', priority: '0.3', changefreq: 'yearly' },
     { loc: '/politica-de-cookies', priority: '0.3', changefreq: 'yearly' },
@@ -25,6 +27,22 @@ export default defineEventHandler((event) => {
   // Peru-only pages
   if (country.hasLibroReclamaciones) {
     pages.push({ loc: '/libro-de-reclamaciones', priority: '0.3', changefreq: 'yearly' })
+  }
+
+  // Blog posts filtered by country
+  try {
+    const posts = await queryCollection(event, 'blog').all()
+    for (const post of posts) {
+      if (post.countries?.includes(countryCode)) {
+        pages.push({
+          loc: post.path || `/blog/${post.stem}`,
+          priority: '0.6',
+          changefreq: 'monthly',
+        })
+      }
+    }
+  } catch {
+    // Content module may not be ready during build
   }
 
   // All country domains for hreflang alternates

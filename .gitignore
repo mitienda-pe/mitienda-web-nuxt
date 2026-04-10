@@ -4,6 +4,7 @@ node_modules/
 # Nuxt build/dev
 .nuxt/
 .output/
+.data/
 .netlify/
 dist/
 

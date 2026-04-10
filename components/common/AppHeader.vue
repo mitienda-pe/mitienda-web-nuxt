@@ -33,6 +33,9 @@ const { country } = useCountry()
             <li class="nav-item">
               <NuxtLink to="/#testimonials" class="nav-link">Testimonios</NuxtLink>
             </li>
+            <li class="nav-item">
+              <NuxtLink to="/blog" class="nav-link">Blog</NuxtLink>
+            </li>
           </ul>
           <ul class="navbar-nav">
             <li class="nav-item">
