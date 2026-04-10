@@ -26,6 +26,7 @@ jobs:
             printf 'NUXT_API_TOKEN=${{ secrets.NUXT_API_TOKEN }}\nNUXT_MTSERVICIOS_URL=${{ secrets.NUXT_MTSERVICIOS_URL }}\nNUXT_MTSERVICIOS_API_KEY=${{ secrets.NUXT_MTSERVICIOS_API_KEY }}\nNUXT_PUBLIC_CHAT_WIDGET_URL=${{ secrets.NUXT_PUBLIC_CHAT_WIDGET_URL }}\n' > .env
 
             npm install
+            export $(grep -v '^#' .env | xargs)
             npm run build
 
             pm2 delete mitienda || true
