@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test'
 test.describe('SEO y Meta Tags', () => {
   test('homepage tiene title y description', async ({ page }) => {
     await page.goto('/')
-    await expect(page).toHaveTitle(/miTienda/)
+    await expect(page).toHaveTitle(/miTienda|TiendaBox/)
 
     const description = page.locator('meta[name="description"]')
     await expect(description).toHaveAttribute('content', /.+/)

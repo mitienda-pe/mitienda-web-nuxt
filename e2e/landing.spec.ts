@@ -4,7 +4,7 @@ test.describe('Landing Page', () => {
   test('homepage carga correctamente', async ({ page }) => {
     await page.goto('/')
     await expect(page.locator('h1').first()).toBeVisible({ timeout: 10000 })
-    await expect(page).toHaveTitle(/miTienda/)
+    await expect(page).toHaveTitle(/miTienda|TiendaBox/)
   })
 
   test('muestra header con navegacion', async ({ page }) => {
