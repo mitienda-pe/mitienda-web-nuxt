@@ -32,7 +32,12 @@ jobs:
 
             npm install
             export $(grep -v '^#' .env | xargs)
-            npm run build
+            node node_modules/nuxt/bin/nuxt.mjs build &
+            BUILD_PID=$!
+            while [ ! -f .output/server/index.mjs ]; do sleep 2; done
+            sleep 5
+            kill $BUILD_PID 2>/dev/null
+            wait $BUILD_PID 2>/dev/null
 
             pm2 delete mitienda || true
             pm2 start .output/server/index.mjs --name mitienda
