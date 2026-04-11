@@ -45,10 +45,7 @@ jobs:
             pm2 restart mitienda --update-env 2>/dev/null || pm2 start .output/server/index.mjs --name mitienda
             pm2 save --force
 
-            echo ">>> Updating Caddy..."
-            if [ -f Caddyfile ]; then
-              sudo -n cp Caddyfile /etc/caddy/Caddyfile 2>/dev/null && echo "Caddyfile copied" || echo "WARN: sudo not available for Caddyfile copy (run manually)"
-            fi
-            sudo -n systemctl reload caddy 2>/dev/null && echo "Caddy reloaded" || echo "WARN: sudo not available for Caddy reload (run manually)"
+            # Note: Caddyfile is managed manually on the server
+            # To update: sudo cp Caddyfile /etc/caddy/Caddyfile && sudo systemctl reload caddy
 
             echo ">>> Deploy complete!"
