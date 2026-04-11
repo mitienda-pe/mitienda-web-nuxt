@@ -26,7 +26,14 @@ const paymentGatewaysText = computed(() => {
   if (gateways.length <= 2) {
     return gateways.join(' y ')
   }
-  return gateways.slice(0, -1).join(', ') + ', etc.'
+  return gateways.slice(0, -1).join(', ') + ' y ' + gateways[gateways.length - 1]
+})
+
+const paymentImage = computed(() => {
+  const code = country.value.code
+  if (code === 'EC') return '/img/pasarelas-de-pago-ecuador.webp'
+  if (code === 'CO') return '/img/pasarelas-de-pago-colombia.webp'
+  return '/img/pasarelas-de-pago.webp'
 })
 
 const paymentMethodsDescription = computed(() => {
@@ -133,7 +140,7 @@ onMounted(() => {
 
           <div class="col-lg-4 col-md-6">
             <div class="card">
-              <img src="/img/pasarelas-de-pago.webp" alt="Pasarelas de pago" class="img-fluid mx-auto mb-4" />
+              <img :src="paymentImage" alt="Pasarelas de pago" class="img-fluid mx-auto mb-4" />
               <h3>Te pagan como quieras</h3>
               <p>{{ paymentMethodsDescription }}</p>
             </div>

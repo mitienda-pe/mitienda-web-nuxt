@@ -215,7 +215,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
         featured: false
       }
     ],
-    paymentGateways: ['Mercadopago', 'Openpay'],
+    paymentGateways: ['Payphone', 'D-Local', 'Datafast', 'Kushki', 'Mercadopago'],
     hasLibroReclamaciones: false,
     hasBillingElectronica: false,
     socialMedia: {
@@ -303,7 +303,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
         featured: false
       }
     ],
-    paymentGateways: ['Mercadopago', 'Openpay'],
+    paymentGateways: ['PayU', 'Mercadopago', 'D-Local', 'Wompi'],
     hasLibroReclamaciones: false,
     hasBillingElectronica: false,
     socialMedia: {
