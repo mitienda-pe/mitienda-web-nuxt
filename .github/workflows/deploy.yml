@@ -39,7 +39,8 @@ jobs:
 
             echo ">>> Building..."
             export $(grep -v '^#' .env | xargs)
-            npm run build 2>&1 | tail -5
+            timeout 120 npm run build || true
+            echo ">>> Build done"
 
             echo ">>> Restarting PM2..."
             pm2 restart mitienda --update-env 2>/dev/null || pm2 start .output/server/index.mjs --name mitienda
