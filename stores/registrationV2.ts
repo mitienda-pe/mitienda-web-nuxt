@@ -92,6 +92,18 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
     error.value = null
 
     try {
+      // Check if email already has an active trial before starting OTP
+      const check = await $fetch<Record<string, unknown>>('/api/verificar-email', {
+        method: 'POST',
+        body: { email: userData.value.email },
+        signal: AbortSignal.timeout(10000)
+      })
+
+      if (check.has_active_trial) {
+        error.value = (check.message as string) || 'Este email ya tiene una prueba gratis activa.'
+        return { success: false, error: error.value ?? undefined }
+      }
+
       const result = await $fetch<Record<string, unknown>>('/api/otp/start-session', {
         method: 'POST',
         body: {
@@ -109,8 +121,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         error.value = (result.error as string) || 'Error al iniciar sesión'
         return { success: false, error: error.value ?? undefined }
       }
-    } catch {
-      error.value = 'Error de conexión'
+    } catch (e: any) {
+      error.value = e?.data?.data?.message || e?.data?.message || 'Error de conexión'
       return { success: false, error: error.value ?? undefined }
     } finally {
       isLoading.value = false
