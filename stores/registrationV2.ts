@@ -311,7 +311,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
 
   async function generateMagicToken(registroCodigo: string): Promise<void> {
     try {
-      const result = await $fetch<{ error: number; data?: { token: string } }>(
+      const result = await $fetch<{ error: number; data?: { token: string; tienda_id?: number } }>(
         '/api/generate-magic-token',
         {
           method: 'POST',
@@ -321,7 +321,11 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
       )
       if (result.error === 0 && result.data?.token) {
         magicToken.value = result.data.token
-        panelUrl.value = `${country.value.adminUrl}/auth/magic?token=${result.data.token}`
+        let url = `${country.value.adminUrl}/auth/magic?token=${result.data.token}`
+        if (result.data.tienda_id) {
+          url += `&tienda_id=${result.data.tienda_id}`
+        }
+        panelUrl.value = url
       }
     } catch {
       // Non-fatal: fallback panelUrl so the user is never left without a link

@@ -30,6 +30,7 @@ export const useRegistrationStore = defineStore('registration', () => {
   // State
   const codigo = ref<string | null>(null)
   const magicToken = ref<string | null>(null)
+  const magicTiendaId = ref<number | null>(null)
   const datosPaso2 = ref<DatosPaso2 | null>(null)
   const currentStep = ref<1 | 2 | 3>(1)
   const isLoading = ref(false)
@@ -48,7 +49,11 @@ export const useRegistrationStore = defineStore('registration', () => {
 
   const panelUrl = computed(() => {
     if (magicToken.value) {
-      return `${country.value.adminUrl}/auth/magic?token=${magicToken.value}`
+      let url = `${country.value.adminUrl}/auth/magic?token=${magicToken.value}`
+      if (magicTiendaId.value) {
+        url += `&tienda_id=${magicTiendaId.value}`
+      }
+      return url
     }
     return `${country.value.adminUrl}/login`
   })
@@ -166,6 +171,7 @@ export const useRegistrationStore = defineStore('registration', () => {
       )
       if (result.error === 0 && result.data?.token) {
         magicToken.value = result.data.token
+        magicTiendaId.value = (result.data as any).tienda_id || null
       }
     } catch {
       // Non-fatal: user can still login manually
