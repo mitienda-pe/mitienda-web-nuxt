@@ -1,12 +1,9 @@
 const ALLOWED_CATEGORIAS = [
-  'Moda y Accesorios',
-  'Belleza y Cuidado Personal',
-  'Hogar y Decoración',
-  'Tecnología y Electrónica',
-  'Deportes y Fitness',
-  'Alimentación y Bebidas',
-  'Servicios Profesionales',
-  'Otros'
+  'moda', 'belleza', 'hogar', 'tecnologia', 'deportes', 'alimentacion', 'servicios', 'otros',
+  // Also accept labels for backwards compatibility
+  'Moda y Accesorios', 'Belleza y Cuidado Personal', 'Hogar y Decoración',
+  'Tecnología y Electrónica', 'Deportes y Fitness', 'Alimentación y Bebidas',
+  'Servicios Profesionales', 'Otros'
 ]
 
 const ALLOWED_PAISES = ['PE', 'EC', 'CO']
