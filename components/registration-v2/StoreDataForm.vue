@@ -121,7 +121,9 @@ async function handleSubmit() {
 
   const result = await store.saveStoreConfig()
 
-  if (!result.success) {
+  if (result.success) {
+    navigateTo(`/registro-v2/completar/${store.codigo || ''}`)
+  } else {
     errorMessage.value = result.error || 'Error al guardar la configuración'
   }
 }

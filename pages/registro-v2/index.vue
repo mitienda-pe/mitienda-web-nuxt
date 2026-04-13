@@ -16,13 +16,14 @@ useSeoMeta({
 
 const store = useRegistrationV2Store()
 
+// Steps: 1=UserData, 2=Email OTP, 3=Password, 4=StoreData
+// (WhatsApp OTP step temporarily removed)
 const currentComponent = computed(() => {
   switch (store.currentStep) {
     case 1: return UserDataForm
-    case 2: return VerifyWhatsApp
-    case 3: return VerifyEmail
-    case 4: return CreatePassword
-    case 5: return StoreDataForm
+    case 2: return VerifyEmail
+    case 3: return CreatePassword
+    case 4: return StoreDataForm
     default: return UserDataForm
   }
 })

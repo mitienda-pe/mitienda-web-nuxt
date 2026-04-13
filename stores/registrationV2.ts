@@ -20,7 +20,7 @@ export interface SessionStatus {
   all_verified: boolean
 }
 
-export type RegistrationStep = 1 | 2 | 3 | 4 | 5 | 6
+export type RegistrationStep = 1 | 2 | 3 | 4 | 5
 
 export const useRegistrationV2Store = defineStore('registrationV2', () => {
   // Country context
@@ -54,7 +54,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
   const error = ref<string | null>(null)
 
   // Getters
-  const allVerified = computed(() => whatsappVerified.value && emailVerified.value)
+  // WhatsApp OTP temporarily disabled — only email verification required
+  const allVerified = computed(() => emailVerified.value)
 
   const maskedPhone = computed(() => {
     const phone = userData.value.telefono
@@ -75,13 +76,14 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
     return maskedName + '@' + maskedDomain
   })
 
+  // Steps: 1=UserData, 2=Email OTP, 3=Password, 4=StoreData, 5=Success
+  // (WhatsApp OTP step temporarily removed)
   const stepLabels = computed(() => [
     { number: 1, label: 'Tus datos' },
-    { number: 2, label: 'WhatsApp' },
-    { number: 3, label: 'Email' },
-    { number: 4, label: 'Contraseña' },
-    { number: 5, label: 'Tu tienda' },
-    { number: 6, label: '¡Listo!' }
+    { number: 2, label: 'Email' },
+    { number: 3, label: 'Contraseña' },
+    { number: 4, label: 'Tu tienda' },
+    { number: 5, label: '¡Listo!' }
   ])
 
   // Actions
@@ -293,7 +295,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
           await generateMagicToken(codigo.value)
         }
 
-        currentStep.value = 6
+        currentStep.value = 5
         return { success: true }
       } else {
         error.value = (result.message as string) || 'Error al guardar configuración'
@@ -348,7 +350,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
   }
 
   function nextStep() {
-    if (currentStep.value < 6) {
+    if (currentStep.value < 5) {
       currentStep.value = (currentStep.value + 1) as RegistrationStep
     }
   }
