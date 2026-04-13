@@ -9,9 +9,11 @@ definePageMeta({
   layout: false
 })
 
+const { country, brandName } = useCountry()
+
 useSeoMeta({
-  title: 'Registro - Prueba gratis miTienda',
-  description: 'Crea tu tienda virtual con verificación de WhatsApp y Email',
+  title: () => `Registro - Prueba gratis ${brandName.value}`,
+  description: () => `Crea tu tienda virtual con ${brandName.value}. Verificación por email.`,
 })
 
 const store = useRegistrationV2Store()
@@ -42,7 +44,7 @@ onMounted(() => {
         <div class="col-12 col-lg-8">
           <div class="text-center mb-4">
             <NuxtLink to="/" class="logo-link">
-              <h1 class="logo-text">miTienda</h1>
+              <img :src="country.logo" :alt="brandName" class="logo-img" />
             </NuxtLink>
             <p class="lead text-muted">Crea tu tienda virtual en minutos</p>
           </div>
@@ -71,8 +73,8 @@ onMounted(() => {
 
 <style scoped>
 .registro-v2 { min-height: 100vh; background-color: var(--background-soft, #f8f9fa); }
-.logo-link { text-decoration: none; }
-.logo-text { color: var(--primary-color, #00b2a6); font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+.logo-link { text-decoration: none; display: inline-block; }
+.logo-img { height: 40px; width: auto; }
 .registration-card { box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.08); border: none; border-radius: var(--rounded-md, 12px); }
 .fade-enter-active, .fade-leave-active { transition: opacity 0.2s ease, transform 0.2s ease; }
 .fade-enter-from { opacity: 0; transform: translateX(20px); }

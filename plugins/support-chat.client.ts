@@ -6,6 +6,9 @@ import { DOMAIN_COUNTRY_MAP, COUNTRY_CONFIGS, DEFAULT_COUNTRY } from '~/config/c
 import type { CountryCode } from '~/config/countries'
 
 export default defineNuxtPlugin(() => {
+  // Don't load chat on registration flow pages
+  if (window.location.pathname.startsWith('/registro-v2')) return
+
   const config = useRuntimeConfig()
   const baseUrl = (config.public.chatWidgetUrl as string || '').replace(/\/+$/, '')
   if (!baseUrl) return

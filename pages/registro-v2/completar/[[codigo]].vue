@@ -5,6 +5,7 @@ definePageMeta({
 
 const route = useRoute()
 const store = useRegistrationV2Store()
+const { country, brandName } = useCountry()
 
 const codigo = computed(() => route.params.codigo as string || store.codigo)
 
@@ -77,7 +78,7 @@ onUnmounted(() => {
             <!-- Header -->
             <div class="mb-4">
               <NuxtLink to="/" class="logo-link">
-                <h1 class="logo-text">miTienda</h1>
+                <img :src="country.logo" :alt="brandName" class="logo-img" />
               </NuxtLink>
             </div>
 
@@ -220,12 +221,12 @@ onUnmounted(() => {
 <style scoped>
 .logo-link {
   text-decoration: none;
+  display: inline-block;
 }
 
-.logo-text {
-  color: var(--primary-color, #00b2a6);
-  font-size: 2rem;
-  font-weight: 700;
+.logo-img {
+  height: 40px;
+  width: auto;
 }
 
 .verified-badges {
