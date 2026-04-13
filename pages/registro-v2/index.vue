@@ -74,7 +74,7 @@ onMounted(() => {
 <style scoped>
 .registro-v2 { min-height: 100vh; background-color: var(--background-soft, #f8f9fa); }
 .logo-link { text-decoration: none; display: inline-block; }
-.logo-img { height: 40px; width: auto; }
+.logo-img { height: 64px; width: auto; }
 .registration-card { box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.08); border: none; border-radius: var(--rounded-md, 12px); }
 .fade-enter-active, .fade-leave-active { transition: opacity 0.2s ease, transform 0.2s ease; }
 .fade-enter-from { opacity: 0; transform: translateX(20px); }
