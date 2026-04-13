@@ -1,12 +1,14 @@
 <script setup lang="ts">
 const route = useRoute()
 const registrationStore = useRegistrationStore()
+const { country } = useCountry()
 
 const codigo = computed(() => route.params.codigo as string)
 
 // Get store data from registration store
-const tiendaUrl = computed(() => registrationStore.tiendaUrl || `https://tutienda.mitienda.pe`)
-const panelUrl = computed(() => registrationStore.panelUrl || `https://panel.mitienda.host/exito/index/${codigo.value}`)
+const tiendaUrl = computed(() => registrationStore.tiendaUrl || `https://tutienda.${country.value.domain}`)
+const panelUrl = computed(() => registrationStore.panelUrl)
+const hasMagicToken = computed(() => !!registrationStore.magicToken)
 
 useSeoMeta({
   title: '¡Felicidades! Tu tienda está lista',
@@ -58,25 +60,28 @@ onMounted(() => {
               Tu prueba gratis de <strong>14 días</strong> ha comenzado.
             </p>
 
-            <!-- Links -->
+            <!-- Links (admin panel first — primary action) -->
             <div class="row g-4 mb-5">
-              <div class="col-md-6">
+              <div class="col-md-6 order-md-1 order-1">
+                <div class="link-card featured">
+                  <div class="link-icon">⚙️</div>
+                  <h5>Panel de administración</h5>
+                  <p class="text-muted mb-3">Agrega productos y gestiona tu tienda</p>
+                  <a :href="panelUrl" class="btn btn-primary btn-lg w-100">
+                    Gestionar tienda →
+                  </a>
+                  <p v-if="hasMagicToken" class="text-muted small mt-2 mb-0">
+                    Ingresarás sin necesidad de contraseña
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6 order-md-2 order-2">
                 <div class="link-card">
                   <div class="link-icon">🏪</div>
                   <h5>Visita tu tienda</h5>
                   <p class="text-muted mb-3">Ve cómo se ve tu nueva tienda online</p>
                   <a :href="tiendaUrl" target="_blank" class="btn btn-outline-primary">
                     Ver mi tienda →
-                  </a>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="link-card">
-                  <div class="link-icon">⚙️</div>
-                  <h5>Panel de administración</h5>
-                  <p class="text-muted mb-3">Agrega productos y gestiona tu tienda</p>
-                  <a :href="panelUrl" class="btn btn-primary">
-                    Gestionar tienda →
                   </a>
                 </div>
               </div>
@@ -203,6 +208,10 @@ onMounted(() => {
 .link-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
+}
+
+.link-card.featured {
+  border: 2px solid var(--primary-color);
 }
 
 .link-card h5 {

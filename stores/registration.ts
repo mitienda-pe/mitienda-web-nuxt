@@ -29,7 +29,7 @@ export const useRegistrationStore = defineStore('registration', () => {
 
   // State
   const codigo = ref<string | null>(null)
-  const urlPanelExito = ref<string | null>(null)
+  const magicToken = ref<string | null>(null)
   const datosPaso2 = ref<DatosPaso2 | null>(null)
   const currentStep = ref<1 | 2 | 3>(1)
   const isLoading = ref(false)
@@ -47,13 +47,10 @@ export const useRegistrationStore = defineStore('registration', () => {
   })
 
   const panelUrl = computed(() => {
-    if (urlPanelExito.value) {
-      return urlPanelExito.value
+    if (magicToken.value) {
+      return `${country.value.adminUrl}/auth/magic?token=${magicToken.value}`
     }
-    if (codigo.value) {
-      return `https://panel.mitienda.host/exito/index/${codigo.value}`
-    }
-    return null
+    return `${country.value.adminUrl}/login`
   })
 
   // Actions
@@ -136,6 +133,12 @@ export const useRegistrationStore = defineStore('registration', () => {
           tienda_url: tienda?.url || `https://${datos.subdominio}.${country.value.domain}`
         }
         currentStep.value = 3
+
+        // Generate magic token for auto-login (non-blocking)
+        if (codigo.value) {
+          generateMagicToken(codigo.value)
+        }
+
         return { success: true }
       } else {
         const errorMsg = (result.message || 'Error al guardar configuración') as string
@@ -151,13 +154,31 @@ export const useRegistrationStore = defineStore('registration', () => {
     }
   }
 
+  async function generateMagicToken(registroCodigo: string): Promise<void> {
+    try {
+      const result = await $fetch<{ error: number; data?: { token: string } }>(
+        '/api/generate-magic-token',
+        {
+          method: 'POST',
+          body: { codigo: registroCodigo },
+          signal: AbortSignal.timeout(15000)
+        }
+      )
+      if (result.error === 0 && result.data?.token) {
+        magicToken.value = result.data.token
+      }
+    } catch {
+      // Non-fatal: user can still login manually
+    }
+  }
+
   function setCodigo(newCodigo: string) {
     codigo.value = newCodigo
   }
 
   function clearState() {
     codigo.value = null
-    urlPanelExito.value = null
+    magicToken.value = null
     datosPaso2.value = null
     currentStep.value = 1
     isLoading.value = false
@@ -166,7 +187,7 @@ export const useRegistrationStore = defineStore('registration', () => {
 
   return {
     codigo,
-    urlPanelExito,
+    magicToken,
     datosPaso2,
     currentStep,
     isLoading,
