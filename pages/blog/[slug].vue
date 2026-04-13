@@ -91,7 +91,7 @@ useHead({
           <div class="col-lg-8 text-center">
             <h2>¿Listo para crear tu tienda virtual?</h2>
             <p>Prueba {{ brandName }} gratis por 14 días. Sin tarjeta de crédito.</p>
-            <NuxtLink to="/prueba-gratis" class="btn btn-primary btn-lg">
+            <NuxtLink to="/registro-v2" class="btn btn-primary btn-lg">
               Empezar Gratis
             </NuxtLink>
           </div>

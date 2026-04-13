@@ -42,7 +42,7 @@ const { country } = useCountry()
               <a :href="`${country.adminUrl}/`" class="btn btn-outline">Iniciar Sesión</a>
             </li>
             <li class="nav-item">
-              <NuxtLink to="/prueba-gratis" class="btn btn-primary">Empezar Gratis</NuxtLink>
+              <NuxtLink to="/registro-v2" class="btn btn-primary">Empezar Gratis</NuxtLink>
             </li>
           </ul>
         </div>

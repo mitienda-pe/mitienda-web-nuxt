@@ -267,7 +267,7 @@ onMounted(() => {
             </p>
 
             <div class="mt-4">
-              <NuxtLink to="/prueba-gratis" class="btn btn-white btn-lg">
+              <NuxtLink to="/registro-v2" class="btn btn-white btn-lg">
                 Crear mi tienda gratis
               </NuxtLink>
             </div>
