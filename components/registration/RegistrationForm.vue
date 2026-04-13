@@ -34,8 +34,8 @@ function validateForm(): boolean {
     errors.value.correo = 'Ingresa un correo electrónico válido'
   }
 
-  if (!form.value.password || form.value.password.length < 6) {
-    errors.value.password = 'La contraseña debe tener al menos 6 caracteres'
+  if (!form.value.password || form.value.password.length < 8) {
+    errors.value.password = 'La contraseña debe tener al menos 8 caracteres'
   }
 
   if (!form.value.terminoscheck) {

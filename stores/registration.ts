@@ -62,6 +62,10 @@ export const useRegistrationStore = defineStore('registration', () => {
     error.value = null
 
     try {
+      // origin_store: 1=PE, 2=EC, 3=CO
+      const originStoreMap: Record<string, number> = { PE: 1, EC: 2, CO: 3 }
+      const originStore = originStoreMap[country.value.code] ?? 1
+
       const result = await $fetch<Record<string, unknown>>('/api/registro-paso1', {
         method: 'POST',
         body: {
@@ -69,11 +73,12 @@ export const useRegistrationStore = defineStore('registration', () => {
           email: datos.correo,
           phone: datos.telefono,
           client_password: datos.password,
-          origin_store: 1
+          origin_store: originStore
         }
       })
 
-      if (result.error === 0 || result.response === 'success') {
+      // API returns error as string '0' or '1', use loose equality
+      if (result.error == 0 || result.response === 'success') {
         codigo.value = result.cod as string
         urlPanelExito.value = `https://panel.mitienda.host/exito/index/${result.cod}`
         currentStep.value = 2
@@ -83,8 +88,8 @@ export const useRegistrationStore = defineStore('registration', () => {
         error.value = errorMsg
         return { success: false, error: errorMsg }
       }
-    } catch (e) {
-      const errorMsg = e instanceof Error ? e.message : 'Error de conexión'
+    } catch (e: any) {
+      const errorMsg = e?.data?.data?.message || e?.data?.message || (e instanceof Error ? e.message : 'Error de conexión')
       error.value = errorMsg
       return { success: false, error: errorMsg }
     } finally {
@@ -137,8 +142,8 @@ export const useRegistrationStore = defineStore('registration', () => {
         error.value = errorMsg
         return { success: false, error: errorMsg }
       }
-    } catch (e) {
-      const errorMsg = e instanceof Error ? e.message : 'Error de conexión'
+    } catch (e: any) {
+      const errorMsg = e?.data?.data?.message || e?.data?.message || (e instanceof Error ? e.message : 'Error de conexión')
       error.value = errorMsg
       return { success: false, error: errorMsg }
     } finally {

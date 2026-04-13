@@ -228,6 +228,10 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
     error.value = null
 
     try {
+      // origin_store: 1=PE, 2=EC, 3=CO
+      const originStoreMap: Record<string, number> = { PE: 1, EC: 2, CO: 3 }
+      const originStore = originStoreMap[country.value.code] ?? 1
+
       const result = await $fetch<Record<string, unknown>>('/api/registro-paso1', {
         method: 'POST',
         body: {
@@ -235,13 +239,14 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
           email: userData.value.email,
           phone: userData.value.telefono,
           client_password: password.value,
-          origin_store: 1,
+          origin_store: originStore,
           verified: true
         },
         signal: AbortSignal.timeout(15000)
       })
 
-      if (result.error === 0 || result.response === 'success') {
+      // API returns error as string '0' or '1', use loose equality
+      if (result.error == 0 || result.response === 'success') {
         codigo.value = result.cod as string
         password.value = '' // Clear password from memory after account creation
         return { success: true, codigo: result.cod as string }
@@ -249,8 +254,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         error.value = ((result.message || result.msn || 'Error en el registro') as string)
         return { success: false, error: error.value ?? undefined }
       }
-    } catch {
-      error.value = 'Error de conexión'
+    } catch (e: any) {
+      error.value = e?.data?.data?.message || e?.data?.message || 'Error de conexión'
       return { success: false, error: error.value ?? undefined }
     } finally {
       isLoading.value = false

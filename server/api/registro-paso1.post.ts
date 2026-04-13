@@ -1,11 +1,14 @@
 export default defineEventHandler(async (event) => {
+  let emailForLog = 'N/A'
+  const clientIp = getRequestHeader(event, 'x-forwarded-for') || getRequestHeader(event, 'x-real-ip') || 'unknown'
+
   try {
     const body = await readBody(event)
     const config = useRuntimeConfig()
-    const clientIp = getRequestHeader(event, 'x-forwarded-for') || getRequestHeader(event, 'x-real-ip') || 'unknown'
+    emailForLog = body.email || 'N/A'
 
     // Log registration attempt for audit/fraud detection
-    console.log(`[REGISTRO] Intento: email=${body.email || 'N/A'} ip=${clientIp} ts=${new Date().toISOString()}`)
+    console.log(`[REGISTRO] Intento: email=${emailForLog} ip=${clientIp} ts=${new Date().toISOString()}`)
 
     // Validar campos requeridos
     if (!body.name || !body.email || !body.phone || !body.client_password) {
@@ -53,15 +56,21 @@ export default defineEventHandler(async (event) => {
       })
     }
 
+    // Separar nombre y apellido (la API requiere ambos)
+    const nameParts = body.name.trim().split(/\s+/)
+    const firstName = nameParts[0]
+    const surname = nameParts.length > 1 ? nameParts.slice(1).join(' ') : firstName
+
     // Llamar a la API de miTienda
-    const data = await $fetch('https://api.mitienda.pe/v1/planes/planprueba14dias', {
+    const data = await $fetch<Record<string, unknown>>('https://api2.mitienda.pe/api/v1/planes/planprueba14dias', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'token': config.apiToken
       },
       body: {
-        name: body.name.trim(),
+        name: firstName,
+        surname: surname,
         email: body.email.trim().toLowerCase(),
         phone: body.phone,
         client_password: body.client_password,
@@ -69,16 +78,20 @@ export default defineEventHandler(async (event) => {
       }
     })
 
-    console.log(`[REGISTRO] Resultado: email=${body.email} success=${data?.error === 0} cod=${data?.cod || 'N/A'} ip=${clientIp}`)
+    console.log(`[REGISTRO] Resultado: email=${emailForLog} response=`, JSON.stringify(data), `ip=${clientIp}`)
     return data
   } catch (error: any) {
-    if (error.statusCode) throw error
+    // Re-throw H3/Nitro errors (from createError above)
+    if (error.statusCode && error.data) throw error
 
-    console.error(`[REGISTRO] Error: email=${body?.email || 'N/A'} ip=${clientIp}`, error)
+    // Extract error message from external API response
+    const apiMessage = error.data?.message || error.data?.msn || error.message || 'Error al crear la cuenta. Intenta nuevamente.'
+    console.error(`[REGISTRO] Error: email=${emailForLog} ip=${clientIp}`, apiMessage)
+
     throw createError({
-      statusCode: 500,
-      statusMessage: 'Error interno del servidor',
-      data: { error: 1, message: 'Error al crear la cuenta. Intenta nuevamente.' }
+      statusCode: error.statusCode || 500,
+      statusMessage: 'Error en registro',
+      data: { error: 1, message: apiMessage }
     })
   }
 })
