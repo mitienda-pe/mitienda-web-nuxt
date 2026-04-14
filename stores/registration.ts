@@ -86,12 +86,15 @@ export const useRegistrationStore = defineStore('registration', () => {
         currentStep.value = 2
         return { success: true, codigo: result.cod as string }
       } else {
-        const errorMsg = (result.message || result.msn || 'Error en el registro') as string
+        // Strip HTML tags from error message (backend may return HTML)
+        const rawMsg = (result.message || result.msn || 'Error en el registro') as string
+        const errorMsg = rawMsg.replace(/<[^>]*>/g, '')
         error.value = errorMsg
         return { success: false, error: errorMsg }
       }
     } catch (e: any) {
-      const errorMsg = e?.data?.data?.message || e?.data?.message || (e instanceof Error ? e.message : 'Error de conexión')
+      const rawMsg = e?.data?.data?.message || e?.data?.message || (e instanceof Error ? e.message : 'Error de conexión')
+      const errorMsg = typeof rawMsg === 'string' ? rawMsg.replace(/<[^>]*>/g, '') : rawMsg
       error.value = errorMsg
       return { success: false, error: errorMsg }
     } finally {

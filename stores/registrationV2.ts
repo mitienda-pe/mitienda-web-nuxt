@@ -265,11 +265,14 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         password.value = '' // Clear password from memory after account creation
         return { success: true, codigo: result.cod as string }
       } else {
-        error.value = ((result.message || result.msn || 'Error en el registro') as string)
+        // Strip HTML tags from error message (backend may return HTML)
+        const rawMsg = ((result.message || result.msn || 'Error en el registro') as string)
+        error.value = rawMsg.replace(/<[^>]*>/g, '')
         return { success: false, error: error.value ?? undefined }
       }
     } catch (e: any) {
-      error.value = e?.data?.data?.message || e?.data?.message || 'Error de conexión'
+      const rawMsg = e?.data?.data?.message || e?.data?.message || 'Error de conexión'
+      error.value = typeof rawMsg === 'string' ? rawMsg.replace(/<[^>]*>/g, '') : rawMsg
       return { success: false, error: error.value ?? undefined }
     } finally {
       isLoading.value = false
