@@ -39,7 +39,8 @@ export default defineEventHandler(async (event) => {
         body: {
           session_id: body.session_id,
           email: body.email,
-          nombre: body.nombre || ''
+          nombre: body.nombre || '',
+          country: (body.country || config.public?.defaultCountry || 'PE').toString().toUpperCase()
         }
       })
     } catch (fetchError: any) {

@@ -176,7 +176,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         body: {
           session_id: sessionId.value,
           email: userData.value.email,
-          nombre: userData.value.nombre
+          nombre: userData.value.nombre,
+          country: currentCountry.value
         },
         signal: AbortSignal.timeout(15000)
       })
