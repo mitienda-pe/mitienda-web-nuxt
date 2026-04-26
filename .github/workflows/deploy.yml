@@ -12,7 +12,7 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
 
     steps:
       - name: Deploy via SSH
@@ -21,7 +21,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          command_timeout: 5m
+          command_timeout: 15m
           script: |
             cd /var/www/mitienda-web-nuxt
 
@@ -32,12 +32,7 @@ jobs:
 
             npm install
             export $(grep -v '^#' .env | xargs)
-            node node_modules/nuxt/bin/nuxt.mjs build &
-            BUILD_PID=$!
-            while [ ! -f .output/server/index.mjs ]; do sleep 2; done
-            sleep 5
-            kill $BUILD_PID 2>/dev/null
-            wait $BUILD_PID 2>/dev/null
+            node node_modules/nuxt/bin/nuxt.mjs build
 
             pm2 delete mitienda || true
             pm2 start .output/server/index.mjs --name mitienda
