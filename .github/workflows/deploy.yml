@@ -33,7 +33,20 @@ jobs:
             export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
             npm ci --no-audit --no-fund
             export $(grep -v '^#' .env | xargs)
-            node node_modules/nuxt/bin/nuxt.mjs build
+
+            : > /tmp/nuxt-build.log
+            node node_modules/nuxt/bin/nuxt.mjs build > /tmp/nuxt-build.log 2>&1 &
+            BUILD_PID=$!
+            while kill -0 $BUILD_PID 2>/dev/null; do
+              if grep -q "Build complete!" /tmp/nuxt-build.log; then
+                sleep 3
+                kill $BUILD_PID 2>/dev/null
+                break
+              fi
+              sleep 2
+            done
+            wait $BUILD_PID 2>/dev/null || true
+            tail -5 /tmp/nuxt-build.log
 
             pm2 reload mitienda --update-env --silent </dev/null >/dev/null 2>&1 \
               || pm2 start .output/server/index.mjs --name mitienda --silent </dev/null >/dev/null 2>&1
