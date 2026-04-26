@@ -30,7 +30,8 @@ jobs:
 
             printf 'NUXT_API_TOKEN=${{ secrets.NUXT_API_TOKEN }}\nNUXT_MTSERVICIOS_URL=${{ secrets.NUXT_MTSERVICIOS_URL }}\nNUXT_MTSERVICIOS_API_KEY=${{ secrets.NUXT_MTSERVICIOS_API_KEY }}\nNUXT_PUBLIC_CHAT_WIDGET_URL=${{ secrets.NUXT_PUBLIC_CHAT_WIDGET_URL }}\n' > .env
 
-            npm install
+            export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
+            npm ci --no-audit --no-fund
             export $(grep -v '^#' .env | xargs)
             node node_modules/nuxt/bin/nuxt.mjs build
 
