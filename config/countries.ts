@@ -110,7 +110,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
       },
       {
         name: 'Large',
-        monthly: 259,
+        monthly: 299,
         commission: '0.5%',
         threshold: 'S/ 9,999.99',
         features: [
