@@ -35,6 +35,7 @@ jobs:
             export $(grep -v '^#' .env | xargs)
             node node_modules/nuxt/bin/nuxt.mjs build
 
-            pm2 reload mitienda --update-env > /dev/null 2>&1 \
-              || pm2 start .output/server/index.mjs --name mitienda > /dev/null 2>&1
-            pm2 save > /dev/null 2>&1
+            pm2 reload mitienda --update-env --silent </dev/null >/dev/null 2>&1 \
+              || pm2 start .output/server/index.mjs --name mitienda --silent </dev/null >/dev/null 2>&1
+            pm2 save --silent </dev/null >/dev/null 2>&1
+            exit 0
