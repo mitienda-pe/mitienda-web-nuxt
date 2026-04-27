@@ -2,7 +2,7 @@
 title: "Las mejores pasarelas de pago para tu tienda virtual en Latinoamérica"
 description: "Conoce las principales pasarelas de pago disponibles para ecommerce en Latinoamérica: Mercado Pago, Culqi, PayU y más."
 date: "2026-04-08"
-image: "/img/blog/pasarelas-de-pago.jpg"
+image: "https://cdn.tiendabox.co/blog/pasarelas-de-pago.jpg"
 tags: ["pasarelas de pago", "ecommerce", "pagos online"]
 author: "MiTienda"
 countries: ["PE", "EC", "CO"]

@@ -2,7 +2,7 @@
 title: "Como crear tu tienda virtual en 2026: Guia completa paso a paso"
 description: "Aprende a crear tu propia tienda virtual desde cero. Guia completa con todo lo que necesitas saber para empezar a vender por internet."
 date: "2026-04-10"
-image: "/img/blog/como-crear-tienda-virtual.jpg"
+image: "https://cdn.tiendabox.co/blog/como-crear-tienda-virtual.jpg"
 tags: ["ecommerce", "guia", "tienda virtual"]
 author: "MiTienda"
 countries: ["PE", "EC", "CO"]
