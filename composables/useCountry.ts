@@ -1,5 +1,5 @@
-import { COUNTRY_CONFIGS, DOMAIN_COUNTRY_MAP, DEFAULT_COUNTRY } from '~/config/countries'
-import type { CountryCode, CountryConfig } from '~/config/countries'
+import { COUNTRY_CONFIGS, DOMAIN_COUNTRY_MAP, DEFAULT_COUNTRY, SHARED_FEATURE_MATRIX, PLAN_ORDER } from '~/config/countries'
+import type { CountryCode, CountryConfig, ComparisonCategory, PlanLevel } from '~/config/countries'
 
 export function useCountry() {
   const config = useRuntimeConfig()
@@ -44,6 +44,17 @@ export function useCountry() {
     return Math.round(monthlyPrice * 12 * 0.8)
   }
 
+  const comparisonMatrix = computed<ComparisonCategory[]>(() => {
+    return [...SHARED_FEATURE_MATRIX, ...country.value.extraFeatures]
+  })
+
+  const planOrder = PLAN_ORDER
+
+  function formatQuota(value: number, unit = ''): string {
+    if (value === 0) return 'Ilimitado'
+    return unit ? `${value.toLocaleString(country.value.locale)} ${unit}` : value.toLocaleString(country.value.locale)
+  }
+
   return {
     countryCode,
     country,
@@ -52,6 +63,11 @@ export function useCountry() {
     currency,
     plans,
     formatPrice,
-    getAnnualPrice
+    getAnnualPrice,
+    comparisonMatrix,
+    planOrder,
+    formatQuota
   }
 }
+
+export type { PlanLevel, ComparisonCategory }

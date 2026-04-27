@@ -233,6 +233,12 @@ onMounted(() => {
             </div>
           </div>
         </div>
+
+        <div class="text-center mt-5">
+          <NuxtLink to="/planes" class="compare-link">
+            Ver comparativa completa de planes →
+          </NuxtLink>
+        </div>
       </div>
     </section>
 
@@ -310,5 +316,19 @@ lite-youtube::before {
   font-size: 0.9rem;
   color: var(--text-muted);
   margin-bottom: 1rem;
+}
+
+.compare-link {
+  display: inline-block;
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.compare-link:hover {
+  border-bottom-color: var(--primary-color);
+  color: var(--primary-color);
 }
 </style>
