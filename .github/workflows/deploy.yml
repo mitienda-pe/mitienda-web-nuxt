@@ -48,7 +48,7 @@ jobs:
             wait $BUILD_PID 2>/dev/null || true
             tail -5 /tmp/nuxt-build.log
 
-            pm2 reload mitienda --update-env --silent </dev/null >/dev/null 2>&1 \
-              || pm2 start .output/server/index.mjs --name mitienda --silent </dev/null >/dev/null 2>&1
+            pm2 delete mitienda --silent </dev/null >/dev/null 2>&1 || true
+            pm2 start .output/server/index.mjs --name mitienda --silent </dev/null >/dev/null 2>&1
             pm2 save --silent </dev/null >/dev/null 2>&1
             exit 0
