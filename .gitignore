@@ -27,3 +27,7 @@ skills-lock.json
 
 # Logs
 *.log
+
+# Playwright
+test-results/
+playwright-report/
