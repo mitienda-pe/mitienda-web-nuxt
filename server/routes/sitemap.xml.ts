@@ -16,7 +16,6 @@ export default defineEventHandler(async (event) => {
   // Static pages
   const pages: Array<{ loc: string; priority: string; changefreq: string }> = [
     { loc: '/', priority: '1.0', changefreq: 'weekly' },
-    { loc: '/prueba-gratis', priority: '0.9', changefreq: 'monthly' },
     { loc: '/registro-v2', priority: '0.9', changefreq: 'monthly' },
     { loc: '/blog', priority: '0.8', changefreq: 'weekly' },
     { loc: '/terminos-y-condiciones', priority: '0.3', changefreq: 'yearly' },

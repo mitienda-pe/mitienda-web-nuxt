@@ -71,6 +71,10 @@ export default defineNuxtConfig({
   routeRules: {
     // All pages use SSR (not prerender) because they need country detection
     // from the Host header to show the correct brand (MiTienda vs TiendaBox)
+
+    // Legacy V1 registration → V2 (preserve SEO/bookmarks)
+    '/prueba-gratis': { redirect: { to: '/registro-v2', statusCode: 301 } },
+    '/prueba-gratis/**': { redirect: { to: '/registro-v2', statusCode: 301 } },
   },
 
   typescript: {

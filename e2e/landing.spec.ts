@@ -47,20 +47,15 @@ test.describe('Landing Page', () => {
   })
 })
 
-test.describe('Prueba Gratis (requiere deploy)', () => {
-  test.fixme('pagina prueba gratis carga con formulario', async ({ page }) => {
-    await page.goto('/prueba-gratis')
-    await expect(page.locator('h1')).toBeVisible({ timeout: 10000 })
+test.describe('Registro V2 (requiere deploy)', () => {
+  test.fixme('pagina de registro carga con formulario', async ({ page }) => {
+    await page.goto('/registro-v2')
+    await expect(page.locator('h3').first()).toBeVisible({ timeout: 10000 })
     await expect(page.locator('form').first()).toBeVisible()
   })
 
-  test.fixme('muestra FAQs en prueba gratis', async ({ page }) => {
+  test.fixme('redirect desde /prueba-gratis a /registro-v2', async ({ page }) => {
     await page.goto('/prueba-gratis')
-    await expect(page.locator('text=Preguntas frecuentes')).toBeVisible()
-  })
-
-  test.fixme('muestra estadisticas de confianza', async ({ page }) => {
-    await page.goto('/prueba-gratis')
-    await expect(page.locator('text=2,000+')).toBeVisible()
+    await expect(page).toHaveURL(/\/registro-v2/)
   })
 })
