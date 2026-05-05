@@ -122,7 +122,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         return { success: false, error: error.value ?? undefined }
       }
     } catch (e: any) {
-      error.value = e?.data?.data?.message || e?.data?.message || 'Error de conexión'
+      error.value = e?.data?.data?.error || e?.data?.data?.message || e?.data?.message || 'Error de conexión'
       return { success: false, error: error.value ?? undefined }
     } finally {
       isLoading.value = false
@@ -272,7 +272,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         return { success: false, error: error.value ?? undefined }
       }
     } catch (e: any) {
-      const rawMsg = e?.data?.data?.message || e?.data?.message || 'Error de conexión'
+      const rawMsg = e?.data?.data?.error || e?.data?.data?.message || e?.data?.message || 'Error de conexión'
       error.value = typeof rawMsg === 'string' ? rawMsg.replace(/<[^>]*>/g, '') : rawMsg
       return { success: false, error: error.value ?? undefined }
     } finally {
