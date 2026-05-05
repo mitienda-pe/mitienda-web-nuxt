@@ -118,7 +118,9 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         sessionId.value = result.session_id as string
         return { success: true }
       } else {
-        error.value = (result.error as string) || 'Error al iniciar sesión'
+        console.error('[startSession] respuesta inesperada de /api/otp/start-session', result)
+        const detail = (result.error || result.message) as string | undefined
+        error.value = detail || `Respuesta inesperada del servicio: ${JSON.stringify(result).slice(0, 200)}`
         return { success: false, error: error.value ?? undefined }
       }
     } catch (e: any) {
