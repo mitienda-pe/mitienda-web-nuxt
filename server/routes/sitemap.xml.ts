@@ -17,6 +17,7 @@ export default defineEventHandler(async (event) => {
   const pages: Array<{ loc: string; priority: string; changefreq: string }> = [
     { loc: '/', priority: '1.0', changefreq: 'weekly' },
     { loc: '/registro-v2', priority: '0.9', changefreq: 'monthly' },
+    { loc: '/punto-de-venta', priority: '0.9', changefreq: 'monthly' },
     { loc: '/blog', priority: '0.8', changefreq: 'weekly' },
     { loc: '/terminos-y-condiciones', priority: '0.3', changefreq: 'yearly' },
     { loc: '/politicas-de-privacidad', priority: '0.3', changefreq: 'yearly' },

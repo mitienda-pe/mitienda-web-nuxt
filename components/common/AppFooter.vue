@@ -10,6 +10,7 @@ const { country, isPeru } = useCountry()
       </div>
 
       <div class="footer-nav">
+        <NuxtLink to="/punto-de-venta">Punto de Venta</NuxtLink>
         <a :href="country.helpUrl">Ayuda</a>
         <NuxtLink to="/terminos-y-condiciones">Términos y Condiciones</NuxtLink>
         <NuxtLink to="/politicas-de-privacidad">Política de Privacidad</NuxtLink>

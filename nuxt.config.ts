@@ -75,6 +75,9 @@ export default defineNuxtConfig({
     // Legacy V1 registration → V2 (preserve SEO/bookmarks)
     '/prueba-gratis': { redirect: { to: '/registro-v2', statusCode: 301 } },
     '/prueba-gratis/**': { redirect: { to: '/registro-v2', statusCode: 301 } },
+
+    // POS landing short URL
+    '/pos': { redirect: { to: '/punto-de-venta', statusCode: 301 } },
   },
 
   typescript: {
