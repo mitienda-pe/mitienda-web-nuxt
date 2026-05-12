@@ -7,6 +7,9 @@ const DISPOSABLE_DOMAINS = [
 ]
 
 const store = useRegistrationV2Store()
+const { country } = useCountry()
+
+const loginUrl = computed(() => `${country.value.adminUrl}/login`)
 
 const terminoscheck = ref(false)
 const errors = ref<Record<string, string>>({})
@@ -115,7 +118,7 @@ function handlePhoneInput(value: string) {
     <div class="text-center mb-4">
       <h3 class="mb-2">Ingresa tus datos</h3>
       <p class="text-muted">
-        Te enviaremos códigos de verificación a tu WhatsApp y Email
+        Te enviaremos un código de verificación a tu correo electrónico
       </p>
     </div>
 
@@ -138,7 +141,7 @@ function handlePhoneInput(value: string) {
       />
 
       <div class="mb-3">
-        <label class="form-label">Teléfono (WhatsApp) <span class="text-danger">*</span></label>
+        <label class="form-label">Teléfono <span class="text-danger">*</span></label>
         <div class="input-group">
           <select
             class="form-select country-select"
@@ -169,7 +172,7 @@ function handlePhoneInput(value: string) {
           />
         </div>
         <div v-if="errors.telefono" class="invalid-feedback d-block">{{ errors.telefono }}</div>
-        <small class="form-text text-muted">Recibirás un código de verificación por WhatsApp</small>
+        <small class="form-text text-muted">Lo usaremos para contactarte si necesitas ayuda con tu tienda</small>
       </div>
 
       <CommonFormInput
@@ -181,7 +184,7 @@ function handlePhoneInput(value: string) {
         required
         autocomplete="email"
         :error="errors.email"
-        hint="Recibirás un código de verificación por email"
+        hint="Te enviaremos un código de verificación de 6 dígitos"
       />
 
       <CommonFormCheckbox
@@ -217,7 +220,7 @@ function handlePhoneInput(value: string) {
 
     <p class="lead mb-0 text-center">
       ¿Ya estás registrado?<br />
-      <a href="https://panel.mitienda.host/administrador/panel" class="text-primary">
+      <a :href="loginUrl" class="text-primary">
         Ingresa tu cuenta.
       </a>
     </p>

@@ -19,8 +19,6 @@ export default defineEventHandler((event) => {
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /prueba-gratis/paso2/
-Disallow: /prueba-gratis/completar/
 Disallow: /registro-v2/completar/
 
 Sitemap: ${siteUrl}/sitemap.xml

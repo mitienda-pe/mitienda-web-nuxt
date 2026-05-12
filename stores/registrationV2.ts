@@ -118,11 +118,13 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         sessionId.value = result.session_id as string
         return { success: true }
       } else {
-        error.value = (result.error as string) || 'Error al iniciar sesión'
+        console.error('[startSession] respuesta inesperada de /api/otp/start-session', result)
+        const detail = (result.error || result.message) as string | undefined
+        error.value = detail || `Respuesta inesperada del servicio: ${JSON.stringify(result).slice(0, 200)}`
         return { success: false, error: error.value ?? undefined }
       }
     } catch (e: any) {
-      error.value = e?.data?.data?.message || e?.data?.message || 'Error de conexión'
+      error.value = e?.data?.data?.error || e?.data?.data?.message || e?.data?.message || 'Error de conexión'
       return { success: false, error: error.value ?? undefined }
     } finally {
       isLoading.value = false
@@ -272,7 +274,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         return { success: false, error: error.value ?? undefined }
       }
     } catch (e: any) {
-      const rawMsg = e?.data?.data?.message || e?.data?.message || 'Error de conexión'
+      const rawMsg = e?.data?.data?.error || e?.data?.data?.message || e?.data?.message || 'Error de conexión'
       error.value = typeof rawMsg === 'string' ? rawMsg.replace(/<[^>]*>/g, '') : rawMsg
       return { success: false, error: error.value ?? undefined }
     } finally {

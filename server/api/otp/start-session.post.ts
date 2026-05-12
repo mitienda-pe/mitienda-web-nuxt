@@ -58,8 +58,15 @@ export default defineEventHandler(async (event) => {
         }
       })
     } catch (fetchError: any) {
-      if (fetchError.status === 401 || fetchError.statusCode === 401) {
-        console.error('Error de autenticación con MTServicios en otp-start-session')
+      const status = fetchError.status || fetchError.statusCode
+      console.error('[otp-start-session] MTServicios fetch error', {
+        status,
+        message: fetchError.message,
+        data: fetchError.data,
+        url: `${mtserviciosUrl}/api/otp/start-session`,
+        hasApiKey: !!config.mtserviciosApiKey
+      })
+      if (status === 401) {
         throw createError({
           statusCode: 502,
           statusMessage: 'Error de autenticación con el servicio de verificación',
@@ -67,6 +74,10 @@ export default defineEventHandler(async (event) => {
         })
       }
       throw fetchError
+    }
+
+    if (!data?.success || !data?.session_id) {
+      console.error('[otp-start-session] MTServicios respondió con shape inesperado', { data })
     }
 
     return data

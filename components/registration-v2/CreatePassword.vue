@@ -64,8 +64,8 @@ async function handleSubmit() {
           <polyline points="22 4 12 14.01 9 11.01"/>
         </svg>
       </div>
-      <h4 class="text-success mb-1">Datos verificados</h4>
-      <p class="text-muted mb-0 small">Tu WhatsApp y Email han sido confirmados</p>
+      <h4 class="text-success mb-1">Email verificado</h4>
+      <p class="text-muted mb-0 small">Tu correo ha sido confirmado correctamente</p>
     </div>
 
     <div class="text-center mb-4">
