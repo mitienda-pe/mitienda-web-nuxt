@@ -2,6 +2,8 @@
 const { buildWhatsappUrl } = useContact()
 const demoUrl = computed(() => buildWhatsappUrl('Hola, quiero saber más sobre MiTienda POS + Kasnet'))
 
+const kasnetLogoUrl = '/img/logo-kasnet-negativo-fondo-morado.svg'
+
 const stats = [
   { number: '+15,000', label: 'puntos de atención en todo el Perú' },
   { number: 'Multibanco', label: 'Banco de la Nación, Cajas Municipales y más' },
@@ -18,7 +20,7 @@ const stats = [
 
           <div class="logo-wrapper">
             <img
-              src="/img/logo-kasnet-negativo-fondo-morado.svg"
+              :src="kasnetLogoUrl"
               alt="Kasnet"
               class="kasnet-logo"
               loading="lazy"
