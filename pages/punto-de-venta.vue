@@ -41,6 +41,7 @@ useHead({
     <PosProblema />
     <PosSolucion />
     <PosPagos />
+    <PosKasnet v-if="isPeru" />
     <PosFacturacion v-if="country.hasBillingElectronica" />
     <PosHardware />
     <PosPlataformas />
