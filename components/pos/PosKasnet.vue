@@ -98,6 +98,38 @@ const stats = [
           </div>
         </div>
       </div>
+
+      <!-- Doble beneficio: el negocio se convierte en agente Kasnet -->
+      <div class="agent-callout">
+        <div class="agent-icon" aria-hidden="true">🏪</div>
+        <div class="agent-body">
+          <span class="agent-tag">DOBLE BENEFICIO</span>
+          <h3 class="agent-title">
+            Tu negocio se convierte en agente corresponsal Kasnet
+          </h3>
+          <p class="agent-text">
+            Con MiTienda POS sobre un dispositivo Kasnet, tu <strong>bodega, farmacia
+            o tienda de barrio</strong> se vuelve un punto Kasnet. Tus clientes
+            pueden pagar servicios (luz, agua, teléfono), hacer transferencias y
+            recibir remesas sin moverse del barrio — y tu negocio gana comisión
+            por cada operación.
+          </p>
+          <ul class="agent-list">
+            <li>
+              <span class="agent-dot" aria-hidden="true"></span>
+              <strong>Ingresos extra</strong> por cada transacción financiera
+            </li>
+            <li>
+              <span class="agent-dot" aria-hidden="true"></span>
+              <strong>Más tráfico al local</strong>: clientes que vuelven cada mes
+            </li>
+            <li>
+              <span class="agent-dot" aria-hidden="true"></span>
+              <strong>Servicio diferenciado</strong> que tu competencia no ofrece
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -314,6 +346,104 @@ const stats = [
   flex-shrink: 0;
 }
 
+.agent-callout {
+  margin-top: 3.5rem;
+  display: flex;
+  gap: 1.75rem;
+  align-items: flex-start;
+  background: linear-gradient(135deg, rgba(249, 203, 0, 0.18) 0%, rgba(249, 203, 0, 0.06) 100%);
+  border: 1px solid rgba(249, 203, 0, 0.45);
+  border-left: 6px solid #f9cb00;
+  border-radius: var(--rounded-xl);
+  padding: 2.25rem 2.5rem;
+}
+
+.agent-icon {
+  font-size: 3rem;
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(249, 203, 0, 0.15);
+  border-radius: var(--rounded-lg);
+}
+
+.agent-body {
+  flex: 1;
+}
+
+.agent-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #f9cb00;
+  margin-bottom: 0.75rem;
+}
+
+.agent-title {
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin-bottom: 0.85rem;
+}
+
+.agent-text {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.agent-text strong {
+  color: #f9cb00;
+  font-weight: 700;
+}
+
+.agent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem 1.5rem;
+}
+
+.agent-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.agent-list strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+.agent-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #f9cb00;
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 991px) {
+  .agent-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .pos-kasnet {
     padding: 64px 0;
@@ -321,6 +451,19 @@ const stats = [
 
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .agent-callout {
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    margin-top: 2.5rem;
+  }
+
+  .agent-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 2.25rem;
   }
 }
 </style>
