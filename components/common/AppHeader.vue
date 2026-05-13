@@ -27,9 +27,11 @@ const { country } = useCountry()
             <li class="nav-item">
               <NuxtLink to="/#features" class="nav-link">Características</NuxtLink>
             </li>
+            <!-- POS link temporarily hidden
             <li class="nav-item">
               <NuxtLink to="/punto-de-venta" class="nav-link">POS</NuxtLink>
             </li>
+            -->
             <li class="nav-item">
               <NuxtLink to="/#pricing" class="nav-link">Precios</NuxtLink>
             </li>
