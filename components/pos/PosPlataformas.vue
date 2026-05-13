@@ -49,11 +49,7 @@ const { brandName, isPeru } = useCountry()
               <li><span class="check">✓</span>Lector de barras físico (o cámara con ML Kit)</li>
               <li>
                 <span class="check">✓</span>
-                QR Kasnet en pantalla
-                <span class="inline-badge">Próximamente</span>
-              </li>
-              <li><span class="check">✓</span>
-                Cobro con tarjeta vía pinpad integrado
+                QR y tarjeta procesados por Kasnet
                 <span class="inline-badge">Próximamente</span>
               </li>
             </ul>

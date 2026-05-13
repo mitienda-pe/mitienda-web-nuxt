@@ -6,8 +6,8 @@ const kasnetLogoUrl = '/img/logo-kasnet-negativo-fondo-morado.svg'
 
 const stats = [
   { number: '+15,000', label: 'puntos de atención en todo el Perú' },
-  { number: 'Multibanco', label: 'Banco de la Nación, Cajas Municipales y más' },
-  { number: '1 QR', label: 'interoperable con Yape, Plin y billeteras peruanas' },
+  { number: 'QR + Tarjeta', label: 'QR interoperable y tarjetas crédito/débito desde el mismo equipo' },
+  { number: '1 sola alianza', label: 'Kasnet procesa todos los pagos del POS' },
 ]
 </script>
 
@@ -29,7 +29,7 @@ const stats = [
 
           <h2 class="kasnet-title">
             MiTienda POS + Kasnet:
-            la red financiera más grande del Perú, dentro de tu caja.
+            todos los pagos del Perú, en una sola caja.
           </h2>
 
           <p class="kasnet-lead">
@@ -40,9 +40,10 @@ const stats = [
           </p>
 
           <p class="kasnet-lead">
-            Estamos integrando el <strong>QR Kasnet</strong> directamente al flujo de cobro
-            de MiTienda POS: un solo QR interoperable con Yape, Plin y las principales
-            billeteras peruanas, sin pegar IDs ni abrir apps externas.
+            Con MiTienda POS Android, <strong>Kasnet procesa todos los pagos digitales</strong>:
+            QR interoperable con Yape, Plin y principales billeteras peruanas, además del
+            cobro con <strong>tarjeta de crédito y débito</strong> — todo desde el mismo
+            dispositivo, sin saltar a apps externas ni pegar IDs.
           </p>
 
           <div class="kasnet-ctas">
@@ -61,7 +62,7 @@ const stats = [
           </div>
 
           <p class="kasnet-microcopy">
-            QR Kasnet en MiTienda POS · <strong>Próximamente disponible</strong>
+            Cobro con QR y tarjeta vía Kasnet · <strong>Próximamente disponible</strong>
           </p>
         </div>
 
@@ -73,23 +74,23 @@ const stats = [
             </div>
 
             <div class="features-card">
-              <h3 class="features-title">¿Qué hace Kasnet?</h3>
+              <h3 class="features-title">Kasnet dentro del POS</h3>
               <ul class="features-list">
                 <li>
                   <span class="dot" aria-hidden="true"></span>
-                  Depósitos, retiros y transferencias multibanco
+                  Cobro con tarjeta crédito y débito desde el mismo equipo
                 </li>
                 <li>
                   <span class="dot" aria-hidden="true"></span>
-                  Pago de servicios (luz, agua, teléfono) y tasas
+                  QR único interoperable con Yape, Plin y billeteras
                 </li>
                 <li>
                   <span class="dot" aria-hidden="true"></span>
-                  Inclusión financiera en zonas urbanas y rurales
+                  Confirmación inmediata: el POS emite el comprobante apenas Kasnet aprueba
                 </li>
                 <li>
                   <span class="dot" aria-hidden="true"></span>
-                  Comercios afiliados ganan comisiones por transacción
+                  Una sola conciliación al cierre de turno
                 </li>
               </ul>
             </div>

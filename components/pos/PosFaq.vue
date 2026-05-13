@@ -9,7 +9,9 @@ const items = computed(() => {
     },
     {
       q: '¿Puedo cobrar con tarjeta?',
-      a: `Sí. En ${brandName.value} POS Web, capturando el código de autorización desde el POS de tu pasarela. En ${brandName.value} POS Android sobre dispositivos con pinpad integrado, el cobro directo desde la misma pantalla está en desarrollo.`,
+      a: isPeru.value
+        ? `Sí. En ${brandName.value} POS Web, capturando el código de autorización desde tu POS de pasarela. En ${brandName.value} POS Android, el cobro con tarjeta crédito y débito se procesará directamente a través de Kasnet, desde el mismo dispositivo y sin saltar a otras apps — actualmente en desarrollo.`
+        : `Sí. En ${brandName.value} POS Web, capturando el código de autorización desde el POS de tu pasarela. En ${brandName.value} POS Android sobre dispositivos con pinpad integrado, el cobro directo desde la misma pantalla está en desarrollo.`,
     },
     {
       q: '¿Qué pasa con el inventario si vendo por mi tienda online?',

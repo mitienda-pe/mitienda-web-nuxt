@@ -39,8 +39,8 @@ const methods = computed<Method[]>(() => {
       {
         emoji: '💳',
         title: 'Tarjeta crédito y débito',
-        description: 'En POS Android, cobro vía dispositivos compatibles con pinpad integrado. En POS Web, captura del código de autorización.',
-        badge: 'Pinpad nativo · Próximamente',
+        description: 'En POS Android, el cobro se procesa directamente a través de Kasnet desde el mismo dispositivo. En POS Web, captura del código de autorización.',
+        badge: 'Vía Kasnet · Próximamente',
       },
       {
         emoji: '💵',
