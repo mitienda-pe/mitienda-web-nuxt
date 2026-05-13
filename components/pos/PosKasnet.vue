@@ -6,8 +6,9 @@ const kasnetLogoUrl = '/img/logo-kasnet-negativo-fondo-morado.svg'
 
 const stats = [
   { number: '+15,000', label: 'puntos de atención en todo el Perú' },
-  { number: 'QR + Tarjeta', label: 'QR interoperable y tarjetas crédito/débito desde el mismo equipo' },
-  { number: '1 sola alianza', label: 'Kasnet procesa todos los pagos del POS' },
+  { number: 'Multibanco', label: 'Banco de la Nación, Cajas Municipales y más' },
+  { number: '1 QR', label: 'interoperable con Yape, Plin y billeteras peruanas' },
+  { number: 'Tarjeta', label: 'crédito y débito procesadas desde el mismo equipo' },
 ]
 </script>
 
