@@ -11,10 +11,10 @@ interface Method {
 const heroPayment = computed(() => {
   if (countryCode.value === 'PE') {
     return {
-      eyebrow: 'MÉTODO ESTRELLA',
+      eyebrow: 'PRÓXIMAMENTE',
       title: 'QR Kasnet — un solo QR para todas las billeteras.',
       text: 'Interoperable con Yape, Plin y las principales billeteras peruanas. El cajero genera el QR desde la pantalla de cobro, el cliente paga con la app que ya tiene en el celular y la confirmación llega al POS para emitir el comprobante. Sin ventanas externas, sin pegar IDs a mano, sin doble cobro.',
-      microcopy: 'Integrado nativamente. No es un parche.',
+      microcopy: 'Próximamente integrado nativamente en el flujo de cobro.',
     }
   }
   if (countryCode.value === 'CO') {

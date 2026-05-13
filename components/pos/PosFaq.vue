@@ -38,7 +38,7 @@ const items = computed(() => {
       },
       {
         q: '¿Funciona con Yape y Plin?',
-        a: 'Sí. MiTienda POS integra QR Kasnet, que es interoperable con Yape, Plin y las principales billeteras peruanas. El cajero genera un solo QR y el cliente paga con la app que ya tiene.',
+        a: 'Próximamente. Estamos integrando QR Kasnet, interoperable con Yape, Plin y las principales billeteras peruanas: el cajero generará un solo QR y el cliente pagará con la app que ya tiene. Mientras tanto, ambos métodos pueden registrarse manualmente como pago confirmado en caja.',
       },
       ...common.slice(1),
     ]

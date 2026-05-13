@@ -47,7 +47,11 @@ const { brandName, isPeru } = useCountry()
             <ul class="platform-list">
               <li><span class="check">✓</span>Impresión térmica directa en el equipo</li>
               <li><span class="check">✓</span>Lector de barras físico (o cámara con ML Kit)</li>
-              <li><span class="check">✓</span>QR Kasnet en pantalla (modelos compatibles)</li>
+              <li>
+                <span class="check">✓</span>
+                QR Kasnet en pantalla
+                <span class="inline-badge">Próximamente</span>
+              </li>
               <li><span class="check">✓</span>
                 Cobro con tarjeta vía pinpad integrado
                 <span class="inline-badge">Próximamente</span>
