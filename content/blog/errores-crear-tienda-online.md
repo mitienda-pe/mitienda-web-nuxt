@@ -1,7 +1,7 @@
 ---
 title: "Los 10 errores más comunes al crear una tienda online (y cómo evitarlos)"
 description: "Descubre los errores más frecuentes al crear una tienda online en Latinoamérica y aprende cómo evitarlos para lanzar tu negocio con éxito desde el primer día."
-date: "2026-05-03"
+date: "2026-05-12"
 image: "https://cdn.tiendabox.co/blog/errores-crear-tienda-online.jpg"
 tags: ["tienda online", "ecommerce", "emprendimiento", "errores"]
 author: "MiTienda"
