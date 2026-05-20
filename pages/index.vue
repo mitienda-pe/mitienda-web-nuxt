@@ -217,6 +217,7 @@ onMounted(() => {
             <div class="pricing-card" :class="{ featured: plan.featured }" :data-monthly="plan.monthly">
               <h3>{{ plan.name }}</h3>
               <div class="price">{{ getPrice(plan.monthly) }}</div>
+              <div v-if="isPeru" class="price-tax">+ IGV</div>
               <div class="price-period">{{ getPeriod() }}</div>
               <div class="commission-info">
                 {{ plan.commission }} de comisión<br />
@@ -310,6 +311,15 @@ lite-youtube::before {
   padding-bottom: 50px;
   width: 100%;
   transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.price-tax {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-top: -0.25rem;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.02em;
 }
 
 .commission-info {

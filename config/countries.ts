@@ -117,6 +117,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Hasta 50 productos',
           'Tienda personalizable',
           'Pagos seguros',
+          'Facturación electrónica gratis (Bizlinks) — 100 docs/mes',
           'Soporte básico',
           'SSL incluido'
         ],
@@ -133,6 +134,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Dominio personalizado',
           'Google Analytics',
           'Cupones y descuentos',
+          'Facturación electrónica gratis (Bizlinks) — 100 docs/mes',
           'Soporte prioritario'
         ],
         featured: true,
@@ -148,6 +150,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Promociones avanzadas',
           'Múltiples usuarios',
           'Reportes detallados',
+          'Facturación electrónica gratis (Bizlinks) — 100 docs/mes',
           'Integraciones premium'
         ],
         featured: false,
@@ -163,6 +166,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'API completa',
           'Soporte VIP',
           'Webhooks',
+          'Facturación electrónica gratis (Bizlinks) — 100 docs/mes',
           'Todo incluido'
         ],
         featured: false,
@@ -195,7 +199,8 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           { key: 'gw-openpay', label: 'Openpay', values: fromMedium() },
           { key: 'gw-yape-plin', label: 'Yape / Plin', values: fromSmall() },
           { key: 'gw-paypal', label: 'PayPal', values: fromMedium() },
-          { key: 'invoice-nubefact', label: 'Facturación electrónica (Nubefact)', values: fromMedium() },
+          { key: 'invoice-bizlinks', label: 'Facturación electrónica (Bizlinks)', hint: 'Hasta 100 documentos al mes', values: all('100/mes') },
+          { key: 'invoice-nubefact', label: 'Facturación electrónica (Nubefact)', hint: 'Alternativa avanzada — facturación ilimitada', values: fromMedium() },
           { key: 'libro-reclamaciones', label: 'Libro de reclamaciones digital', values: all(true) },
           { key: 'courier-urbano', label: 'Urbano', values: fromSmall() },
           { key: 'courier-chazki', label: 'Chazki', values: fromMedium() },

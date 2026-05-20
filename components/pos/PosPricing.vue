@@ -3,7 +3,7 @@ const { brandName } = useCountry()
 const { buildWhatsappUrl } = useContact()
 
 const comboCtaUrl = computed(() =>
-  buildWhatsappUrl(`Hola, quiero contratar el combo Plan Micro + ${brandName.value} POS por S/ 79.90 al mes`)
+  buildWhatsappUrl(`Hola, quiero contratar el combo Plan Micro + ${brandName.value} POS por S/ 79 + IGV al mes`)
 )
 const soloCtaUrl = computed(() =>
   buildWhatsappUrl(`Hola, quiero contratar ${brandName.value} POS solo, sin tienda online`)
@@ -36,14 +36,15 @@ const soloCtaUrl = computed(() =>
             <div class="price-stack">
               <div class="price-main">
                 <span class="price-currency">S/</span>
-                <span class="price-amount">79.90</span>
+                <span class="price-amount">79</span>
+                <span class="price-tax">+ IGV</span>
                 <span class="price-period">/mes</span>
               </div>
               <div class="price-breakdown">
-                S/ 49.90 Plan Micro <span class="price-op">+</span> S/ 30.00 POS
+                S/ 49 Plan Micro <span class="price-op">+</span> S/ 30 POS
               </div>
               <div class="price-savings">
-                Ahorras <strong>S/ 19.90 al mes</strong> vs contratarlos por separado
+                Ahorras <strong>S/ 19 al mes</strong> vs contratarlos por separado
               </div>
             </div>
 
@@ -58,6 +59,10 @@ const soloCtaUrl = computed(() =>
               </li>
               <li>
                 <span class="check" aria-hidden="true">✓</span>
+                <span>Hasta <strong>S/ 30,000/mes</strong> en ventas procesadas incluidas en el plan</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true">✓</span>
                 <span>Catálogo, clientes e inventario <strong>unificados</strong> entre local y online</span>
               </li>
               <li>
@@ -66,7 +71,7 @@ const soloCtaUrl = computed(() =>
               </li>
               <li>
                 <span class="check" aria-hidden="true">✓</span>
-                <span><strong>S/ 30/mes</strong> por cada caja adicional</span>
+                <span><strong>S/ 30/mes + IGV</strong> por cada caja adicional</span>
               </li>
             </ul>
 
@@ -90,12 +95,13 @@ const soloCtaUrl = computed(() =>
             <div class="price-stack">
               <div class="price-main">
                 <span class="price-currency">S/</span>
-                <span class="price-amount">49.90</span>
+                <span class="price-amount">49</span>
+                <span class="price-tax">+ IGV</span>
                 <span class="price-period">/mes</span>
               </div>
               <div class="price-breakdown">Primera caja</div>
               <div class="price-extra">
-                + S/ 30.00 /mes por cada caja adicional
+                + S/ 30 + IGV /mes por cada caja adicional
               </div>
             </div>
 
@@ -103,6 +109,10 @@ const soloCtaUrl = computed(() =>
               <li>
                 <span class="check" aria-hidden="true">✓</span>
                 <span><strong>POS Android y Web</strong> con turno de caja, roles y cierre</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true">✓</span>
+                <span>Hasta <strong>S/ 30,000/mes</strong> en ventas procesadas incluidas en el plan</span>
               </li>
               <li>
                 <span class="check" aria-hidden="true">✓</span>
@@ -299,6 +309,18 @@ const soloCtaUrl = computed(() =>
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 1;
+}
+
+.price-tax {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  letter-spacing: 0.02em;
+  margin-left: 0.15rem;
+}
+
+.plan-card--featured .price-tax {
+  color: var(--primary-color);
 }
 
 .price-period {

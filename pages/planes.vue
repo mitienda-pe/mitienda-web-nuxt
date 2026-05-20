@@ -4,6 +4,7 @@ import type { MatrixCell } from '~/config/countries'
 const {
   country,
   brandName,
+  isPeru,
   formatPrice,
   getAnnualPrice,
   comparisonMatrix,
@@ -83,6 +84,7 @@ function cellText(v: MatrixCell): string {
                 >
                   <div class="plan-name">{{ plan.name }}</div>
                   <div class="plan-price">{{ getPrice(plan.monthly) }}</div>
+                  <div v-if="isPeru" class="plan-tax">+ IGV</div>
                   <div class="plan-period">{{ getPeriod() }}</div>
                   <div class="plan-commission">
                     {{ plan.commission }} de comisión<br />
@@ -251,6 +253,14 @@ function cellText(v: MatrixCell): string {
   margin-top: 6px;
 }
 
+.plan-tax {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  letter-spacing: 0.02em;
+  margin-top: -2px;
+}
+
 .plan-period {
   font-size: 0.8rem;
   color: #6b7280;
@@ -339,6 +349,7 @@ function cellText(v: MatrixCell): string {
 @media (max-width: 768px) {
   .plan-name { font-size: 1rem; }
   .plan-price { font-size: 1.2rem; }
+  .plan-tax { font-size: 0.7rem; }
   .matrix-table { font-size: 0.85rem; }
   .matrix-table tbody td,
   .matrix-table thead th { padding: 10px 10px; }
