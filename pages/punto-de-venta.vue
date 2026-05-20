@@ -46,6 +46,7 @@ useHead({
     <PosHardware />
     <PosPlataformas />
     <PosFeatures />
+    <PosPricing v-if="isPeru" />
     <PosPerfiles />
     <PosFaq />
     <PosCta />
