@@ -1,9 +1,11 @@
 [build]
-  command = "npm run build"
+  # Netlify auto-detecta pnpm-lock.yaml y usa pnpm (versión via packageManager).
+  command = "pnpm build"
   publish = ".output/public"
 
 [build.environment]
-  NODE_VERSION = "18"
+  # pnpm 11 requiere Node >=22.13 (usa node:sqlite builtin).
+  NODE_VERSION = "22"
 
 [[headers]]
   for = "/*"

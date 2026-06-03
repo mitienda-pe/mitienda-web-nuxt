@@ -20,18 +20,20 @@ Country is detected from the `Host` header via `composables/useCountry.ts` → `
 
 **To test a specific country locally:**
 ```bash
-NUXT_PUBLIC_DEFAULT_COUNTRY=EC npm run dev   # Ecuador
-NUXT_PUBLIC_DEFAULT_COUNTRY=CO npm run dev   # Colombia
-npm run dev                                   # Peru (default)
+NUXT_PUBLIC_DEFAULT_COUNTRY=EC pnpm dev   # Ecuador
+NUXT_PUBLIC_DEFAULT_COUNTRY=CO pnpm dev   # Colombia
+pnpm dev                                   # Peru (default)
 ```
 
 ## Commands
 
+This project uses **pnpm** (v11, pinned via `packageManager` + corepack). Do not use npm.
+
 ```bash
-npm run dev        # Start dev server (http://localhost:3000)
-npm run build      # Production build (node-server preset)
-npm run preview    # Preview production build locally
-npm run postinstall # Runs `nuxt prepare` (generates .nuxt types)
+pnpm install       # Install deps (honors pnpm-lock.yaml; build scripts gated by pnpm-workspace.yaml allowBuilds)
+pnpm dev           # Start dev server (http://localhost:3000)
+pnpm build         # Production build (node-server preset)
+pnpm preview       # Preview production build locally
 ```
 
 No test runner or linter is configured.

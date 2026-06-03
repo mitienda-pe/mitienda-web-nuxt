@@ -31,7 +31,10 @@ jobs:
             printf 'NUXT_API_TOKEN=${{ secrets.NUXT_API_TOKEN }}\nNUXT_MTSERVICIOS_URL=${{ vars.NUXT_MTSERVICIOS_URL }}\nNUXT_MTSERVICIOS_API_KEY=${{ secrets.NUXT_MTSERVICIOS_API_KEY }}\n' > .env
 
             export PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
-            npm ci --no-audit --no-fund
+            corepack enable
+            corepack prepare pnpm@11.1.1 --activate
+            rm -rf node_modules
+            pnpm install --frozen-lockfile
             export $(grep -v '^#' .env | xargs)
 
             : > /tmp/nuxt-build.log

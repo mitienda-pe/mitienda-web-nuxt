@@ -1,0 +1,8 @@
+# pnpm 11 es strict-by-default sobre build scripts: hay que declarar
+# explícitamente qué dependencias con binarios nativos se permiten compilar.
+# (reemplaza a onlyBuiltDependencies/ignoredBuiltDependencies de pnpm 9/10)
+allowBuilds:
+  better-sqlite3: true # SQLite nativo usado por @nuxt/content
+  esbuild: true # requerido por Vite
+  '@parcel/watcher': false # trae binarios prebuilt; no necesita compilar
+  vue-demi: false # detecta versión de Vue en runtime; el script no es necesario
