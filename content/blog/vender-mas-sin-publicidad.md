@@ -10,7 +10,7 @@ countries: ["PE", "EC", "CO"]
 
 # Cómo Vender Más Sin Publicidad Pagada: 8 Estrategias Orgánicas para Tu Tienda
 
-¿Sabías que el 92% de los consumidores confía más en las recomendaciones de otras personas que en cualquier anuncio pagado? Esto significa que **vender más sin publicidad** no solo es posible, sino que en muchos casos puede ser más efectivo que gastar en pauta digital.
+¿Sabías que la gran mayoría de los consumidores confía más en las recomendaciones de otras personas que en cualquier anuncio pagado? Esto significa que **vender más sin publicidad** no solo es posible, sino que en muchos casos puede ser más efectivo que gastar en pauta digital.
 
 Si eres emprendedor y sientes que los anuncios de Facebook o Google se llevan buena parte de tus ganancias sin resultados consistentes, esta guía es para ti. Aquí encontrarás estrategias concretas para hacer crecer tu tienda de manera orgánica, es decir, sin desembolsar dinero en publicidad.
 
@@ -34,7 +34,7 @@ Con MiTienda, puedes editar el título SEO y la meta descripción de cada produc
 
 ## 2. Convierte WhatsApp en tu canal de ventas más poderoso
 
-WhatsApp es la aplicación más usada en América Latina, y también es uno de los canales orgánicos más efectivos para cerrar ventas. No necesitas pagar para usarlo y la tasa de apertura de mensajes supera el 90%.
+WhatsApp es la aplicación más usada en América Latina, y también es uno de los canales orgánicos más efectivos para cerrar ventas. Los mensajes de WhatsApp tienen tasas de apertura muy superiores al email, lo que lo convierte en una herramienta ideal para comunicarte con tus clientes.
 
 **Cómo usarlo para vender más sin publicidad:**
 
