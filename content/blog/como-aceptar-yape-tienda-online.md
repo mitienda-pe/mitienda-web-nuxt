@@ -10,7 +10,7 @@ countries: ["PE"]
 
 # Cómo aceptar Yape en tu tienda online: guía paso a paso
 
-¿Sabías que Yape supera los 15 millones de usuarios activos en el Perú? Si tienes una tienda online y aún no aceptas este método de pago, estás dejando ir a una enorme cantidad de clientes potenciales. En este artículo te explicamos exactamente cómo aceptar Yape en tu tienda online, desde los conceptos básicos hasta la configuración práctica, para que puedas cobrar de forma segura, rápida y sin complicaciones.
+Yape, la billetera digital más popular del Perú, cuenta con millones de usuarios activos. Si tienes una tienda online y aún no aceptas este método de pago, estás dejando ir a una enorme cantidad de clientes potenciales. En este artículo te explicamos exactamente cómo aceptar Yape en tu tienda online, desde los conceptos básicos hasta la configuración práctica, para que puedas cobrar de forma segura, rápida y sin complicaciones.
 
 ## ¿Por qué deberías aceptar Yape en tu tienda online?
 
