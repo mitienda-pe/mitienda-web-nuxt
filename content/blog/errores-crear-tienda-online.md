@@ -20,7 +20,7 @@ La buena noticia es que todos esos tropiezos son evitables. En esta guía vamos 
 
 El primer gran error al crear una tienda online es dejarse llevar por lo más popular o lo más barato, sin evaluar si esa plataforma realmente se adapta a tu negocio.
 
-Algunos emprendedores usan plataformas internacionales que no tienen integración con los métodos de pago locales (Yape, PagoEfectivo, PayPhone, Wompi), lo que les obliga a perder ventas o a cobrar solo por transferencia. Otros contratan soluciones demasiado complejas y terminan pagando por funciones que nunca van a usar.
+Algunos emprendedores usan plataformas internacionales que no tienen integración con los métodos de pago locales (Yape, PagoEfectivo, PayPhone, MercadoPago), lo que les obliga a perder ventas o a cobrar solo por transferencia. Otros contratan soluciones demasiado complejas y terminan pagando por funciones que nunca van a usar.
 
 **Cómo evitarlo:** Elige una plataforma diseñada para el mercado latinoamericano, con soporte en español, medios de pago locales integrados y un equipo que entienda tu contexto. MiTienda, por ejemplo, está construida específicamente para emprendedores de Perú, Ecuador y Colombia, con todas las pasarelas de pago más usadas en la región ya activadas.
 
@@ -58,9 +58,9 @@ La falta de claridad en los envíos es uno de los principales motivos de carrito
 
 ## Error 5: Ignorar los medios de pago preferidos de tus clientes
 
-En Perú, más del 40% de los pagos online se hacen por Yape o PagoEfectivo. En Ecuador, el débito directo y PayPhone son muy populares. En Colombia, PSE y Nequi dominan el mercado informal. Si tu tienda no acepta estos métodos, estás perdiendo una parte enorme de tus ventas potenciales.
+Yape y PagoEfectivo se encuentran entre los métodos de pago digital más populares en Perú. En Ecuador, el débito directo y PayPhone son muy populares. En Colombia, PSE y Nequi dominan el mercado informal. Si tu tienda no acepta estos métodos, estás perdiendo una parte enorme de tus ventas potenciales.
 
-**Cómo evitarlo:** Activa los medios de pago más usados en tu país. Con MiTienda, las integraciones con Yape, Izipay, PayPhone, Wompi y otras pasarelas locales ya están disponibles y se configuran en minutos, sin necesidad de conocimientos técnicos.
+**Cómo evitarlo:** Activa los medios de pago más usados en tu país. Con MiTienda, las integraciones con Yape, Izipay, PayPhone, MercadoPago y otras pasarelas locales ya están disponibles y se configuran en minutos, sin necesidad de conocimientos técnicos.
 
 ---
 
