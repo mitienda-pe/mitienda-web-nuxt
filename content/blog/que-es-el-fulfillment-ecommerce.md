@@ -40,7 +40,7 @@ Cuando todo este ciclo funciona bien, el cliente recibe su pedido a tiempo, en b
 
 Muchos emprendedores se enfocan en conseguir ventas, pero descuidan lo que viene después: la entrega. Un error aquí puede arruinar una venta perfecta.
 
-Según estudios de comportamiento en ecommerce latinoamericano, más del **60% de los clientes que tienen una mala experiencia de entrega no vuelven a comprar** en esa tienda. En cambio, una entrega rápida y sin contratiempos genera recomendaciones espontáneas.
+La mayoría de los clientes que tienen una mala experiencia de entrega no vuelven a comprar en esa tienda. En cambio, una entrega rápida y sin contratiempos genera recomendaciones espontáneas.
 
 El fulfillment bien ejecutado te ayuda a:
 
@@ -98,7 +98,7 @@ No todos los modelos de fulfillment son iguales. Dependiendo del tamaño de tu t
 
 ### Fulfillment propio (in-house)
 
-Tú mismo gestionas todo el proceso: almacenas, empaças y envías. Es el modelo más común entre emprendedores que recién comienzan.
+Tú mismo gestionas todo el proceso: almacenas, empacas y envías. Es el modelo más común entre emprendedores que recién comienzan.
 
 **Ventajas:** control total, bajo costo inicial, contacto directo con el producto.  
 **Desventajas:** consume mucho tiempo, difícil de escalar cuando el volumen crece.
