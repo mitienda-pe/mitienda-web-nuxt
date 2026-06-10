@@ -18,7 +18,7 @@ La buena noticia es que no necesitas ser una gran empresa para tener un sistema 
 
 Piénsalo así: tu cliente ya tomó la decisión más difícil (comprarte). Lo que viene después —el tiempo de espera, la comunicación, el estado del paquete cuando llega— determina si vuelve a comprarte o te recomienda a alguien más.
 
-Según estudios del sector, más del 60% de los compradores online abandona una tienda si los costos de envío son poco claros o demasiado altos. Y más del 70% afirma que una mala experiencia de entrega los hace desistir de volver a comprar en esa tienda. Dicho esto, optimizar tu logística no es un lujo: es una necesidad.
+La mayoría de los compradores online abandona una tienda si los costos de envío son poco claros o demasiado altos. Y la mayoría de los compradores no vuelve a comprar en una tienda tras una mala experiencia de entrega. Dicho esto, optimizar tu logística no es un lujo: es una necesidad.
 
 ## Paso 1 — Define tu estrategia de envíos antes de lanzar
 
