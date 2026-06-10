@@ -10,7 +10,7 @@ countries: ["PE", "EC", "CO"]
 
 # Cómo Tomar Fotos de Productos Sin Cámara Profesional (y Vender Más)
 
-¿Sabías que el 75% de los compradores online basan su decisión de compra en las fotos del producto? Sí, antes de leer la descripción, antes de ver el precio y antes de revisar los comentarios, la imagen es lo primero que atrapa (o ahuyenta) a un cliente potencial.
+¿Sabías que la gran mayoría de los compradores online basan su decisión de compra en las fotos del producto? Antes de leer la descripción, antes de ver el precio y antes de revisar los comentarios, la imagen es lo primero que atrapa (o ahuyenta) a un cliente potencial.
 
 La buena noticia es que no necesitas invertir miles de dólares en una cámara profesional ni contratar un fotógrafo. Con tu smartphone, algo de creatividad y los trucos correctos, puedes tomar fotos de productos que vendan. En esta guía te lo mostramos paso a paso.
 
@@ -49,7 +49,7 @@ Busca una mesa o superficie cerca de una ventana grande que reciba luz natural i
 
 ## Paso 2: Domina la Luz (Tu Arma Secreta)
 
-La iluminación es responsable del 80% del resultado de una foto. Una gran iluminación puede hacer que un producto ordinario se vea espectacular.
+La iluminación es responsable de una parte fundamental del resultado de una foto. Una gran iluminación puede hacer que un producto ordinario se vea espectacular.
 
 **Luz natural: la opción gratuita y poderosa**
 
