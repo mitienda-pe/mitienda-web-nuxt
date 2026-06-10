@@ -10,7 +10,7 @@ countries: ["PE"]
 
 # Métodos de pago para tiendas virtuales en Perú: guía completa 2025
 
-Si tienes una tienda virtual en Perú o estás a punto de lanzarla, una de las decisiones más importantes que tomarás es **qué métodos de pago ofrecer**. Y no es una decisión menor: estudios de abandono de carrito indican que más del 20% de los compradores abandona una compra cuando no encuentra su forma de pago preferida.
+Si tienes una tienda virtual en Perú o estás a punto de lanzarla, una de las decisiones más importantes que tomarás es **qué métodos de pago ofrecer**. Y no es una decisión menor: una parte significativa de los compradores abandona una compra cuando no encuentra su forma de pago preferida.
 
 En Perú, el ecosistema de pagos digitales ha cambiado radicalmente en los últimos años. La pandemia aceleró la adopción de billeteras digitales y transferencias instantáneas, y hoy tus clientes esperan opciones variadas, seguras y fáciles de usar. En esta guía te explicamos cada método disponible, sus ventajas, costos y cómo integrarlos en tu tienda.
 
@@ -28,7 +28,7 @@ La regla de oro es simple: **ofrece los métodos que usa tu cliente, no solo los
 
 ### 1. Yape y Plin: las billeteras que conquistaron el mercado peruano
 
-**Yape** (BCP) y **Plin** (BBVA, Scotiabank, Interbank y otros) son hoy las formas de pago digital más populares en el Perú. Yape cuenta con más de 13 millones de usuarios activos y Plin suma varios millones más. Si tu público objetivo son peruanos de entre 18 y 45 años, no puedes ignorar estas billeteras.
+**Yape**, la billetera digital más popular del Perú, (BCP) y **Plin** (BBVA, Scotiabank, Interbank y otros) son hoy las formas de pago digital más populares en el Perú. Si tu público objetivo son peruanos de entre 18 y 45 años, no puedes ignorar estas billeteras.
 
 **Ventajas:**
 - Sin comisiones para el comprador
