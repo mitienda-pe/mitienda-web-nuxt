@@ -10,7 +10,7 @@ countries: ["PE", "EC", "CO"]
 
 # Instagram para Vender en tu Tienda Online: Guía Práctica
 
-¿Sabías que más del 70% de los usuarios de Instagram siguen al menos una cuenta de negocio? La plataforma ya no es solo un álbum de fotos bonitas: es uno de los canales de venta más potentes para emprendedores latinoamericanos. Pero hay una gran diferencia entre tener un perfil activo y realmente **usar Instagram para vender en tu tienda online**.
+¿Sabías que la mayoría de los usuarios de Instagram siguen al menos una cuenta de negocio? La plataforma ya no es solo un álbum de fotos bonitas: es uno de los canales de venta más potentes para emprendedores latinoamericanos. Pero hay una gran diferencia entre tener un perfil activo y realmente **usar Instagram para vender en tu tienda online**.
 
 En esta guía vas a encontrar todo lo que necesitas: desde cómo configurar tu perfil correctamente, qué tipo de contenido genera más ventas, hasta cómo conectar Instagram con tu tienda para que los pedidos lleguen solos.
 
@@ -112,7 +112,7 @@ Tener muchos seguidores no garantiza ventas. Lo que convierte es la **llamada a 
 Algunas tácticas concretas:
 
 - **CTA en cada publicación:** "Disponible en nuestra tienda", "Link en bio para comprar", "Escríbenos para más info"
-- **Responde rápido los DMs:** El 40% de las ventas en Instagram se cierran por mensaje directo. Si tardas 24 horas en responder, el cliente ya compró en otro lado.
+- **Responde rápido los DMs:** Una parte importante de las ventas en Instagram se cierra por mensaje directo. Si tardas 24 horas en responder, el cliente ya compró en otro lado.
 - **Crea urgencia real:** Stock limitado, ofertas por tiempo definido, lanzamientos exclusivos para seguidores.
 - **Muestra prueba social:** Comparte fotos y videos de clientes usando tus productos. Es el contenido más poderoso que existe.
 
