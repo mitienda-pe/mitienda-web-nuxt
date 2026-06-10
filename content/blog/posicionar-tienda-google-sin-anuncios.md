@@ -18,7 +18,7 @@ El SEO (Search Engine Optimization) no es magia ni está reservado para técnico
 
 Los anuncios de Google te dan tráfico instantáneo, sí. Pero en el momento en que dejas de pagar, el tráfico desaparece. El SEO orgánico funciona al revés: es lento al principio, pero los resultados se acumulan con el tiempo. Un artículo bien optimizado que publicas hoy puede seguir atrayendo visitas durante años sin que toques un centavo más.
 
-Además, los usuarios confían más en los resultados orgánicos que en los anuncios. Estudios de comportamiento de búsqueda muestran que más del 70% de los clics van a los resultados no pagados. Esto significa que aparecer en los primeros lugares de Google de forma natural te da más credibilidad y, en muchos casos, mayor tasa de conversión.
+Además, los usuarios confían más en los resultados orgánicos que en los anuncios. Estudios de comportamiento de búsqueda muestran que la gran mayoría de los clics en Google van a los resultados orgánicos, no a los anuncios. Esto significa que aparecer en los primeros lugares de Google de forma natural te da más credibilidad y, en muchos casos, mayor tasa de conversión.
 
 Para un emprendedor que está empezando o que quiere ser más eficiente con su presupuesto, el SEO es la estrategia de marketing digital con mejor retorno a largo plazo.
 
