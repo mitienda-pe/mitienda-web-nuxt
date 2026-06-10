@@ -60,7 +60,7 @@ Muchos emprendedores lanzan su tienda sin haber resuelto cómo van a entregar lo
 
 - **Zonas de envío definidas:** ¿Envías solo a tu ciudad, a todo el país o también al extranjero? Configura las zonas y costos correspondientes.
 - **Tarifas de envío:** Define si el envío es gratuito (absorbes el costo), a precio fijo o calculado según la ubicación y peso del paquete.
-- **Courier seleccionado:** Ten al menos un courier contratado o cotizado antes de abrir. En Perú puedes trabajar con Shalom, Olva Courier, Urbano o Rappi para entregas locales. En Ecuador y Colombia hay opciones similares.
+- **Courier seleccionado:** Ten al menos un courier contratado o cotizado antes de abrir. En Perú puedes trabajar con Shalom, Olva Courier, Urbano o Yango Delivery para entregas locales. En Ecuador y Colombia hay opciones similares.
 - **Política de devoluciones:** Escribe una política clara y breve: en cuántos días puede devolver el cliente, qué condiciones debe cumplir el producto y cómo se procesa el reembolso.
 - **Tiempos de entrega publicados:** Comunica de forma visible cuánto demora cada tipo de envío. La incertidumbre sobre los tiempos es una de las principales causas de abandono de carrito.
 
