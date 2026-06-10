@@ -10,7 +10,7 @@ countries: ["PE", "EC", "CO"]
 
 # Cómo Reducir los Carritos Abandonados en Tu Tienda Online
 
-¿Sabías que en promedio el **70% de los compradores online agrega productos al carrito y se va sin pagar**? Es uno de los problemas más frustrantes del comercio electrónico: el cliente ya eligió lo que quería, ya estaba listo… y en el último momento desapareció.
+¿Sabías que **la mayoría de los compradores online agrega productos al carrito y se va sin pagar**? Es uno de los problemas más frustrantes del comercio electrónico: el cliente ya eligió lo que quería, ya estaba listo… y en el último momento desapareció.
 
 La buena noticia es que los carritos abandonados no son ventas perdidas para siempre. Con las estrategias correctas, puedes recuperar una parte importante de esos compradores y convertirlos en clientes reales. En esta guía te explico paso a paso cómo reducir los carritos abandonados en tu tienda virtual.
 
@@ -118,7 +118,7 @@ La clave es que sea real. Si dices que quedan 3 unidades pero al día siguiente 
 
 No puedes mejorar lo que no mides. Revisa regularmente estas métricas en tu tienda:
 
-- **Tasa de abandono de carrito:** ¿Qué porcentaje de carritos se abandona? El promedio global es 70%, pero si estás por encima, hay trabajo por hacer.
+- **Tasa de abandono de carrito:** ¿Qué porcentaje de carritos se abandona? Si estás por encima del promedio, hay trabajo por hacer.
 - **En qué paso abandonan:** ¿En la página del carrito? ¿En el formulario de envío? ¿En el pago? Saber dónde se van te dice qué arreglar.
 - **Tasa de recuperación por email:** ¿Cuántos de los correos de carrito abandonado terminan en compra?
 
