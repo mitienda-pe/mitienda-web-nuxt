@@ -90,7 +90,7 @@ Los envíos son uno de los puntos que más confusión generan en tiendas nuevas.
 - **Tarifa por peso o zona**: útil si vendes productos de distintos tamaños o si trabajas con courier que cobra según el destino.
 - **Recojo en tienda**: si tienes local físico, actívalo para que el cliente pueda pasar a recoger sin costo de envío.
 
-Para los envíos, puedes coordinarte con couriers como Olva Courier, Shalom o Motorizado; muchos de ellos tienen integración directa con plataformas como MiTienda para generar guías automáticamente.
+Para los envíos, puedes coordinarte con couriers como Olva Courier, Chazki o Motorizado; muchos de ellos tienen integración directa con plataformas como MiTienda para generar guías automáticamente.
 
 ---
 
