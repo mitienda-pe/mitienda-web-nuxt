@@ -22,7 +22,7 @@ La **ficha de producto** es la página individual de cada artículo en tu tienda
 
 En el mundo físico, el cliente puede tocar, oler y probar. En el mundo digital, todo ese trabajo lo hacen tus fotos, tu texto y la información que decides mostrar.
 
-Según estudios de comportamiento en ecommerce, una ficha de producto optimizada puede aumentar la tasa de conversión entre un 30% y un 80%. Es decir, de cada 100 personas que visitan tu página, podrías pasar de 2 ventas a 4 o más, simplemente mejorando cómo presentas tus productos.
+Una ficha de producto optimizada puede aumentar significativamente la tasa de conversión. Es decir, de cada 100 personas que visitan tu página, podrías pasar de 2 ventas a 4 o más, simplemente mejorando cómo presentas tus productos.
 
 ## Ingrediente 1: Fotos que enamoran (y que generan confianza)
 
@@ -121,7 +121,7 @@ Incluye en la ficha de producto:
 
 ## Ingrediente 8: Prueba social (reseñas y valoraciones)
 
-El 93% de los consumidores lee reseñas antes de comprar. Si aún no tienes reseñas, empieza por pedir a tus primeros clientes que dejen su opinión a cambio de un pequeño descuento en su próxima compra.
+La gran mayoría de los consumidores lee reseñas antes de comprar. Si aún no tienes reseñas, empieza por pedir a tus primeros clientes que dejen su opinión a cambio de un pequeño descuento en su próxima compra.
 
 Las reseñas:
 
