@@ -18,9 +18,9 @@ En esta guía te explicamos, paso a paso y sin tecnicismos, cómo convertir What
 
 ## ¿Por Qué WhatsApp Es Tan Poderoso para el Marketing de Tiendas Online?
 
-Antes de entrar en la práctica, entendamos el "por qué". WhatsApp no es solo una app de chat: es el lugar donde tus clientes ya están, donde leen el 98% de los mensajes en menos de 5 minutos y donde la conversación se siente cercana y de confianza.
+Antes de entrar en la práctica, entendamos el "por qué". WhatsApp no es solo una app de chat: es el lugar donde tus clientes ya están, donde la gran mayoría de los mensajes se lee en minutos y donde la conversación se siente cercana y de confianza.
 
-A diferencia del email marketing (donde la tasa de apertura ronda el 20%), un mensaje de WhatsApp casi siempre se abre. Eso lo convierte en una herramienta ideal para:
+A diferencia del email marketing, que tiene tasas de apertura mucho más bajas, un mensaje de WhatsApp casi siempre se abre. Eso lo convierte en una herramienta ideal para:
 
 - Anunciar lanzamientos de productos y ofertas exclusivas
 - Recordar a clientes sobre carritos abandonados
