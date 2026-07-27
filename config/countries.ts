@@ -478,7 +478,6 @@ export const SHARED_FEATURE_MATRIX: ComparisonCategory[] = [
       { key: 'transferencia', label: 'Transferencia / depósito bancario', values: all(true) },
       { key: 'cupones', label: 'Cupones de descuento', values: fromSmall() },
       { key: 'promociones-auto', label: 'Promociones y descuentos', values: fromMedium() },
-      { key: 'pos', label: 'Punto de venta presencial (POS)', values: fromMedium() },
       { key: 'reservas', label: 'Reservas y pedidos en espera', values: onlyLarge() },
     ]
   },
