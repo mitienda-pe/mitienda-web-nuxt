@@ -31,3 +31,6 @@ skills-lock.json
 # Playwright
 test-results/
 playwright-report/
+
+# Generated social images / script outputs
+outputs/
