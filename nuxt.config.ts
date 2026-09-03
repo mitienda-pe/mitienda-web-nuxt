@@ -64,7 +64,7 @@ export default defineNuxtConfig({
     public: {
       siteUrl: 'https://mitienda.pe',
       defaultCountry: 'PE',
-      chatWidgetUrl: 'https://cdn.jsdelivr.net/gh/mitienda-pe/mitienda-chat-widget@v1.1.4/dist',
+      chatWidgetUrl: 'https://cdn.jsdelivr.net/gh/mitienda-pe/mitienda-chat-widget@v1.2.0/dist',
     },
   },
 
