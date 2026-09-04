@@ -28,8 +28,8 @@ const { country } = useCountry()
               <NuxtLink to="/#features" class="nav-link">Características</NuxtLink>
             </li>
             <!-- POS link temporarily hidden
-            <li class="nav-item">
-              <NuxtLink to="/punto-de-venta" class="nav-link">POS</NuxtLink>
+            <li class="nav-item" v-if="isPeru">
+              <a :href="country.posUrl" class="nav-link">POS</a>
             </li>
             -->
             <li class="nav-item">

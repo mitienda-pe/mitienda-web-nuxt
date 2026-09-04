@@ -76,8 +76,12 @@ export default defineNuxtConfig({
     '/prueba-gratis': { redirect: { to: '/registro-v2', statusCode: 301 } },
     '/prueba-gratis/**': { redirect: { to: '/registro-v2', statusCode: 301 } },
 
-    // POS landing short URL
-    '/pos': { redirect: { to: '/punto-de-venta', statusCode: 301 } },
+    // La landing del POS se mudó a pos.mitienda.pe, que ahora es la canónica.
+    // Ojo: routeRules no distingue host, así que tiendabox.co/.ec también caen
+    // aquí — a una página con marca MiTienda, soles y SUNAT. Por eso el enlace
+    // del footer solo se muestra en Perú; esto es solo por si queda un bookmark.
+    '/punto-de-venta': { redirect: { to: 'https://pos.mitienda.pe/', statusCode: 301 } },
+    '/pos': { redirect: { to: 'https://pos.mitienda.pe/', statusCode: 301 } },
   },
 
   typescript: {
