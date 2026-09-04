@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const whatsappNumber = '51992640275'
+const whatsappNumber = '51967797232'
 const whatsappUrl = `https://api.whatsapp.com/send/?phone=${whatsappNumber}`
 </script>
 

@@ -1,9 +1,9 @@
 import type { CountryCode } from '~/config/countries'
 
 const WHATSAPP_BY_COUNTRY: Record<CountryCode, string> = {
-  PE: '51992640275',
-  EC: '51992640275',
-  CO: '51992640275',
+  PE: '51967797232',
+  EC: '51967797232',
+  CO: '51967797232',
 }
 
 const SUPPORT_EMAIL = 'soporte@mitienda.pe'
