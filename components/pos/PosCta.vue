@@ -24,6 +24,9 @@ const emailUrl = computed(() => buildMailto(`Demo de ${brandName.value} POS`, `H
             <a :href="emailUrl" class="btn-secondary-link">
               Escríbenos por correo
             </a>
+            <a :href="country.posUrl" class="btn-secondary-link">
+              Ya soy cliente, ingresar al POS
+            </a>
           </div>
 
           <p class="cta-microcopy">

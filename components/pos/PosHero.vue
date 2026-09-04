@@ -41,6 +41,10 @@ const demoUrl = computed(() => buildWhatsappUrl(`Hola, quiero una demo de ${bran
               Ver el producto
               <span aria-hidden="true">→</span>
             </a>
+            <a :href="country.posUrl" class="btn btn-link-arrow">
+              Ya soy cliente, ingresar
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
 
           <p class="hero-microcopy">

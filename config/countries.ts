@@ -56,6 +56,7 @@ export interface CountryConfig {
   domain: string
   landingDomain: string
   adminUrl: string
+  posUrl: string
   helpUrl: string
   apiDocsUrl: string
   statusUrl: string
@@ -95,6 +96,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
     domain: 'mitienda.pe',
     landingDomain: 'mitienda.pe',
     adminUrl: 'https://admin.mitienda.pe',
+    posUrl: 'https://pos.mitienda.pe',
     helpUrl: 'https://ayuda.mitienda.pe/',
     apiDocsUrl: 'https://publicapi.mitienda.pe/docs/',
     statusUrl: 'https://mitienda.statuspage.io/',
@@ -220,6 +222,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
     domain: 'tiendabox.ec',
     landingDomain: 'tiendabox.ec',
     adminUrl: 'https://admin.mitienda.pe',
+    posUrl: 'https://pos.mitienda.pe',
     helpUrl: 'https://ayuda.mitienda.pe/',
     apiDocsUrl: 'https://publicapi.mitienda.pe/docs/',
     statusUrl: 'https://mitienda.statuspage.io/',
@@ -329,6 +332,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
     domain: 'tiendabox.co',
     landingDomain: 'tiendabox.co',
     adminUrl: 'https://admin.mitienda.pe',
+    posUrl: 'https://pos.mitienda.pe',
     helpUrl: 'https://ayuda.mitienda.pe/',
     apiDocsUrl: 'https://publicapi.mitienda.pe/docs/',
     statusUrl: 'https://mitienda.statuspage.io/',
