@@ -393,6 +393,46 @@
 }
 
 /* ==========================================
+   COUNTRY LINKS
+   ========================================== */
+.country-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.country-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.country-links a:hover,
+.country-links a.active {
+  color: white;
+}
+
+.country-links .flag {
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2);
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+}
+
+.country-links a:hover .flag,
+.country-links a.active .flag {
+  opacity: 1;
+}
+
+/* ==========================================
    SOCIAL ICONS
    ========================================== */
 .svg-icon {
