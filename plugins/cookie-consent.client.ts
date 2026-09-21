@@ -1,13 +1,34 @@
-import { run } from 'vanilla-cookieconsent'
+import { run, acceptedCategory } from 'vanilla-cookieconsent'
 import 'vanilla-cookieconsent/dist/cookieconsent.css'
+import { COUNTRY_CONFIGS, DOMAIN_COUNTRY_MAP, DEFAULT_COUNTRY } from '~/config/countries'
+import type { CountryCode } from '~/config/countries'
 
 // CookieConsent (orestbida/cookieconsent v3) bundled via npm en lugar del CDN.
 // Importar la librería y el CSS aquí garantiza el orden de carga determinista:
 // antes se inyectaban dos <script defer> con useHead, pero `defer` no aplica a
 // scripts insertados dinámicamente, así que el config corría antes que la
 // librería ("CookieConsent is not defined") y el modal no se inicializaba.
+//
+// GA y el píxel de Meta solo se cargan si el visitante acepta su categoría:
+// onConsent corre al aceptar y en cada visita con consentimiento guardado,
+// onChange cuando cambia sus preferencias. Al revocar, autoClear borra las
+// cookies y recarga la página para descargar los scripts ya inyectados.
 export default defineNuxtPlugin(() => {
+  const config = useRuntimeConfig()
+  const countryCode = DOMAIN_COUNTRY_MAP[window.location.hostname]
+    || (config.public.defaultCountry as CountryCode)
+    || DEFAULT_COUNTRY
+  const country = COUNTRY_CONFIGS[countryCode]
+
+  const loadAcceptedTrackers = () => {
+    if (acceptedCategory('analytics')) loadGoogleAnalytics(country)
+    if (acceptedCategory('marketing')) loadMetaPixel(country)
+  }
+
   run({
+    onConsent: loadAcceptedTrackers,
+    onChange: loadAcceptedTrackers,
+
     guiOptions: {
       consentModal: {
         layout: 'box',
@@ -31,11 +52,13 @@ export default defineNuxtPlugin(() => {
       analytics: {
         autoClear: {
           cookies: [{ name: /^_ga/ }, { name: '_gid' }],
+          reloadPage: true,
         },
       },
       marketing: {
         autoClear: {
           cookies: [{ name: /^_fb/ }],
+          reloadPage: true,
         },
       },
     },
@@ -87,14 +110,14 @@ export default defineNuxtPlugin(() => {
                     {
                       name: '_ga',
                       domain: 'Google Analytics',
-                      description: 'Cookie set by Google Analytics',
-                      expiration: 'Expires after 12 days',
+                      description: 'Distinguishes visitors anonymously',
+                      expiration: '2 years',
                     },
                     {
-                      name: '_gid',
+                      name: '_ga_*',
                       domain: 'Google Analytics',
-                      description: 'Cookie set by Google Analytics',
-                      expiration: 'Session',
+                      description: 'Keeps the browsing session state',
+                      expiration: '2 years',
                     },
                   ],
                 },
@@ -156,14 +179,14 @@ export default defineNuxtPlugin(() => {
                     {
                       name: '_ga',
                       domain: 'Google Analytics',
-                      description: 'Cookie establecida por Google Analytics',
-                      expiration: 'Expira después de 12 días',
+                      description: 'Distingue a los visitantes de forma anónima',
+                      expiration: '2 años',
                     },
                     {
-                      name: '_gid',
+                      name: '_ga_*',
                       domain: 'Google Analytics',
-                      description: 'Cookie establecida por Google Analytics',
-                      expiration: 'Sesión',
+                      description: 'Mantiene el estado de la sesión de navegación',
+                      expiration: '2 años',
                     },
                   ],
                 },
