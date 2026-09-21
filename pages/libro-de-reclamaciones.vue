@@ -567,7 +567,7 @@ function handlePhoneInput(event: Event) {
           <div class="modal-body p-4">
             <div class="alert alert-success mb-4">
               <strong>¡Reclamación enviada exitosamente!</strong>
-              <br />Su reclamo ha sido registrado y será procesado en un plazo máximo de 30 días calendario.
+              <br />Su reclamo ha sido registrado y será respondido en un plazo máximo de 15 días hábiles.
             </div>
 
             <h5 class="fw-bold text-primary mb-3">
