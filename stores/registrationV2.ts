@@ -257,6 +257,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
           phone: userData.value.telefono,
           client_password: password.value,
           origin_store: originStore,
+          programa: useProgram().code.value || undefined,
           verified: true
         },
         signal: AbortSignal.timeout(15000)

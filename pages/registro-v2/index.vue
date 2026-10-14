@@ -17,6 +17,7 @@ useSeoMeta({
 })
 
 const store = useRegistrationV2Store()
+const { program } = useProgram()
 
 // Steps: 1=UserData, 2=Email OTP, 3=Password, 4=StoreData
 // (WhatsApp OTP step temporarily removed)
@@ -47,6 +48,11 @@ onMounted(() => {
               <img :src="country.logo" :alt="brandName" class="logo-img" />
             </NuxtLink>
             <p class="lead text-muted">Crea tu tienda virtual en minutos</p>
+          </div>
+
+          <div v-if="program" class="alert alert-success mb-4" role="status">
+            <strong>{{ program.name }}</strong>
+            <div class="small mt-1">{{ program.benefit }}</div>
           </div>
 
           <CommonProgressSteps :current-step="store.currentStep" :steps="store.stepLabels" />

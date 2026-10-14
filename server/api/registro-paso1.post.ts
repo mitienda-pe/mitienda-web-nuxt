@@ -74,7 +74,9 @@ export default defineEventHandler(async (event) => {
         email: body.email.trim().toLowerCase(),
         phone: body.phone,
         client_password: body.client_password,
-        origin_store: body.origin_store || 1
+        origin_store: body.origin_store || 1,
+        // Programa de convenio (?programa=); el API lo valida
+        ...(typeof body.programa === 'string' && /^[A-Z0-9_-]{2,40}$/.test(body.programa) ? { programa: body.programa } : {})
       }
     })
 
