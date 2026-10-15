@@ -113,8 +113,8 @@ export function useHomeFaq() {
       q: '¿Qué medios de pago pueden usar mis clientes?',
       a: `En ${country.value.name} puedes cobrar en línea con ${joinList(country.value.paymentGateways)}`
         + (manual.length ? `, además de ${joinList(manual)}` : '')
-        + '. Las pasarelas disponibles dependen de tu plan, y cada una cobra su propia comisión por transacción.',
-      links: [helpLink('21-pasarelas-pago-vendedor', 'Pasarelas por país y plan')],
+        + '. Todas las pasarelas están disponibles en todos los planes, y cada una cobra su propia comisión por transacción.',
+      links: [helpLink('21-pasarelas-pago-vendedor', 'Pasarelas por país')],
     })
 
     // 8. Envíos
@@ -148,9 +148,17 @@ export function useHomeFaq() {
     if (country.value.hasBillingElectronica) {
       const bizlinks = feature('invoice-bizlinks')
       const nubefact = feature('invoice-nubefact')
+      const datil = feature('invoice-datil')
       const bizlinksPlan = bizlinks ? firstPlanWith([bizlinks]) : undefined
       const nubefactPlan = nubefact ? firstPlanWith([nubefact]) : undefined
-      if (bizlinksPlan || nubefactPlan) {
+      const datilPlan = datil ? firstPlanWith([datil]) : undefined
+      if (datilPlan) {
+        // Ecuador: comprobantes electrónicos autorizados por el SRI vía Dátil.
+        list.push({
+          q: '¿Puedo emitir facturas electrónicas?',
+          a: `Sí, desde el plan ${datilPlan}: emites tus facturas electrónicas autorizadas por el SRI conectando tu cuenta de Dátil desde el panel.`,
+        })
+      } else if (bizlinksPlan || nubefactPlan) {
         const parts: string[] = []
         if (bizlinksPlan) {
           // La celda de la matriz trae el tope mensual como "100/mes".

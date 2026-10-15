@@ -109,12 +109,6 @@ function cellText(v: MatrixCell): string {
                 </td>
               </tr>
               <tr>
-                <td class="feature-col">Páginas personalizadas</td>
-                <td v-for="plan in country.plans" :key="'pg-' + plan.name" class="plan-col">
-                  {{ formatQuota(plan.quotas.maxPages) }}
-                </td>
-              </tr>
-              <tr>
                 <td class="feature-col">Usuarios administradores</td>
                 <td v-for="plan in country.plans" :key="'u-' + plan.name" class="plan-col">
                   {{ formatQuota(plan.quotas.maxUsers) }}

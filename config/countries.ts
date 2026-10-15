@@ -6,7 +6,6 @@ export const PLAN_ORDER: PlanLevel[] = ['Micro', 'Small', 'Medium', 'Large']
 
 export interface PlanQuotas {
   maxProducts: number // 0 = ilimitado
-  maxPages: number    // 0 = ilimitado
   maxUsers: number    // 0 = ilimitado
 }
 
@@ -134,7 +133,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'SSL incluido'
         ],
         featured: false,
-        quotas: { maxProducts: 50, maxPages: 5, maxUsers: 1 }
+        quotas: { maxProducts: 50, maxUsers: 1 }
       },
       {
         name: 'Small',
@@ -150,7 +149,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Soporte prioritario'
         ],
         featured: true,
-        quotas: { maxProducts: 100, maxPages: 10, maxUsers: 1 }
+        quotas: { maxProducts: 100, maxUsers: 1 }
       },
       {
         name: 'Medium',
@@ -166,7 +165,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Integraciones premium'
         ],
         featured: false,
-        quotas: { maxProducts: 500, maxPages: 25, maxUsers: 3 }
+        quotas: { maxProducts: 500, maxUsers: 3 }
       },
       {
         name: 'Large',
@@ -182,7 +181,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Todo incluido'
         ],
         featured: false,
-        quotas: { maxProducts: 0, maxPages: 0, maxUsers: 0 }
+        quotas: { maxProducts: 0, maxUsers: 0 }
       }
     ],
     paymentGateways: ['Mercadopago', 'Openpay', 'Culqi', 'Niubiz', 'Izipay', 'Yape', 'Plin'],
@@ -208,13 +207,14 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
         key: 'integraciones-pe',
         label: 'Integraciones (Perú)',
         features: [
+          // Pasarelas: todas disponibles en todos los planes.
           { key: 'gw-mercadopago', label: 'Mercadopago', values: all(true) },
-          { key: 'gw-culqi', label: 'Culqi', values: fromSmall() },
-          { key: 'gw-niubiz', label: 'Niubiz', values: fromSmall() },
-          { key: 'gw-izipay', label: 'Izipay', values: fromSmall() },
-          { key: 'gw-openpay', label: 'Openpay', values: fromMedium() },
+          { key: 'gw-culqi', label: 'Culqi', values: all(true) },
+          { key: 'gw-niubiz', label: 'Niubiz', values: all(true) },
+          { key: 'gw-izipay', label: 'Izipay', values: all(true) },
+          { key: 'gw-openpay', label: 'Openpay', values: all(true) },
           { key: 'gw-yape-plin', label: 'Yape / Plin', hint: 'Cobro con tu QR, confirmas el pago en el panel', values: all(true) },
-          { key: 'gw-paypal', label: 'PayPal', values: fromMedium() },
+          { key: 'gw-paypal', label: 'PayPal', values: all(true) },
           // Facturación: el módulo (mod_facturacion_electronica) está en Small,
           // Medium y Large; Micro no lo trae. Dentro del módulo el proveedor se
           // elige libremente: Bizlinks "incluida en el plan" o tu cuenta Nubefact.
@@ -276,7 +276,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'SSL incluido'
         ],
         featured: false,
-        quotas: { maxProducts: 50, maxPages: 5, maxUsers: 1 }
+        quotas: { maxProducts: 50, maxUsers: 1 }
       },
       {
         name: 'Small',
@@ -288,10 +288,11 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Dominio personalizado',
           'Google Analytics',
           'Cupones y descuentos',
+          'Facturación electrónica SRI (Dátil)',
           'Soporte prioritario'
         ],
         featured: true,
-        quotas: { maxProducts: 100, maxPages: 10, maxUsers: 1 }
+        quotas: { maxProducts: 100, maxUsers: 1 }
       },
       {
         name: 'Medium',
@@ -303,10 +304,11 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Promociones avanzadas',
           'Múltiples usuarios',
           'Reportes detallados',
+          'Facturación electrónica SRI (Dátil)',
           'Integraciones premium'
         ],
         featured: false,
-        quotas: { maxProducts: 500, maxPages: 25, maxUsers: 3 }
+        quotas: { maxProducts: 500, maxUsers: 3 }
       },
       {
         name: 'Large',
@@ -318,10 +320,11 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'API completa',
           'Soporte VIP',
           'Webhooks',
+          'Facturación electrónica SRI (Dátil)',
           'Todo incluido'
         ],
         featured: false,
-        quotas: { maxProducts: 0, maxPages: 0, maxUsers: 0 }
+        quotas: { maxProducts: 0, maxUsers: 0 }
       }
     ],
     paymentGateways: ['Payphone', 'D-Local', 'Datafast', 'Kushki', 'Mercadopago'],
@@ -329,7 +332,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
       methods: ['tarjeta de crédito o débito', 'transferencia o depósito bancario'],
     },
     hasLibroReclamaciones: false,
-    hasBillingElectronica: false,
+    hasBillingElectronica: true,
     socialMedia: {
       facebook: 'https://www.facebook.com/mitiendapuntope',
       instagram: 'https://instagram.com/mitiendapuntope'
@@ -343,11 +346,14 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
         label: 'Integraciones (Ecuador)',
         features: [
           { key: 'gw-mercadopago', label: 'Mercadopago', values: all(true) },
-          { key: 'gw-payphone', label: 'PayPhone', values: fromSmall() },
-          { key: 'gw-datafast', label: 'Datafast', values: fromMedium() },
-          { key: 'gw-kushki', label: 'Kushki', values: fromMedium() },
-          { key: 'gw-dlocal', label: 'D-Local', values: onlyLarge() },
-          { key: 'gw-paypal', label: 'PayPal', values: fromMedium() },
+          { key: 'gw-payphone', label: 'PayPhone', values: all(true) },
+          { key: 'gw-datafast', label: 'Datafast', values: all(true) },
+          { key: 'gw-kushki', label: 'Kushki', values: all(true) },
+          { key: 'gw-dlocal', label: 'D-Local', values: all(true) },
+          { key: 'gw-paypal', label: 'PayPal', values: all(true) },
+          // Facturación electrónica SRI vía Dátil: mismo módulo que en Perú
+          // (mod_facturacion_electronica), desde Small.
+          { key: 'invoice-datil', label: 'Facturación electrónica SRI (Dátil)', values: fromSmall() },
         ]
       }
     ]
@@ -386,7 +392,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'SSL incluido'
         ],
         featured: false,
-        quotas: { maxProducts: 50, maxPages: 5, maxUsers: 1 }
+        quotas: { maxProducts: 50, maxUsers: 1 }
       },
       {
         name: 'Small',
@@ -401,7 +407,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Soporte prioritario'
         ],
         featured: true,
-        quotas: { maxProducts: 100, maxPages: 10, maxUsers: 1 }
+        quotas: { maxProducts: 100, maxUsers: 1 }
       },
       {
         name: 'Medium',
@@ -416,7 +422,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Integraciones premium'
         ],
         featured: false,
-        quotas: { maxProducts: 500, maxPages: 25, maxUsers: 3 }
+        quotas: { maxProducts: 500, maxUsers: 3 }
       },
       {
         name: 'Large',
@@ -431,7 +437,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Todo incluido'
         ],
         featured: false,
-        quotas: { maxProducts: 0, maxPages: 0, maxUsers: 0 }
+        quotas: { maxProducts: 0, maxUsers: 0 }
       }
     ],
     paymentGateways: ['PayU', 'Mercadopago', 'D-Local', 'Wompi'],
@@ -453,10 +459,10 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
         label: 'Integraciones (Colombia)',
         features: [
           { key: 'gw-mercadopago', label: 'Mercadopago', values: all(true) },
-          { key: 'gw-payu', label: 'PayU', values: fromSmall() },
-          { key: 'gw-wompi', label: 'Wompi', values: fromMedium() },
-          { key: 'gw-dlocal', label: 'D-Local', values: onlyLarge() },
-          { key: 'gw-paypal', label: 'PayPal', values: fromMedium() },
+          { key: 'gw-payu', label: 'PayU', values: all(true) },
+          { key: 'gw-wompi', label: 'Wompi', values: all(true) },
+          { key: 'gw-dlocal', label: 'D-Local', values: all(true) },
+          { key: 'gw-paypal', label: 'PayPal', values: all(true) },
           { key: 'marketplace-mlibre', label: 'Mercado Libre', values: onlyLarge() },
           { key: 'marketplace-linio', label: 'Linio', values: onlyLarge() },
         ]
@@ -536,6 +542,7 @@ export const SHARED_FEATURE_MATRIX: ComparisonCategory[] = [
       { key: 'clarity', label: 'Microsoft Clarity', values: fromSmall() },
       { key: 'blog', label: 'Blog integrado', values: fromSmall() },
       { key: 'email-marketing', label: 'Integración con servicios de email marketing', values: fromMedium() },
+      { key: 'popups', label: 'Popups (captura de correos y anuncios)', values: fromMedium() },
       { key: 'recovery-cart', label: 'Recuperación de carritos abandonados', values: fromMedium() },
       { key: 'redes-sociales', label: 'Botones de redes sociales / WhatsApp', values: all(true) },
       { key: 'push', label: 'Notificaciones push', values: onlyLarge() },
