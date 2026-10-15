@@ -69,6 +69,15 @@ export function useHomeFaq() {
       links: [{ href: '/planes', label: 'Comparar planes' }],
     })
 
+    // 2b. Cómo se paga la suscripción (medios por país; Yape y comprobante solo en Perú)
+    const sub = country.value.subscriptionPayment
+    list.push({
+      q: '¿Cómo pago la suscripción?',
+      a: `Puedes pagarla con ${joinList(sub.methods)}. Si eliges el pago mensual, te recomendamos el cobro automático con tarjeta: tu plan se renueva solo cada mes, sin que tengas que acordarte. Si eliges el pago anual, lo recomendado es la transferencia bancaria.`
+        + (sub.receipt ? ` Por cada pago te emitimos ${sub.receipt} electrónica, según el documento que nos indiques.` : ''),
+      links: [helpLink('23-cuenta/01-pagar-y-renovar#medios-de-pago', 'Cómo pagar o renovar tu plan')],
+    })
+
     // 3. Tarjeta para la prueba
     list.push({
       q: '¿Necesito tarjeta de crédito para la prueba gratis?',
@@ -113,11 +122,13 @@ export function useHomeFaq() {
       .flatMap(cat => cat.features)
       .filter(f => f.key.startsWith('courier-'))
     const couriersPlan = firstPlanWith(couriers)
+    // Solo unos pocos de ejemplo: la lista completa vive en /planes.
+    const courierExamples = couriers.slice(0, 4).map(c => c.label)
     list.push({
       q: '¿Ustedes hacen los envíos?',
       a: 'No, el despacho lo haces tú o tu courier. Defines tus tarifas de envío por zona y puedes ofrecer recojo en tienda'
         + (couriers.length && couriersPlan
-          ? `; desde el plan ${couriersPlan} también puedes conectar couriers integrados como ${joinList(couriers.map(c => c.label))}.`
+          ? `; desde el plan ${couriersPlan} también puedes conectar couriers integrados como ${joinList(courierExamples)}.`
           : '.'),
       links: [helpLink('10-envios', 'Cómo configurar los envíos')],
     })
@@ -137,15 +148,19 @@ export function useHomeFaq() {
     if (country.value.hasBillingElectronica) {
       const bizlinks = feature('invoice-bizlinks')
       const nubefact = feature('invoice-nubefact')
+      const bizlinksPlan = bizlinks ? firstPlanWith([bizlinks]) : undefined
       const nubefactPlan = nubefact ? firstPlanWith([nubefact]) : undefined
-      if (bizlinks || nubefactPlan) {
+      if (bizlinksPlan || nubefactPlan) {
         const parts: string[] = []
-        if (bizlinks) {
-          parts.push(`Sí. Todos los planes incluyen facturación electrónica gratis con Bizlinks para emitir boletas y facturas${bizlinks.hint ? ` (${bizlinks.hint.toLowerCase()})` : ''}.`)
+        if (bizlinksPlan) {
+          // La celda de la matriz trae el tope mensual como "100/mes".
+          const docs = String(bizlinks!.values[bizlinksPlan]).match(/\d+/)?.[0]
+          const limit = docs ? ` (hasta ${docs} documentos al mes)` : ''
+          parts.push(`Sí, desde el plan ${bizlinksPlan}: la facturación electrónica con Bizlinks viene incluida en el plan para emitir boletas y facturas${limit}.`)
         }
         if (nubefactPlan) {
-          parts.push(bizlinks
-            ? `Desde el plan ${nubefactPlan} también puedes conectar Nubefact, sin ese límite mensual.`
+          parts.push(bizlinksPlan
+            ? 'Si ya tienes una cuenta en Nubefact, también puedes conectarla.'
             : `Sí, desde el plan ${nubefactPlan} puedes emitir boletas y facturas electrónicas con Nubefact.`)
         }
         list.push({

@@ -71,6 +71,17 @@ export interface CountryConfig {
   geoPosition: string
   plans: PricingPlan[]
   paymentGateways: string[]
+  /**
+   * Cómo se paga la suscripción al plan en este país. Se aceptan todos los
+   * medios; el recomendado depende del ciclo: mensual → cobro automático con
+   * tarjeta, anual → transferencia bancaria.
+   */
+  subscriptionPayment: {
+    /** Medios aceptados, en minúscula y listos para unir en una frase. */
+    methods: string[]
+    /** Comprobante que se emite por cada pago, si aplica (solo Perú). */
+    receipt?: string
+  }
   hasLibroReclamaciones: boolean
   hasBillingElectronica: boolean
   socialMedia: {
@@ -119,7 +130,6 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Hasta 50 productos',
           'Tienda personalizable',
           'Pagos seguros',
-          'Facturación electrónica gratis (Bizlinks) — 100 docs/mes',
           'Soporte básico',
           'SSL incluido'
         ],
@@ -176,6 +186,10 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
       }
     ],
     paymentGateways: ['Mercadopago', 'Openpay', 'Culqi', 'Niubiz', 'Izipay', 'Yape', 'Plin'],
+    subscriptionPayment: {
+      methods: ['tarjeta de crédito o débito', 'transferencia o depósito bancario', 'Yape'],
+      receipt: 'boleta o factura',
+    },
     hasLibroReclamaciones: true,
     hasBillingElectronica: true,
     socialMedia: {
@@ -199,15 +213,28 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           { key: 'gw-niubiz', label: 'Niubiz', values: fromSmall() },
           { key: 'gw-izipay', label: 'Izipay', values: fromSmall() },
           { key: 'gw-openpay', label: 'Openpay', values: fromMedium() },
-          { key: 'gw-yape-plin', label: 'Yape / Plin', values: fromSmall() },
+          { key: 'gw-yape-plin', label: 'Yape / Plin', hint: 'Cobro con tu QR, confirmas el pago en el panel', values: all(true) },
           { key: 'gw-paypal', label: 'PayPal', values: fromMedium() },
-          { key: 'invoice-bizlinks', label: 'Facturación electrónica (Bizlinks)', hint: 'Hasta 100 documentos al mes', values: all('100/mes') },
-          { key: 'invoice-nubefact', label: 'Facturación electrónica (Nubefact)', hint: 'Alternativa avanzada — facturación ilimitada', values: fromMedium() },
+          // Facturación: el módulo (mod_facturacion_electronica) está en Small,
+          // Medium y Large; Micro no lo trae. Dentro del módulo el proveedor se
+          // elige libremente: Bizlinks "incluida en el plan" o tu cuenta Nubefact.
+          { key: 'invoice-bizlinks', label: 'Facturación electrónica (Bizlinks)', hint: 'Incluida en el plan — hasta 100 documentos al mes', values: fromSmall('100/mes') },
+          { key: 'invoice-nubefact', label: 'Facturación electrónica (Nubefact)', hint: 'Con tu propia cuenta Nubefact, que cobra por comprobante', values: fromSmall() },
           { key: 'libro-reclamaciones', label: 'Libro de reclamaciones digital', values: all(true) },
-          { key: 'courier-urbano', label: 'Urbano', values: fromSmall() },
+          // Couriers integrados: módulo mod_courier_avanzado (Medium y Large).
+          { key: 'courier-olva', label: 'Olva Courier', values: fromMedium() },
+          { key: 'courier-urbano', label: 'Urbano', values: fromMedium() },
           { key: 'courier-chazki', label: 'Chazki', values: fromMedium() },
           { key: 'courier-urbaner', label: 'Urbaner', values: fromMedium() },
-          { key: 'courier-shalom', label: 'Shalom', values: fromMedium() },
+          { key: 'courier-cabify', label: 'Cabify Logistics', values: fromMedium() },
+          { key: 'courier-homedelivery', label: 'Home Delivery', values: fromMedium() },
+          { key: 'courier-nirex', label: 'Nirex', values: fromMedium() },
+          { key: 'courier-yango', label: 'Yango Delivery', values: fromMedium() },
+          { key: 'courier-99minutos', label: '99 Minutos', values: fromMedium() },
+          { key: 'courier-hop', label: 'HOP Envíos', values: fromMedium() },
+          // El POS no viene en ningún plan e-commerce (solo el plan PDV trae mod_pos):
+          // se suma como adicional por caja.
+          { key: 'pos-addon', label: 'Punto de venta (POS)', hint: 'Adicional: S/ 30 + IGV al mes por caja', values: all('Adicional') },
           { key: 'erp-netsuite', label: 'NetSuite', values: onlyLarge() },
           { key: 'erp-mtbridge', label: 'ERPs locales (Random / Contanet / TheHub)', values: onlyLarge() },
           { key: 'wms-mintsoft', label: 'WMS (Mintsoft / Urbano WMS)', values: onlyLarge() },
@@ -298,6 +325,9 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
       }
     ],
     paymentGateways: ['Payphone', 'D-Local', 'Datafast', 'Kushki', 'Mercadopago'],
+    subscriptionPayment: {
+      methods: ['tarjeta de crédito o débito', 'transferencia o depósito bancario'],
+    },
     hasLibroReclamaciones: false,
     hasBillingElectronica: false,
     socialMedia: {
@@ -318,9 +348,6 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           { key: 'gw-kushki', label: 'Kushki', values: fromMedium() },
           { key: 'gw-dlocal', label: 'D-Local', values: onlyLarge() },
           { key: 'gw-paypal', label: 'PayPal', values: fromMedium() },
-          { key: 'courier-servientrega', label: 'Servientrega', values: fromSmall() },
-          { key: 'courier-tramaco', label: 'Tramaco', values: fromMedium() },
-          { key: 'courier-laar', label: 'Laar Courier', values: fromMedium() },
         ]
       }
     ]
@@ -408,6 +435,9 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
       }
     ],
     paymentGateways: ['PayU', 'Mercadopago', 'D-Local', 'Wompi'],
+    subscriptionPayment: {
+      methods: ['tarjeta de crédito o débito', 'transferencia o depósito bancario'],
+    },
     hasLibroReclamaciones: false,
     hasBillingElectronica: false,
     socialMedia: {
@@ -427,10 +457,6 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           { key: 'gw-wompi', label: 'Wompi', values: fromMedium() },
           { key: 'gw-dlocal', label: 'D-Local', values: onlyLarge() },
           { key: 'gw-paypal', label: 'PayPal', values: fromMedium() },
-          { key: 'courier-servientrega', label: 'Servientrega', values: fromSmall() },
-          { key: 'courier-coordinadora', label: 'Coordinadora', values: fromSmall() },
-          { key: 'courier-interrapidisimo', label: 'Interrapidísimo', values: fromMedium() },
-          { key: 'courier-enviaco', label: 'Envia.co', values: fromMedium() },
           { key: 'marketplace-mlibre', label: 'Mercado Libre', values: onlyLarge() },
           { key: 'marketplace-linio', label: 'Linio', values: onlyLarge() },
         ]
