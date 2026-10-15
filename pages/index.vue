@@ -8,6 +8,8 @@ useSeoMeta({
   ogDescription: () => `Crea tu propia tienda virtual y empieza a vender por internet a todo ${country.value.name} ya. 14 días gratis.`,
 })
 
+const { items: faqItems } = useHomeFaq()
+
 const isAnnual = ref(true)
 
 function getPrice(monthly: number): string {
@@ -261,6 +263,21 @@ onMounted(() => {
       </div>
     </section>
 
+    <!-- Preguntas frecuentes -->
+    <section id="faq" class="faq-section">
+      <div class="container">
+        <h2 class="section-title">Preguntas frecuentes</h2>
+        <p class="section-subtitle">
+          Lo que más nos preguntan antes de crear su tienda.
+        </p>
+        <div class="row justify-content-center">
+          <div class="col-lg-9 col-xl-8">
+            <CommonFaqAccordion :items="faqItems" seo />
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA Section -->
     <section id="cta" class="cta-section">
       <div class="container">
@@ -326,6 +343,11 @@ lite-youtube::before {
   font-size: 0.9rem;
   color: var(--text-muted);
   margin-bottom: 1rem;
+}
+
+.faq-section {
+  padding: 5rem 0;
+  background: var(--background);
 }
 
 .compare-link {

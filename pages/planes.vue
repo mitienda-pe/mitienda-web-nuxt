@@ -162,7 +162,8 @@ function cellText(v: MatrixCell): string {
         </div>
 
         <p class="text-center text-muted small mt-4">
-          ¿Tienes dudas? Escríbenos y te ayudamos a elegir el plan adecuado para tu negocio.
+          ¿Tienes dudas? Revisa las <NuxtLink to="/#faq" class="text-primary">preguntas frecuentes</NuxtLink>
+          o escríbenos y te ayudamos a elegir el plan adecuado para tu negocio.
         </p>
       </div>
     </section>

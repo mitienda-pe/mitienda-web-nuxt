@@ -2,6 +2,8 @@
 interface FaqItem {
   q: string
   a: string
+  /** Enlaces opcionales bajo la respuesta (no van al JSON-LD). */
+  links?: { href: string; label: string }[]
 }
 
 interface Props {
@@ -26,6 +28,10 @@ const openSet = ref<Set<number>>(new Set(openIndex.value !== null ? [openIndex.v
 
 function isOpen(i: number): boolean {
   return props.singleOpen ? openIndex.value === i : openSet.value.has(i)
+}
+
+function isExternal(href: string): boolean {
+  return /^https?:\/\//.test(href)
 }
 
 function toggle(i: number) {
@@ -91,6 +97,18 @@ if (props.seo) {
         role="region"
       >
         <p>{{ item.a }}</p>
+        <p v-if="item.links?.length" class="faq-links">
+          <NuxtLink
+            v-for="link in item.links"
+            :key="link.href"
+            :to="link.href"
+            :target="isExternal(link.href) ? '_blank' : undefined"
+            :rel="isExternal(link.href) ? 'noopener' : undefined"
+            class="faq-link"
+          >
+            {{ link.label }} →
+          </NuxtLink>
+        </p>
       </div>
     </div>
   </div>
@@ -153,5 +171,25 @@ if (props.seo) {
 
 .faq-answer p {
   margin: 0;
+}
+
+.faq-answer .faq-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  margin-top: 0.75rem;
+}
+
+.faq-link {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition-fast);
+}
+
+.faq-link:hover {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
 }
 </style>
