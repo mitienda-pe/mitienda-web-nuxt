@@ -165,7 +165,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Integraciones premium'
         ],
         featured: false,
-        quotas: { maxProducts: 500, maxUsers: 3 }
+        quotas: { maxProducts: 500, maxUsers: 2 }
       },
       {
         name: 'Large',
@@ -308,7 +308,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Integraciones premium'
         ],
         featured: false,
-        quotas: { maxProducts: 500, maxUsers: 3 }
+        quotas: { maxProducts: 500, maxUsers: 2 }
       },
       {
         name: 'Large',
@@ -422,7 +422,7 @@ export const COUNTRY_CONFIGS: Record<CountryCode, CountryConfig> = {
           'Integraciones premium'
         ],
         featured: false,
-        quotas: { maxProducts: 500, maxUsers: 3 }
+        quotas: { maxProducts: 500, maxUsers: 2 }
       },
       {
         name: 'Large',
