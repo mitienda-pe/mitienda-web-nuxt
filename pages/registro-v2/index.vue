@@ -31,7 +31,25 @@ const currentComponent = computed(() => {
   }
 })
 
+const route = useRoute()
+const router = useRouter()
+
+// No filtrar el código del registro por el referrer.
+useHead({ meta: [{ name: 'referrer', content: 'no-referrer' }] })
+
 onMounted(() => {
+  // Cuenta creada sin tienda: viene del login (?codigo=) o quedó guardada al
+  // recargar/cerrar. Se abre directo en "Tu tienda".
+  const fromLink = typeof route.query.codigo === 'string' && /^[0-9a-f]{40}$/.test(route.query.codigo) ? route.query.codigo : null
+  const pending = fromLink || (!store.sessionId && !store.codigo ? store.savedCodigo() : null)
+  if (fromLink) {
+    const { codigo: _omit, ...rest } = route.query
+    router.replace({ query: rest })
+  }
+  if (pending) {
+    store.resumeWithCodigo(pending)
+    return
+  }
   if (!store.sessionId) {
     store.reset()
   }

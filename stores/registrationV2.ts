@@ -266,6 +266,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
       // API returns error as string '0' or '1', use loose equality
       if (result.error == 0 || result.response === 'success') {
         codigo.value = result.cod as string
+        rememberCodigo(codigo.value)
         password.value = '' // Clear password from memory after account creation
         return { success: true, codigo: result.cod as string }
       } else {
@@ -315,6 +316,7 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         }
 
         currentStep.value = 5
+        rememberCodigo(null)
         return { success: true }
       } else {
         error.value = (result.message as string) || 'Error al guardar configuración'
@@ -366,6 +368,33 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
     } catch {
       return { disponible: false, mensaje: 'Error al validar subdominio' }
     }
+  }
+
+  // El código une el paso "Contraseña" (crea la cuenta) con "Tu tienda" (crea
+  // la tienda). Solo en memoria se perdía al recargar y la cuenta quedaba sin
+  // tienda. Va en sessionStorage (no localStorage): en una computadora
+  // compartida no debe sobrevivir a la pestaña. Si la cierra, el login lo retoma.
+  const CODIGO_KEY = 'mt_registro_codigo'
+  function rememberCodigo(value: string | null) {
+    try {
+      if (value) sessionStorage.setItem(CODIGO_KEY, value)
+      else sessionStorage.removeItem(CODIGO_KEY)
+    } catch { /* almacenamiento bloqueado: se sigue solo en memoria */ }
+  }
+  function savedCodigo(): string | null {
+    try {
+      return sessionStorage.getItem(CODIGO_KEY)
+    } catch {
+      return null
+    }
+  }
+
+  /** Retoma el registro en "Tu tienda" con un código (del enlace del login o guardado). */
+  function resumeWithCodigo(value: string) {
+    reset()
+    codigo.value = value
+    rememberCodigo(value)
+    currentStep.value = 4
   }
 
   function setStep(step: RegistrationStep) {
@@ -430,6 +459,8 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
     maskedPhone,
     maskedEmail,
     stepLabels,
+    savedCodigo,
+    resumeWithCodigo,
     startSession,
     sendWhatsAppCode,
     sendEmailCode,
