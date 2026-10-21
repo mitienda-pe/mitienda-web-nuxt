@@ -131,7 +131,7 @@ async function handleSubmit() {
 // Download PDF
 function downloadPdf() {
   if (pdfHash.value) {
-    window.open(`https://api.mitienda.pe/v1/libroreclamaciones/descargapdf/${pdfHash.value}`, '_blank')
+    window.open(`/api/reclamaciones/pdf/${pdfHash.value}`, '_blank')
   }
 }
 
