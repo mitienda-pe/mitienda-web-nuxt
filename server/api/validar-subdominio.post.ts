@@ -28,6 +28,15 @@ export default defineEventHandler(async (event) => {
       }
     }
 
+    // Mismas reglas que guardar-paso2: si aquí se acepta y allá no, el
+    // registro se cae en el último paso.
+    if (/^-|-$|--/.test(subdominio)) {
+      return {
+        disponible: false,
+        mensaje: 'No puede empezar ni terminar con guion, ni llevar dos guiones seguidos'
+      }
+    }
+
     // Verificar si es reservado
     if (RESERVED_SUBDOMAINS.includes(subdominio)) {
       return {

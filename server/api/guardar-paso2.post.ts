@@ -41,11 +41,11 @@ export default defineEventHandler(async (event) => {
     }
 
     // Validar formato de subdominio (3-20 chars, lowercase alphanumeric + hyphens, no leading/trailing hyphens)
-    if (!/^[a-z0-9][a-z0-9-]{1,18}[a-z0-9]$/.test(body.subdominio)) {
+    if (!/^[a-z0-9][a-z0-9-]{1,18}[a-z0-9]$/.test(body.subdominio) || body.subdominio.includes('--')) {
       throw createError({
         statusCode: 400,
         statusMessage: 'Subdominio inválido',
-        data: { error: 1, message: 'El subdominio debe tener entre 3 y 20 caracteres, solo letras minúsculas, números y guiones' }
+        data: { error: 1, message: 'El subdominio debe tener entre 3 y 20 caracteres (letras minúsculas, números y guiones) y no puede empezar ni terminar con guion' }
       })
     }
 

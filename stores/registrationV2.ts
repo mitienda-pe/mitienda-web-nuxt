@@ -322,8 +322,10 @@ export const useRegistrationV2Store = defineStore('registrationV2', () => {
         error.value = (result.message as string) || 'Error al guardar configuración'
         return { success: false, error: error.value ?? undefined }
       }
-    } catch {
-      error.value = 'Error de conexión'
+    } catch (e: any) {
+      // Un 400 de validación trae su motivo; "Error de conexión" queda solo
+      // para cuando de verdad no hubo respuesta.
+      error.value = e?.data?.data?.message || e?.data?.message || 'Error de conexión'
       return { success: false, error: error.value ?? undefined }
     } finally {
       isLoading.value = false

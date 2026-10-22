@@ -46,8 +46,14 @@ watch(() => store.storeData.nombre_tienda, (newValue) => {
   }
 })
 
+// El guion final se tolera mientras se escribe ("mi-" camino a "mi-tienda");
+// se limpia al salir del campo y antes de enviar.
+function limpiarGuionesExtremos(valor: string): string {
+  return valor.replace(/^-+|-+$/g, '')
+}
+
 watch(() => store.storeData.subdominio, (newValue) => {
-  store.storeData.subdominio = newValue.toLowerCase().replace(/[^a-z0-9-]/g, '')
+  store.storeData.subdominio = newValue.toLowerCase().replace(/[^a-z0-9-]/g, '').replace(/-{2,}/g, '-')
 
   if (store.storeData.subdominio.length >= 3) {
     verificarDisponibilidad(store.storeData.subdominio)
@@ -107,6 +113,7 @@ function validateForm(): boolean {
 }
 
 async function handleSubmit() {
+  store.storeData.subdominio = limpiarGuionesExtremos(store.storeData.subdominio)
   if (!validateForm()) return
 
   errorMessage.value = ''
@@ -130,6 +137,10 @@ async function handleSubmit() {
 
 function onSubdominioFocus() {
   subdominioTocado.value = true
+}
+
+function onSubdominioBlur() {
+  store.storeData.subdominio = limpiarGuionesExtremos(store.storeData.subdominio)
 }
 </script>
 
@@ -176,6 +187,7 @@ function onSubdominioFocus() {
             maxlength="20"
             required
             @focus="onSubdominioFocus"
+            @blur="onSubdominioBlur"
           />
           <span class="input-group-text">.{{ currentDomain }}</span>
         </div>
